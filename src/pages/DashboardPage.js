@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import CommitteeNavbar from '../components/CommitteeNavbar';
+
 
 
 
@@ -13,6 +15,7 @@ function DashboardPage(props) {
 
     return (
         <div>
+          <CommitteeNavbar activeUser={activeUser}/>  
           DashboardPage
 
         </div>

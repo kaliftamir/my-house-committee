@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import CommitteeNavbar from '../components/CommitteeNavbar';
 
 
 
@@ -14,6 +15,7 @@ function MessagesPage(props) {
 
     return (
         <div>
+            <CommitteeNavbar activeUser={activeUser}/>
           MessagesPage
 
         </div>
