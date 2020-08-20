@@ -43,12 +43,12 @@ class App extends React.Component {
       tenants: jsonTenants
       // messages: jsonMessages
     }
-  }
+  
   //   this.handleLogout = this.handleLogout.bind(this);
-  //   this.handleLogin = this.handleLogin.bind(this);
+     this.handleLogin = this.handleLogin.bind(this);
   //   this.handleNewRecipe = this.handleNewRecipe.bind(this);
 
-  // }
+  }
   
 
   handleLogin(activeUser) {
