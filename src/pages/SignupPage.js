@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 
-function SignupPage() {
+
+function SignupPage(props) {
     
-        
+    const { activeUser } = props;
+
+    if (!activeUser) {
+        return <Redirect to="/" />
+    }       
 
     return (
         <div>

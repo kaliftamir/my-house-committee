@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 
-function TenantsPage() {
+
+function TenantsPage(props) {
     
         
+  const { activeUser } = props;
 
-    return (
-        <div>
-          TenantsPage
+  if (!activeUser) {
+      return <Redirect to="/" />
+  }  
 
-        </div>
-    );
+  return (
+      <div>
+        TenantsPage
+
+      </div>
+  );
     
 }
 

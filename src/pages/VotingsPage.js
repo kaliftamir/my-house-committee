@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 
-function VotingPage() {
+
+function VotingPage(props) {
+
     
-        
+  const { activeUser } = props;
 
-    return (
-        <div>
-          DashboardPage
+  if (!activeUser) {
+      return <Redirect to="/" />
+  }        
 
-        </div>
-    );
+  return (
+      <div>
+        DashboardPage
+
+      </div>
+  );
     
 }
 

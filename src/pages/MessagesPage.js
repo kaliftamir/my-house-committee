@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 
-function MessagesPage() {
+
+function MessagesPage(props) {
+
     
-        
+    const { activeUser } = props;
+
+    if (!activeUser) {
+        return <Redirect to="/" />
+    }      
 
     return (
         <div>
