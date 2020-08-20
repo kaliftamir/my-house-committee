@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Switch, Route, HashRouter } from 'react-router-dom';
 
-import HomePage from './HomePage';
-import LoginPage from './LoginPage';
-import SignupPage from './SignupPage';
-import DashboardPage from './DashboardPage';
-import TenantsPage from './TenantsPage';
-import MessagesPage from './MessagesPage';
-import VotingsPage from './VotingsPage';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import DashboardPage from './pages/DashboardPage';
+import TenantsPage from './pages/TenantsPage';
+import MessagesPage from './pages/MessagesPage';
+import VotingsPage from './pages/VotingsPage';
 // import jsonUsers from '../data/users.json'
 // import jsonRecipes from '../data/recipes.json'
 
@@ -38,12 +38,11 @@ class App extends React.Component {
         apartment:6,
         isCommitteeMember: false
       }
-
      
       // users: jsonUsers,
       // recipes: jsonRecipes
     }
-
+  }
   //   this.handleLogout = this.handleLogout.bind(this);
   //   this.handleLogin = this.handleLogin.bind(this);
   //   this.handleNewRecipe = this.handleNewRecipe.bind(this);

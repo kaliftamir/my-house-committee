@@ -1,30 +1,25 @@
 import React, { Component } from 'react';
 import { Container, Jumbotron } from 'react-bootstrap';
-import RecipeNavbar from '../components/RecipeNavbar';
+import CommitteeNavbar from '../components/CommitteeNavbar';
 
-class HomePage extends Component {
+function HomePage(props) {
 
-    constructor(props) {
-        super(props);
+    const {activeUser} = props 
+        
 
-    }
-
-    render() {
-        const { activeUser, handleLogout } = this.props;
-
-        return (
-            <div>
-                <RecipeNavbar activeUser={activeUser} handleLogout={handleLogout} />
-                <Jumbotron>
-                    <Container>
-                      <h1>Home Page</h1>
+    return (
+        <div>
+            <CommitteeNavbar activeUser={activeUser}/>
+            <Jumbotron>
+                 <Container>
+                    <h1>Home Page</h1>
                     
-                    </Container>
-                </Jumbotron>
+                </Container>
+            </Jumbotron>
 
-            </div>
-        );
-    }
+        </div>
+    );
+    
 }
 
 export default HomePage;
