@@ -10,12 +10,12 @@ import DashboardPage from './pages/DashboardPage';
 import TenantsPage from './pages/TenantsPage';
 import MessagesPage from './pages/MessagesPage';
 import VotingsPage from './pages/VotingsPage';
-// import jsonUsers from '../data/users.json'
-// import jsonRecipes from '../data/recipes.json'
+import jsonTenants from './data/tenants.json'
+// import jsonRecipes from './data/recipes.json'
 
 
 // State
-// activeUser - object - a User object containing all the details for the active user.
+// activeUser - object - a User object contains the details for the active user.
 //  If there is no active user this state will hold the value of null.
 // isCommittee - boolyan - says is the user is committee member or not.
 
@@ -30,17 +30,18 @@ class App extends React.Component {
     
     this.state = {
 
-      //activeUser: null,
-      activeUser: {
-        id: 1234,
-        name: "John Doe",
-        email: "john@john.com",
-        apartment:6,
-        isCommitteeMember: false
-      }
+      activeUser: null,
+      // activeUser: {
+      //   id: 123,
+      //   name: "John Doe",
+      //   email: "john@john.com",
+      //   apartment:6,
+      //   pwd:"123",
+      //   isCommitteeMember: true
+      // }
      
-      // users: jsonUsers,
-      // recipes: jsonRecipes
+      tenants: jsonTenants
+      // messages: jsonMessages
     }
   }
   //   this.handleLogout = this.handleLogout.bind(this);
@@ -50,11 +51,11 @@ class App extends React.Component {
   // }
   
 
-  // handleLogin(activeUser) {
-  //   this.setState({
-  //     activeUser: activeUser
-  //   })
-  // }
+  handleLogin(activeUser) {
+    this.setState({
+      activeUser: activeUser
+    })
+  }
 
   // handleLogout() {
   //   this.setState({
@@ -79,7 +80,7 @@ class App extends React.Component {
 
   render() {
 
-    const { activeUser } = this.state;
+    const { activeUser,tenants } = this.state;
 
     return (
       <HashRouter>
@@ -88,7 +89,7 @@ class App extends React.Component {
             <HomePage activeUser={activeUser}/>
           </Route>
           <Route exact path="/login">
-            <LoginPage activeUser={activeUser}/>
+            <LoginPage activeUser={activeUser} tenants={tenants} handleLogin={this.handleLogin}/>
           </Route>
 
           <Route exact path="/signup">
