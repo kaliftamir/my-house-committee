@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 
 function LoginPage (props) {
 
-    const { tenants,handleLogin } = props;
+    const { users,handleLogin } = props;
     
     // controlled components
     const [emailInput, setEmailInput] = React.useState("john@john.com")
@@ -21,11 +21,11 @@ function LoginPage (props) {
 
         // Check if the login is valid (if a user with the same 
         // email and pwd was found in the users array)
-        const tenantFound = tenants.find(tenant => emailInput === tenant.email && pwdInput === tenant.pwd);
+        const userFound = users.find(user => emailInput === user.email && pwdInput === user.pwd);
 
-        if (tenantFound) {
+        if (userFound) {
             // If the login is valid: notify App and redirect to "/dashboard"
-            handleLogin(tenantFound);
+            handleLogin(userFound);
             setRedirectToDashboard(true) 
 
         } else {

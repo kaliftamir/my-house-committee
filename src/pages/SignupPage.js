@@ -8,7 +8,7 @@ import { Container,Form, Col, Row, Button } from 'react-bootstrap';
 
 function SignupPage(props) {
     
-    const { handleSignup } = props;
+    const { community,handleSignup } = props;
 
     
 
@@ -25,10 +25,22 @@ function SignupPage(props) {
 
     function signUp() {
 
-        const addCommitteMember = tenants.find(tenant => emailInput === tenant.email && pwdInput === tenant.pwd);
+        // Check if the signup is valid (if a item part of community array)       
+        const communityFound = community.find(item =>
+           buildingSignup === item.building && addressSignup === item.address && citySignup===item.city );
+
+        if (communityFound) {
+            // If the signup is valid: notify App and redirect to "/dashboard"
+            handleSignup(communityFound);
+            setRedirectToDashboard(true) 
+
+        } else {
+            // If the login is not valid: show an error alert
+            alert("Ther is no such of community!")
+        }
 
 
-         setRedirectToDashboard(true) 
+         
 
     }
 

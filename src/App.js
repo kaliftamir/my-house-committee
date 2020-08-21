@@ -10,7 +10,8 @@ import DashboardPage from './pages/DashboardPage';
 import TenantsPage from './pages/TenantsPage';
 import MessagesPage from './pages/MessagesPage';
 import VotingsPage from './pages/VotingsPage';
-import jsonTenants from './data/tenants.json'
+import jsonUsers from './data/users.json'
+import jsonCommunity from './data/community.json'
 // import jsonRecipes from './data/recipes.json'
 
 
@@ -21,6 +22,7 @@ import jsonTenants from './data/tenants.json'
 
 // users - array - an array that contains all the users in the system (this is a HACK
 //   since we don't have a server side)
+
 // recipes - array - an array that contains all the recipes in the system (this is a HACK
 //   since we don't have a server side)
 class App extends React.Component {
@@ -40,18 +42,26 @@ class App extends React.Component {
       //   isCommitteeMember: true
       // }
      
-      tenants: jsonTenants
+      users: jsonUsers,
+      community: jsonCommunity
       // messages: jsonMessages
     }
   
   //   this.handleLogout = this.handleLogout.bind(this);
      this.handleLogin = this.handleLogin.bind(this);
+     this.handleSignup = this.handleSignup.bind(this);
   //   this.handleNewRecipe = this.handleNewRecipe.bind(this);
 
   }
   
 
   handleLogin(activeUser) {
+    this.setState({
+      activeUser: activeUser
+    })
+  }
+
+  handleSignup(activeUser) {
     this.setState({
       activeUser: activeUser
     })
@@ -80,7 +90,7 @@ class App extends React.Component {
 
   render() {
 
-    const { activeUser,tenants } = this.state;
+    const { activeUser,users,community } = this.state;
 
     return (
       <HashRouter>
@@ -89,17 +99,17 @@ class App extends React.Component {
             <HomePage activeUser={activeUser}/>
           </Route>
           <Route exact path="/login">
-            <LoginPage activeUser={activeUser} tenants={tenants} handleLogin={this.handleLogin}/>
+            <LoginPage activeUser={activeUser} users={users} handleLogin={this.handleLogin}/>
           </Route>
 
           <Route exact path="/signup">
-            <SignupPage activeUser={activeUser}/>
+            <SignupPage activeUser={activeUser} community={community} handleSignup={this.handleSignup}/>
           </Route>
 
           <Route exact path="/dashboard">
             <DashboardPage activeUser={activeUser}/>
           </Route>
-          <Route exact path="/tenants">
+          <Route exact path="/users">
             <TenantsPage activeUser={activeUser}/>
           </Route>
           <Route exact path="/messages">

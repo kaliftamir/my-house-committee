@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "building":"44a",
+        "address": "Rashi",
+        "city": "Tel-Aviv"        
+    },
+    {
+        "id": 2,
+        "building":"50",
+        "address": "Rashi",
+        "city": "Tel-Aviv"        
+    },
+    {
+        "id": 3,
+        "building":"60",
+        "address": "Niron",
+        "city": "Ramat-Gan" 
+    }
+]

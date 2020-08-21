@@ -2,18 +2,27 @@
     {
         "id": 1,
         "name": "John Doe",
+        "email": "john@john.com",
+        "pwd": "123",
+        "apartment":6,
         "isTenant": true,
         "isCommitteeMember": true
     },
     {
         "id": 2,
         "name": "Sara Lee",
+        "email": "sara@lee.com",
+        "pwd": "123",
+        "apartment":8,
         "isTenant": true,
         "isCommitteeMember": false
     },
     {
         "id":3,
         "name": "Ran Petel",
+        "email": "ran@petel.com",
+        "pwd": "321",
+        "apartment": 0,
         "isTenant": false,
         "isCommitteeMember": true
     }
