@@ -25,7 +25,7 @@ function SignupPage(props) {
 
     function signUp() {
 
-        const tenantFound = tenants.find(tenant => emailInput === tenant.email && pwdInput === tenant.pwd);
+        const addCommitteMember = tenants.find(tenant => emailInput === tenant.email && pwdInput === tenant.pwd);
 
 
          setRedirectToDashboard(true) 

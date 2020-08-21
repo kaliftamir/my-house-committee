@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "isTenant": true,
+        "isCommitteeMember": true
+    },
+    {
+        "id": 2,
+        "name": "Sara Lee",
+        "isTenant": true,
+        "isCommitteeMember": false
+    },
+    {
+        "id":3,
+        "name": "Ran Petel",
+        "isTenant": false,
+        "isCommitteeMember": true
+    }
+]
+
+   
