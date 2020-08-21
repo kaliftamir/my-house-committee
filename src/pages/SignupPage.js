@@ -36,7 +36,7 @@ function SignupPage(props) {
 
         } else {
             // If the login is not valid: show an error alert
-            alert("Ther is no such of community!")
+            alert("There is no such a community!")
         }
 
 
