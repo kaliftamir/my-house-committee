@@ -8,8 +8,18 @@ import { Container,Form, Col, Row, Button } from 'react-bootstrap';
 
 function SignupPage(props) {
     
-    const { activeUser } = props;
+    const { handleSignup } = props;
 
+    
+
+    // controlled components
+    const [nameSignup, setNameSignup] = React.useState("Tamir")
+    const [emailSignup, setEmailSignup] = React.useState("tamir@tamir.com")
+    const [pwdSignup, setPwdSignup] = React.useState("123") 
+    const [buildingSignup, setBuildingSignup] = React.useState("44a") 
+    const [addressSignup, setAddressSignup] = React.useState("Rashi") 
+    const [citySignup, setCitySignup] = React.useState("Tel-Aviv") 
+    
     const [redirectToSignup, setRedirectToSignup] = React.useState(false)
 
 
@@ -32,42 +42,48 @@ function SignupPage(props) {
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Col sm={12}>
                        <Form.Label id="name">Name:</Form.Label>                    
-                       <Form.Control type="text"/>
+                       <Form.Control type="text" value={nameSignup}
+                             onChange={(e) => (setNameSignup(e.target.value))}/>
                     </Col> 
                 </Form.Group>
 
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Col sm={12}>
                         <Form.Label id="email">Email:</Form.Label>
-                        <Form.Control type="email"/>
+                        <Form.Control type="email" value={emailSignup}
+                             onChange={(e) => (setEmailSignup(e.target.value))}/>
                     </Col>                    
                 </Form.Group>
 
                 <Form.Group as={Row} controlId="formBasicPassword">
                     <Col sm={12}>
                        <Form.Label id="passward">Password:</Form.Label>                    
-                       <Form.Control type="passward"/>
+                       <Form.Control type="passward" value={pwdSignup}
+                             onChange={(e) => (setPwdSignup(e.target.value))}/>
                     </Col>         
                 </Form.Group>
 
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Col sm={12}>
                         <Form.Label id="building">Building/Condominium Community Name:</Form.Label>                   
-                        <Form.Control type="text"/>
+                        <Form.Control type="text" value={buildingSignup}
+                             onChange={(e) => (setBuildingSignup(e.target.value))}/>
                     </Col>                    
                 </Form.Group>
 
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Col sm={12}>
                        <Form.Label id="address">Address:</Form.Label>                    
-                       <Form.Control type="text"/>
+                       <Form.Control type="text" value={addressSignup}
+                             onChange={(e) => (setAddressSignup(e.target.value))}/>
                     </Col>                     
                 </Form.Group>
 
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Col sm={12}>
                         <Form.Label id="city">City:</Form.Label>                    
-                        <Form.Control type="text"/>
+                        <Form.Control type="text" value={citySignup}
+                             onChange={(e) => (setCitySignup(e.target.value))}/>
                     </Col>                     
                 </Form.Group>
                 
