@@ -20,17 +20,20 @@ function SignupPage(props) {
     const [addressSignup, setAddressSignup] = React.useState("Rashi") 
     const [citySignup, setCitySignup] = React.useState("Tel-Aviv") 
     
-    const [redirectToSignup, setRedirectToSignup] = React.useState(false)
+    const [redirectToDashboard, setRedirectToDashboard] = React.useState(false)
 
 
     function signUp() {
 
-         setRedirectToSignup(true) 
+        const tenantFound = tenants.find(tenant => emailInput === tenant.email && pwdInput === tenant.pwd);
+
+
+         setRedirectToDashboard(true) 
 
     }
 
-    if (redirectToSignup) {
-        return <Redirect to="/signup" />
+    if (redirectToDashboard) {
+        return <Redirect to="/dashboard" />
     }       
 
     return (
@@ -87,7 +90,7 @@ function SignupPage(props) {
                     </Col>                     
                 </Form.Group>
                 
-                <Button variant="primary" block type="button">
+                <Button variant="primary" onClick={signUp} block type="button">
                     Submit
                 </Button>
             </Form>   
