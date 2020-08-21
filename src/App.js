@@ -32,16 +32,15 @@ class App extends React.Component {
         
     this.state = {
 
-      activeUser: null,
-      // activeUser: {
-      //   id: 123,
-      //   name: "John Doe",
-      //   email: "john@john.com",
-      //   apartment:6,
-      //   pwd:"123",
-      //   isCommitteeMember: true
-      // }
-     
+      //activeUser: null,
+      activeUser: {
+        id: 123,
+        name: "John Doe",
+        email: "john@john.com",
+        apartment:6,
+        pwd:"123",
+        isCommitteeMember: true
+      },     
       users: jsonUsers,
       community: jsonCommunity
       // messages: jsonMessages
