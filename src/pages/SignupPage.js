@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import './SignupPage.css'
 import { Container,Form, Col, Row, Button } from 'react-bootstrap';
 
 
@@ -23,36 +24,58 @@ function SignupPage(props) {
     }       
 
     return (
-        <div>
-            <Container>
-              <h1>Create a Committe Member Acount</h1>
-              <Form>
+        <div className="p-signup">
+            
+            <h1>Create a Committe Member Acount</h1>
+            <Form>
 
-                    <Form.Group as={Row} controlId="formHorizontalEmail">
-                        
-                        <Form.Label column sm={2}>
-                            Name
-                        </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control type="text" placeholder="Name"/>
-                        </Col>
-                    </Form.Group>
+                <Form.Group as={Row} controlId="formHorizontalEmail">
+                    <Col sm={12}>
+                       <Form.Label id="name">Name:</Form.Label>                    
+                       <Form.Control type="text"/>
+                    </Col> 
+                </Form.Group>
 
-                    <Form.Group as={Row} controlId="formHorizontalEmail">
-                        
-                        <Form.Label column sm={2}>
-                            Email
-                        </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control type="email" placeholder="Email"/>
-                        </Col>
-                    </Form.Group>                  
+                <Form.Group as={Row} controlId="formHorizontalEmail">
+                    <Col sm={12}>
+                        <Form.Label id="email">Email:</Form.Label>
+                        <Form.Control type="email"/>
+                    </Col>                    
+                </Form.Group>
 
-                    <Form.Group>
-                            <Button type="button"  onClick={signUp} block variant="primary">Add</Button>
-                    </Form.Group>
-                </Form>
-            </Container>
+                <Form.Group as={Row} controlId="formBasicPassword">
+                    <Col sm={12}>
+                       <Form.Label id="passward">Password:</Form.Label>                    
+                       <Form.Control type="passward"/>
+                    </Col>         
+                </Form.Group>
+
+                <Form.Group as={Row} controlId="formHorizontalEmail">
+                    <Col sm={12}>
+                        <Form.Label id="building">Building/Condominium Community Name:</Form.Label>                   
+                        <Form.Control type="text"/>
+                    </Col>                    
+                </Form.Group>
+
+                <Form.Group as={Row} controlId="formHorizontalEmail">
+                    <Col sm={12}>
+                       <Form.Label id="address">Address:</Form.Label>                    
+                       <Form.Control type="text"/>
+                    </Col>                     
+                </Form.Group>
+
+                <Form.Group as={Row} controlId="formHorizontalEmail">
+                    <Col sm={12}>
+                        <Form.Label id="city">City:</Form.Label>                    
+                        <Form.Control type="text"/>
+                    </Col>                     
+                </Form.Group>
+                
+                <Button variant="primary" block type="button">
+                    Submit
+                </Button>
+            </Form>   
+            
 
         </div>
     );
