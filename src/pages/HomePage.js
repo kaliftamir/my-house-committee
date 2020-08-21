@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Jumbotron } from 'react-bootstrap';
 import CommitteeNavbar from '../components/CommitteeNavbar';
-import { Redirect } from 'react-router-dom';
+
 
 
 function HomePage(props) {

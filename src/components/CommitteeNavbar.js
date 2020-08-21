@@ -9,7 +9,7 @@ function CommitteeNavbar (props) {
 
         // rendering the menu items depending on whether we have an active user or not
          const loginMenuItem = !activeUser ? <Nav.Link href="#/login">Login</Nav.Link> : null;
-         const signupMenuItem = activeUser && activeUser.isCommitteeMember ? <Nav.Link href="#/signup">Sign up</Nav.Link> : null;
+         const signupMenuItem = !activeUser ? <Nav.Link href="#/signup">Sign up</Nav.Link> : null;
          const logoutMenuItem = activeUser ? <Nav.Link href="#">Logout</Nav.Link> : null;
          const dashboardMenuItem = activeUser ? <Nav.Link href="#/dashboard">Dashboard</Nav.Link> : null;
          const tenantsMenuItem = activeUser ? <Nav.Link href="#/tenants">Tenants</Nav.Link> : null;
