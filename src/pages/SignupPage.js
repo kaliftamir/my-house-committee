@@ -8,7 +8,7 @@ import { Container,Form, Col, Row, Button } from 'react-bootstrap';
 
 function SignupPage(props) {
     
-    const { community,handleSignup } = props;
+    const { accounts,handleSignup } = props;
 
     
 
@@ -16,30 +16,40 @@ function SignupPage(props) {
     const [nameSignup, setNameSignup] = React.useState("Tamir")
     const [emailSignup, setEmailSignup] = React.useState("tamir@tamir.com")
     const [pwdSignup, setPwdSignup] = React.useState("123") 
-    const [buildingSignup, setBuildingSignup] = React.useState("44a") 
+    const [buildingSignup, setBuildingSignup] = React.useState("44") 
     const [addressSignup, setAddressSignup] = React.useState("Rashi") 
     const [citySignup, setCitySignup] = React.useState("Tel-Aviv") 
     
     const [redirectToDashboard, setRedirectToDashboard] = React.useState(false)
-    const [addCom, setAddCom] = React.useState(community)
+  
      
 
 
-    function signUp(todo) {
+    function signUp() {
 
-        todo = {
-            "id": 4,
-            "building":"60",
-            "address": "Niron",
-            "city": "Ramat-Gan" 
-        }
+        // account = {
+        //     "id": 4,
+        //     "building":"60",
+        //     "address": "Niron",
+        //     "city": "Ramat-Gan" 
+        // }
 
-        const newCommunity = community.concat(todo)
-        setRedirectToDashboard(true) 
-        setAddCom(todo)
-        handleSignup(newCommunity);
-        
-        console.log(todo)                 
+
+        // Checks if the account exist already
+        const accountFound = accounts.find(
+            account => buildingSignup === account.building && addressSignup === account.address && citySignup===account.city);
+
+        if (accountFound) {
+            // If the signup exist: show an error alert
+            alert("accoun alredy exists!")
+            //setShowInvalidCredentials(true)
+
+        } else {
+            // If the signup is valid: notify App and redirect to "/dashboard"
+            handleSignup(accountFound);
+            setRedirectToDashboard(true) 
+        }          
+        console.log(accounts)                 
 
     }
 

@@ -15,10 +15,14 @@ import jsonAccounts from './data/accounts.json'
 // import jsonRecipes from './data/recipes.json'
 
 
-// State
+// States:
 // activeUser - object - a User object contains the details for the active user.
 //  If there is no active user this state will hold the value of null.
-// isCommittee - boolyan - says is the user is committee member or not.
+
+// activeAccount - object - an Account object contains the details for the active account.
+//  If there is no active account this state will hold the value of null.
+
+
 
 // users - array - an array that contains all the users in the system (this is a HACK
 //   since we don't have a server side)
@@ -41,7 +45,15 @@ class App extends React.Component {
       //   pwd:"123",
       //   isTenant: true,
       //   isCommitteeMember: true
-      // },     
+      // }, 
+      activeAccount:null,
+      // activeAccount:{
+      //   "id": 1,
+      //       "building":"44",
+      //       "address": "Rashi",
+      //       "city": "tel-Aviv" 
+      // },
+        
       users: jsonUsers,
       accounts: jsonAccounts
       // messages: jsonMessages
@@ -61,9 +73,9 @@ class App extends React.Component {
     })
   }
 
-  handleSignup(activeUser) {
+  handleSignup(activeAccount) {
     this.setState({
-      activeUser: activeUser
+      activeAccount: activeAccount
     })
   }
 
@@ -90,27 +102,27 @@ class App extends React.Component {
 
   render() {
 
-    const { activeUser,users,community } = this.state;
+    const { activeUser,activeAccount,users,accounts } = this.state;
 
     return (
       <HashRouter>
         <Switch>
           <Route exact path="/">
-            <HomePage activeUser={activeUser}/>
+            <HomePage activeUser={activeUser} activeAccount={activeAccount}/>
           </Route>
           <Route exact path="/login">
-            <LoginPage activeUser={activeUser} users={users} handleLogin={this.handleLogin}/>
+            <LoginPage activeUser={activeUser} activeAccount={activeAccount} users={users} handleLogin={this.handleLogin}/>
           </Route>
 
           <Route exact path="/signup">
-            <SignupPage activeUser={activeUser} community={community} handleSignup={this.handleSignup}/>
+            <SignupPage activeUser={activeUser} activeAccount={activeAccount} accounts={accounts} handleSignup={this.handleSignup}/>
           </Route>
 
           <Route exact path="/dashboard">
-            <DashboardPage activeUser={activeUser}/>
+            <DashboardPage activeUser={activeUser} activeAccount={activeAccount}/>
           </Route>
           <Route exact path="/users">
-            <TenantsPage activeUser={activeUser}/>
+            <TenantsPage activeUser={activeUser} activeAccount={activeAccount}/>
           </Route>
           <Route exact path="/messages">
             <MessagesPage activeUser={activeUser}/>
