@@ -63,7 +63,7 @@ class App extends React.Component {
   //   this.handleLogout = this.handleLogout.bind(this);
      this.handleLogin = this.handleLogin.bind(this);
      this.handleSignup = this.handleSignup.bind(this);
-     this.handleNewUser = this.handleNewUser.bind(this);
+     this.handleNewAccount = this.handleNewAccount.bind(this);
   //   this.handleNewRecipe = this.handleNewRecipe.bind(this);
 
   }
@@ -84,19 +84,20 @@ class App extends React.Component {
     })
   }
 
-  handleNewUser(user) {
+  handleNewAccount(account) {
 
-    const { activeUser, users } = this.state
+    const { activeAccount, accounts } = this.state
 
     // Adding to the users object usedId and id
-    user.userId = activeUser.id;
+    // account.id = activeAccount.id;
 
     // for id - taking the id of the last user in the array and adding 1
-    user.id = this.users[user.length - 1].id + 1;
+    account.id = accounts[accounts.length - 1].id + 1;
 
     this.setState({
-      users: users.concat(user)
+      accounts: accounts.concat(account)
     })
+    console.log(accounts)
   }
 
   // handleLogout() {
@@ -122,7 +123,7 @@ class App extends React.Component {
           </Route>
 
           <Route exact path="/signup">
-            <SignupPage activeUser={activeUser} activeAccount={activeAccount} users={users} accounts={accounts} handleSignup={this.handleSignup} handleNewUser={this.handleNewUser}/>
+            <SignupPage activeUser={activeUser} activeAccount={activeAccount} users={users} accounts={accounts} handleSignup={this.handleSignup} handleNewAccount={this.handleNewAccount}/>
           </Route>
 
           <Route exact path="/dashboard">

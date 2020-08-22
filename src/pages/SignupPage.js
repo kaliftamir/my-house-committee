@@ -11,38 +11,37 @@ function SignupPage(props) {
     
 
     // controlled components
-    const [nameSignup, setNameSignup] = React.useState("Tamir")
-    const [emailSignup, setEmailSignup] = React.useState("tamir@tamir.com")
+    const [nameSignup, setNameSignup] = React.useState("John")
+    const [emailSignup, setEmailSignup] = React.useState("john@john.com")
     const [pwdSignup, setPwdSignup] = React.useState("123") 
-    const [buildingSignup, setBuildingSignup] = React.useState("44") 
+    const [buildingSignup, setBuildingSignup] = React.useState("5") 
     const [addressSignup, setAddressSignup] = React.useState("Rashi") 
     const [citySignup, setCitySignup] = React.useState("Tel-Aviv") 
     
     const [redirectToDashboard, setRedirectToDashboard] = React.useState(false)      
     //const [showInvalidCredentials, setShowInvalidCredentials] = React.useState(false)
 
+
+    // adds new account on signup when submit
+     function handleCreateAccount() {
+       
+        const newAccount = {                 
+            
+            building:buildingSignup,
+            address: addressSignup,
+            city: citySignup  
+        };
+            
+        handleNewAccount(newAccount);
+    }
     
     function signUp() {
-
-        // adds new account on signup
-        function handleCreateAccount() {
-       
-            const newAccount = {                 
-                
-                "building":buildingSignup,
-                "address": addressSignup,
-                "city": citySignup  
-            };
-            
-            handleNewAccount(newAccount);
-        }
-
-        // Check if the user already exists (if there is a user with the same 
+        
+        // Check if the user exists (if there is a user with the same 
         // email in the users array)
-        const userFound = users.find(user => emailSignup === user.email);
+        const userFound = users.find(user => emailSignup === user.email  && pwdSignup === user.pwd);
 
-        if (!userFound) {
-            // If the user not exists:           
+        if (userFound) {              
 
             // Checks if the account exists
             const accountFound = accounts.find(
@@ -51,42 +50,29 @@ function SignupPage(props) {
             if (accountFound) {
                 // If the signup account exists: show an error alert
                 alert("account alredy exists!")
-                //setShowInvalidCredentials(true)             
+                //setShowInvalidCredentials(true)  
 
 
             } else {
-                // If the signup new account is valid: notify App and redirect to "/dashboard"
-                // add new user to the users array
-
-                handleCreateUser()
-
-                // accounts.push(
-                //     {
-                //         "id": 4,
-                //         "building":buildingSignup,
-                //         "address": addressSignup,
-                //         "city": citySignup 
-                //     }
-
-                //)
-                console.log(users)
-                // add new account to accounts array
-                console.log(accounts)
-                
-                handleSignup(!accountFound);
-                setRedirectToDashboard(true) 
+                // If the signup new account is valid: notify App  
+                handleSignup(accountFound);
+                // add new account to the accounts array
+                handleCreateAccount()
+                // redirect to "/dashboard"
+                setRedirectToDashboard(true)                
+              
               
             }         
             
 
         } else {
             // If the user already exists: show an error alert
-            alert("user already exists")
+            alert("user does not exist")
         } 
         
     }
 
-    console.log(redirectToDashboard)  
+    //console.log(redirectToDashboard)  
 
 
         if (redirectToDashboard) {
