@@ -89,7 +89,7 @@ class App extends React.Component {
     const { activeAccount, accounts } = this.state
 
     // Adding to the users object usedId and id
-    // account.id = activeAccount.id;
+    //account.id = activeAccount.id;
 
     // for id - taking the id of the last user in the array and adding 1
     account.id = accounts[accounts.length - 1].id + 1;

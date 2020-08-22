@@ -55,12 +55,13 @@ function SignupPage(props) {
 
             } else {
                 // If the signup new account is valid: notify App  
-                handleSignup(accountFound);
-                // add new account to the accounts array
-                handleCreateAccount()
+                handleSignup(!accountFound);  // accountFound===false (not found)
+
                 // redirect to "/dashboard"
-                setRedirectToDashboard(true)                
-              
+                setRedirectToDashboard(true) 
+
+                // add new account to the accounts array
+                handleCreateAccount()      
               
             }         
             
