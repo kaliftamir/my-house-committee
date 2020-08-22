@@ -10,6 +10,12 @@
 .p-signup > h1 {
 
     margin-left: 250px;
+    margin-top: 40px;
+    
+}
+.alert-danger {
+    margin-bottom: 5px;
+    padding: 5px;
     
 }
 

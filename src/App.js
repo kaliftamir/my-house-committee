@@ -129,7 +129,7 @@ class App extends React.Component {
           <Route exact path="/dashboard">
             <DashboardPage activeUser={activeUser} activeAccount={activeAccount}/>
           </Route>
-          <Route exact path="/users">
+          <Route exact path="/tenants">
             <TenantsPage activeUser={activeUser} activeAccount={activeAccount}/>
           </Route>
           <Route exact path="/messages">
@@ -137,7 +137,10 @@ class App extends React.Component {
           </Route>
           <Route exact path="/votings">
             <VotingsPage activeUser={activeUser}/>
-          </Route>          
+          </Route>  
+          <Route exact path="/logout">
+            <VotingsPage activeUser={activeUser}/>
+          </Route>                 
 
         </Switch>
       </HashRouter>

@@ -20,6 +20,7 @@ function SignupPage(props) {
     
     const [redirectToDashboard, setRedirectToDashboard] = React.useState(false)      
     const [showInvalidCredentials, setShowInvalidCredentials] = React.useState(false)
+    const [showInvalidAccount, setShowInvalidAccount] = React.useState(false)
 
 
     // adds new account on signup when submit
@@ -49,8 +50,7 @@ function SignupPage(props) {
 
             if (accountFound) {
                 // If the signup account exists: show an error alert
-                //alert("account alredy exists!")
-                 
+                setShowInvalidAccount(true)               
 
 
             } else {
@@ -85,10 +85,15 @@ function SignupPage(props) {
             <div className="p-signup">
                 
                 <h1>Create a Committe Member Acount</h1>
-                <Form> 
+                <Form>
+                     
                     {showInvalidCredentials ? <Alert variant="danger">
                         Invalid Credientails! Incorrect email or password
-                    </Alert> : <Alert/>}
+                    </Alert> : <Alert></Alert>}
+
+                    {showInvalidAccount ? <Alert variant="danger">
+                       This Account is already exist!
+                    </Alert> :null}
                     
 
                     <Form.Group as={Row} controlId="formHorizontalEmail">
@@ -119,7 +124,7 @@ function SignupPage(props) {
                         <Col sm={12}>
                             <Form.Label id="building">Building/Condominium Community Name:</Form.Label>                   
                             <Form.Control type="text" value={buildingSignup}
-                                onChange={(e) => (setBuildingSignup(e.target.value))}/>
+                                onChange={(e) => (setBuildingSignup(e.target.value),setShowInvalidAccount(false))}/>
                         </Col>                    
                     </Form.Group>
 
@@ -127,7 +132,7 @@ function SignupPage(props) {
                         <Col sm={12}>
                         <Form.Label id="address">Address:</Form.Label>                    
                         <Form.Control type="text" value={addressSignup}
-                                onChange={(e) => (setAddressSignup(e.target.value))}/>
+                                onChange={(e) => (setAddressSignup(e.target.value),setShowInvalidAccount(false))}/>
                         </Col>                     
                     </Form.Group>
 
@@ -135,7 +140,7 @@ function SignupPage(props) {
                         <Col sm={12}>
                             <Form.Label id="city">City:</Form.Label>                    
                             <Form.Control type="text" value={citySignup}
-                                onChange={(e) => (setCitySignup(e.target.value))}/>
+                                onChange={(e) => (setCitySignup(e.target.value),setShowInvalidAccount(false))}/>
                         </Col>                     
                     </Form.Group>
                     
