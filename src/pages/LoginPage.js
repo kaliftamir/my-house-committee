@@ -48,7 +48,7 @@ function LoginPage (props) {
                 <Form>
                     {showInvalidCredentials ? <Alert variant="danger">
                         Invalid Credientails! Incorrect email or password
-                    </Alert> : null}
+                    </Alert> : <Alert/>}
                     <Form.Group as={Row} controlId="formHorizontalEmail">
                         <Form.Label column sm={2}>
                             Email

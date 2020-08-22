@@ -88,7 +88,8 @@ function SignupPage(props) {
                 <Form> 
                     {showInvalidCredentials ? <Alert variant="danger">
                         Invalid Credientails! Incorrect email or password
-                    </Alert> : null}
+                    </Alert> : <Alert/>}
+                    
 
                     <Form.Group as={Row} controlId="formHorizontalEmail">
                         <Col sm={12}>
