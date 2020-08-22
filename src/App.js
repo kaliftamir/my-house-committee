@@ -12,10 +12,11 @@ import MessagesPage from './pages/MessagesPage';
 import VotingsPage from './pages/VotingsPage';
 import jsonUsers from './data/users.json'
 import jsonAccounts from './data/accounts.json'
-// import jsonRecipes from './data/recipes.json'
+// import jsonMessage from './data/messages.json'
 
 
 // States:
+
 // activeUser - object - a User object contains the details for the active user.
 //  If there is no active user this state will hold the value of null.
 
@@ -75,7 +76,10 @@ class App extends React.Component {
 
   handleSignup(activeAccount) {
     this.setState({
-      activeAccount: activeAccount
+      activeAccount: activeAccount,
+    })
+    this.setState({
+      activeUser: activeAccount,
     })
   }
 
@@ -115,7 +119,7 @@ class App extends React.Component {
           </Route>
 
           <Route exact path="/signup">
-            <SignupPage activeUser={activeUser} activeAccount={activeAccount} accounts={accounts} handleSignup={this.handleSignup}/>
+            <SignupPage activeUser={activeUser} activeAccount={activeAccount} users={users} accounts={accounts} handleSignup={this.handleSignup}/>
           </Route>
 
           <Route exact path="/dashboard">

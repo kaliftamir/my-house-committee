@@ -33,7 +33,8 @@ function LoginPage (props) {
             setShowInvalidCredentials(true)
         }
     }
-
+    
+    console.log(redirectToDashboard)  
     
         if (redirectToDashboard) {
             return <Redirect to="/dashboard" />
