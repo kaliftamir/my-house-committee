@@ -11,7 +11,7 @@ import TenantsPage from './pages/TenantsPage';
 import MessagesPage from './pages/MessagesPage';
 import VotingsPage from './pages/VotingsPage';
 import jsonUsers from './data/users.json'
-import jsonCommunity from './data/community.json'
+import jsonAccounts from './data/accounts.json'
 // import jsonRecipes from './data/recipes.json'
 
 
@@ -32,17 +32,18 @@ class App extends React.Component {
         
     this.state = {
 
-      //activeUser: null,
-      activeUser: {
-        id: 123,
-        name: "John Doe",
-        email: "john@john.com",
-        apartment:6,
-        pwd:"123",
-        isCommitteeMember: true
-      },     
+      activeUser: null,
+      // activeUser: {
+      //   id: 123,
+      //   name: "John Doe",
+      //   email: "john@john.com",
+      //   apartment:6,
+      //   pwd:"123",
+      //   isTenant: true,
+      //   isCommitteeMember: true
+      // },     
       users: jsonUsers,
-      community: jsonCommunity
+      accounts: jsonAccounts
       // messages: jsonMessages
     }
   

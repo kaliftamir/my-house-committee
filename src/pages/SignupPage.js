@@ -21,26 +21,25 @@ function SignupPage(props) {
     const [citySignup, setCitySignup] = React.useState("Tel-Aviv") 
     
     const [redirectToDashboard, setRedirectToDashboard] = React.useState(false)
+    const [addCom, setAddCom] = React.useState(community)
+     
 
 
-    function signUp() {
+    function signUp(todo) {
 
-        // Check if the signup is valid (if a item part of community array)       
-        const communityFound = community.find(item =>
-           buildingSignup === item.building && addressSignup === item.address && citySignup===item.city );
-
-        if (communityFound) {
-            // If the signup is valid: notify App and redirect to "/dashboard"
-            handleSignup(communityFound);
-            setRedirectToDashboard(true) 
-
-        } else {
-            // If the login is not valid: show an error alert
-            alert("There is no such a community!")
+        todo = {
+            "id": 4,
+            "building":"60",
+            "address": "Niron",
+            "city": "Ramat-Gan" 
         }
 
-
-         
+        const newCommunity = community.concat(todo)
+        setRedirectToDashboard(true) 
+        setAddCom(todo)
+        handleSignup(newCommunity);
+        
+        console.log(todo)                 
 
     }
 
