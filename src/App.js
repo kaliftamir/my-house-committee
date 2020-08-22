@@ -63,6 +63,7 @@ class App extends React.Component {
   //   this.handleLogout = this.handleLogout.bind(this);
      this.handleLogin = this.handleLogin.bind(this);
      this.handleSignup = this.handleSignup.bind(this);
+     this.handleNewUser = this.handleNewUser.bind(this);
   //   this.handleNewRecipe = this.handleNewRecipe.bind(this);
 
   }
@@ -79,7 +80,22 @@ class App extends React.Component {
       activeAccount: activeAccount,
     })
     this.setState({
-      activeUser: activeAccount,
+      activeUser: activeAccount
+    })
+  }
+
+  handleNewUser(user) {
+
+    const { activeUser, users } = this.state
+
+    // Adding to the users object usedId and id
+    user.userId = activeUser.id;
+
+    // for id - taking the id of the last user in the array and adding 1
+    user.id = this.users[user.length - 1].id + 1;
+
+    this.setState({
+      users: users.concat(user)
     })
   }
 
@@ -89,20 +105,7 @@ class App extends React.Component {
   //   })
   // }
 
-  // handleNewRecipe(recipe) {
 
-  //   const { activeUser, recipes } = this.state
-
-  //   // Adding to the recipe object usedId and id
-  //   recipe.userId = activeUser.id;
-
-  //   // for id I am taking the id of the last recipe in the array and adding 1
-  //   recipe.id = recipes[recipes.length - 1].id + 1;
-
-  //   this.setState({
-  //     recipes: recipes.concat(recipe)
-  //   })
-  // }
 
   render() {
 
@@ -119,7 +122,7 @@ class App extends React.Component {
           </Route>
 
           <Route exact path="/signup">
-            <SignupPage activeUser={activeUser} activeAccount={activeAccount} users={users} accounts={accounts} handleSignup={this.handleSignup}/>
+            <SignupPage activeUser={activeUser} activeAccount={activeAccount} users={users} accounts={accounts} handleSignup={this.handleSignup} handleNewUser={this.handleNewUser}/>
           </Route>
 
           <Route exact path="/dashboard">

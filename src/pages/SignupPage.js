@@ -6,7 +6,7 @@ import { Container,Form, Col, Row, Button } from 'react-bootstrap';
 
 function SignupPage(props) {
     
-    const { users,accounts,handleSignup } = props;
+    const { users,accounts,handleSignup,handleNewAccount } = props;
 
     
 
@@ -23,6 +23,19 @@ function SignupPage(props) {
 
     
     function signUp() {
+
+        // adds new account on signup
+        function handleCreateAccount() {
+       
+            const newAccount = {                 
+                
+                "building":buildingSignup,
+                "address": addressSignup,
+                "city": citySignup  
+            };
+            
+            handleNewAccount(newAccount);
+        }
 
         // Check if the user already exists (if there is a user with the same 
         // email in the users array)
@@ -44,14 +57,18 @@ function SignupPage(props) {
             } else {
                 // If the signup new account is valid: notify App and redirect to "/dashboard"
                 // add new user to the users array
-                accounts.push(
-                    {
-                        "id": 4,
-                        "building":buildingSignup,
-                        "address": addressSignup,
-                        "city": citySignup 
-                    }
-                )
+
+                handleCreateUser()
+
+                // accounts.push(
+                //     {
+                //         "id": 4,
+                //         "building":buildingSignup,
+                //         "address": addressSignup,
+                //         "city": citySignup 
+                //     }
+
+                //)
                 console.log(users)
                 // add new account to accounts array
                 console.log(accounts)
