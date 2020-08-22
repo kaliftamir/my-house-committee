@@ -9,7 +9,7 @@
 
 .p-signup > h1 {
 
-    margin-left: 250px;
+    text-align: center;
     margin-top: 40px;
     
 }
@@ -17,6 +17,12 @@
     margin-bottom: 5px;
     padding: 5px;
     
+}
+
+.signup-alert {
+    
+   text-align: center;
+
 }
 
 

@@ -12,12 +12,12 @@ function HomePage(props) {
     return (
         <div>
             <CommitteeNavbar activeUser={activeUser}/>
-            <Jumbotron>
+            
                  <Container>
                     <h1>Home Page</h1>
                     
                 </Container>
-            </Jumbotron>
+            
 
         </div>
     );

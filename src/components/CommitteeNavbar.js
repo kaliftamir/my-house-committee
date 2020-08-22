@@ -3,8 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 
 function CommitteeNavbar (props) {
  
-    const { activeUser } = props    
-
+    const { activeUser } = props 
             
 
         // rendering the menu items depending on whether we have an active user or not

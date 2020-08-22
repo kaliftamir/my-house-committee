@@ -87,11 +87,11 @@ function SignupPage(props) {
                 <h1>Create a Committe Member Acount</h1>
                 <Form>
                      
-                    {showInvalidCredentials ? <Alert variant="danger">
+                    {showInvalidCredentials ? <Alert className="signup-alert" variant="danger">
                         Invalid Credientails! Incorrect email or password
                     </Alert> : <Alert></Alert>}
 
-                    {showInvalidAccount ? <Alert variant="danger">
+                    {showInvalidAccount ? <Alert className="signup-alert" variant="danger">
                        This Account is already exist!
                     </Alert> :null}
                     
