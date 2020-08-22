@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import './SignupPage.css'
-import { Container,Form, Col, Row, Button } from 'react-bootstrap';
+import { Container,Form, Col, Row, Button,Alert } from 'react-bootstrap';
 
 
 function SignupPage(props) {
@@ -19,7 +19,7 @@ function SignupPage(props) {
     const [citySignup, setCitySignup] = React.useState("Tel-Aviv") 
     
     const [redirectToDashboard, setRedirectToDashboard] = React.useState(false)      
-    //const [showInvalidCredentials, setShowInvalidCredentials] = React.useState(false)
+    const [showInvalidCredentials, setShowInvalidCredentials] = React.useState(false)
 
 
     // adds new account on signup when submit
@@ -49,8 +49,8 @@ function SignupPage(props) {
 
             if (accountFound) {
                 // If the signup account exists: show an error alert
-                alert("account alredy exists!")
-                //setShowInvalidCredentials(true)  
+                //alert("account alredy exists!")
+                 
 
 
             } else {
@@ -68,7 +68,7 @@ function SignupPage(props) {
 
         } else {
             // If the user already exists: show an error alert
-            alert("user does not exist")
+            setShowInvalidCredentials(true) 
         } 
         
     }
@@ -85,7 +85,10 @@ function SignupPage(props) {
             <div className="p-signup">
                 
                 <h1>Create a Committe Member Acount</h1>
-                <Form>
+                <Form> 
+                    {showInvalidCredentials ? <Alert variant="danger">
+                        Invalid Credientails! Incorrect email or password
+                    </Alert> : null}
 
                     <Form.Group as={Row} controlId="formHorizontalEmail">
                         <Col sm={12}>
@@ -99,7 +102,7 @@ function SignupPage(props) {
                         <Col sm={12}>
                             <Form.Label id="email">Email:</Form.Label>
                             <Form.Control type="email" value={emailSignup}
-                                onChange={(e) => (setEmailSignup(e.target.value))}/>
+                                onChange={(e) => (setEmailSignup(e.target.value),setShowInvalidCredentials(false))}/>
                         </Col>                    
                     </Form.Group>
 
@@ -107,7 +110,7 @@ function SignupPage(props) {
                         <Col sm={12}>
                         <Form.Label id="passward">Password:</Form.Label>                    
                         <Form.Control type="passward" value={pwdSignup}
-                                onChange={(e) => (setPwdSignup(e.target.value))}/>
+                                onChange={(e) => (setPwdSignup(e.target.value),setShowInvalidCredentials(false))} />
                         </Col>         
                     </Form.Group>
 
