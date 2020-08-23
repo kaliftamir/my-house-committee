@@ -13,6 +13,7 @@ function CommitteeNavbar (props) {
          const dashboardMenuItem = activeUser ? <Nav.Link href="#/dashboard">Dashboard</Nav.Link> : null;
          const tenantsMenuItem = activeUser ? <Nav.Link href="#/tenants">Tenants</Nav.Link> : null;
          const messagesMenuItem = activeUser ? <Nav.Link href="#/messages">Messages</Nav.Link> : null;
+         const issuesMenuItem = activeUser ? <Nav.Link href="#/issues">Issues</Nav.Link> : null;
          const votingMenuItem = activeUser ? <Nav.Link href="#/votings">Voting</Nav.Link> : null;
 
     return (
@@ -24,6 +25,7 @@ function CommitteeNavbar (props) {
                     {dashboardMenuItem}
                     {tenantsMenuItem}
                     {messagesMenuItem}
+                    {issuesMenuItem}
                     {votingMenuItem}
                 </Nav>
                 <Nav className="ml-auto">

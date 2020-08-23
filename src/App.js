@@ -9,6 +9,7 @@ import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
 import TenantsPage from './pages/TenantsPage';
 import MessagesPage from './pages/MessagesPage';
+import IssuesPage from './pages/IssuesPage';
 import VotingsPage from './pages/VotingsPage';
 import jsonUsers from './data/users.json'
 import jsonAccounts from './data/accounts.json'
@@ -134,6 +135,9 @@ class App extends React.Component {
           </Route>
           <Route exact path="/messages">
             <MessagesPage activeUser={activeUser}/>
+          </Route>
+          <Route exact path="/issues">
+            <IssuesPage activeUser={activeUser}/>
           </Route>
           <Route exact path="/votings">
             <VotingsPage activeUser={activeUser}/>

@@ -84,7 +84,7 @@ function SignupPage(props) {
     return (
             <div className="p-signup">
                 
-                <h1>Create a Committe Member Acount</h1>
+                <h1>Create a Committe Member Account</h1>
                 <Form>
                      
                     {showInvalidCredentials ? <Alert className="signup-alert" variant="danger">
