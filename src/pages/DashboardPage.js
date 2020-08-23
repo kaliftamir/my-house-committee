@@ -27,11 +27,10 @@ function DashboardPage(props) {
                 </Col>
                 
             </Row>
-            DashboardPage
+            
+            DashboardPages-start
 
-        </Container>
-         
-        
+        </Container>      
           
 
         </div>
