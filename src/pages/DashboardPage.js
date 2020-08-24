@@ -5,10 +5,14 @@ import { Col, Row,Container } from 'react-bootstrap';
 
 
 
-
 function DashboardPage(props) {
     
     const { activeUser } = props;
+
+    const [newReportedIssues, setNewReportedIssues] = React.useState([])
+    const [overdueIssues, setOverdueIssues] = React.useState([])
+    const [votingPercentage, setVotingPercentage] = React.useState([])
+
 
     if (!activeUser) {
         return <Redirect to="/" />

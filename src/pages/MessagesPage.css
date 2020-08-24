@@ -1,0 +1,23 @@
+
+.p-messages .input-group {
+    padding-right: 5px;  
+    
+}
+
+.p-messages .input-group>.form-control {
+   
+    width: 500px;
+}
+.p-messages .input-group-text {
+    border: none;
+    background-color: transparent;
+}
+
+.p-messages .label.input-group-text {
+    padding-left: 0;
+    margin-left: 0;
+}
+.p-messages .input-group-text {
+    padding-right: 3px;
+}
+
