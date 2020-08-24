@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import './MessagesPage.css'
 import { Redirect } from 'react-router-dom';
 import CommitteeNavbar from '../components/CommitteeNavbar';
+import Tenant from '../components/Tenant';
 import { Form, Col, Row, Button, InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav } from 'react-bootstrap';
-import './MessagesPage.css'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee,faSearch } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -17,6 +21,7 @@ function MessagesPage(props) {
 
     return (
         <div className="p-messages">
+            
             <CommitteeNavbar activeUser={activeUser}/>
 
             <Navbar expand="lg">
@@ -29,7 +34,11 @@ function MessagesPage(props) {
                             <FormControl className="mb-12" placeholder="&#xF002; filter by text title and details"
                             aria-label="Default"
                             aria-describedby="inputGroup-sizing-default"
+                            FontAwesome
                             />
+                            <FontAwesomeIcon icon={faCoffee} />
+                            <FontAwesomeIcon icon={faSearch} />
+                           
                         </InputGroup>
 
                         <InputGroup className="mb-3">
@@ -66,6 +75,7 @@ function MessagesPage(props) {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
+            <Tenant/>
 
                
 

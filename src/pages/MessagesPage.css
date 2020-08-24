@@ -1,13 +1,19 @@
 
+
+
+
 .p-messages .input-group {
-    padding-right: 5px;  
+    padding-right: 5px;
+    font-family: 'FontAwesome';  
     
 }
 
 .p-messages .input-group>.form-control {
-   
+
+    font-family: 'FontAwesome';   
     width: 500px;
 }
+
 .p-messages .input-group-text {
     border: none;
     background-color: transparent;
