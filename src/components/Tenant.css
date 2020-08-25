@@ -1,11 +1,38 @@
 
+
+.c-tenant {
+    
+    border: solid;
+   
+}
 .c-tenant img {
     height: 100%;
     width: auto;
+    padding: 20px;
+    margin: 0;
+    /* border: solid; */
+
 }
 
 .c-tenant .card-body {
+    
+    position: relative;
+    height: 100%;
+    margin: 0;
+    padding-left: 40px;
+    /* border: solid; */
+    
+}
 
-    padding-left: 70px;
+.c-tenant .tenant-options {
 
+   padding-right: 15px;       
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 200px;   
+       
+}
+
+.c-tenant button {
+    margin-right: 5px;
 }
