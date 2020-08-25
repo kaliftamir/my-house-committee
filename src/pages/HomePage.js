@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Container, Jumbotron } from 'react-bootstrap';
+import React, { } from 'react';
+import { Container } from 'react-bootstrap';
 import CommitteeNavbar from '../components/CommitteeNavbar';
 
 

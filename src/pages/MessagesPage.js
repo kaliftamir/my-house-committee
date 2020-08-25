@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { } from 'react';
 import './MessagesPage.css'
 import { Redirect } from 'react-router-dom';
 import CommitteeNavbar from '../components/CommitteeNavbar';
-import Tenant from '../components/Tenant';
-import { Form, Col, Row, Button, InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav } from 'react-bootstrap';
+import Message from '../components/Message';
+import { InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee,faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -34,7 +34,7 @@ function MessagesPage(props) {
                             <FormControl className="mb-12" placeholder="&#xF002; filter by text title and details"
                             aria-label="Default"
                             aria-describedby="inputGroup-sizing-default"
-                            FontAwesome
+                            
                             />
                             <FontAwesomeIcon icon={faCoffee} />
                             <FontAwesomeIcon icon={faSearch} />
@@ -75,8 +75,9 @@ function MessagesPage(props) {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <Tenant image={"kramer2.jpg"} name={"Newman"} email={"newman@newman.com"} apt={"6"}/>
-            <Tenant image={"jerry.jpg"} name={"Jerry"} email={"jerry@jerry.com"} apt={"8"}/>
+            <Message image={"jerry.jpg"} name={"Pool"} details={"bla bla bla"}/>
+            {/* <Tenant image={"newman.jpg"} name={"Newman"} email={"newman@newman.com"} apt={"6"}/>
+            <Tenant image={"kramer.jpg"} name={"Jerry"} email={"jerry@jerry.com"} apt={"8"}/> */}
 
                
 

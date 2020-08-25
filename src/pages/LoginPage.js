@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {  } from 'react';
 import { Form, Col, Row, Button, Alert } from 'react-bootstrap';
 import './LoginPage.css'
 import { Redirect } from 'react-router-dom';

@@ -27,7 +27,7 @@ function Tenant(props) {
 
                             </Card.Text>
                             <Row className="tenant-options"> 
-                                <Button variant="primary" size="sm">update</Button>
+                                <Button variant="primary" size="sm">Update</Button>
                                 <Button variant="danger" size="sm">Delete</Button> 
                             
                             </Row>

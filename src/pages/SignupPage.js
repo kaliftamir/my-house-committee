@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {  } from 'react';
 import { Redirect } from 'react-router-dom';
 import './SignupPage.css'
-import { Container,Form, Col, Row, Button,Alert } from 'react-bootstrap';
+import { Form, Col, Row, Button,Alert } from 'react-bootstrap';
 
 
 function SignupPage(props) {
