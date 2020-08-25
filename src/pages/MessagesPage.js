@@ -75,7 +75,7 @@ function MessagesPage(props) {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <Tenant image={"newman.jpg"} name={"Newman"} email={"newman@newman.com"} apt={"6"}/>
+            <Tenant image={"kramer2.jpg"} name={"Newman"} email={"newman@newman.com"} apt={"6"}/>
             <Tenant image={"jerry.jpg"} name={"Jerry"} email={"jerry@jerry.com"} apt={"8"}/>
 
                
