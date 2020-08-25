@@ -3,7 +3,7 @@ import './MessagesPage.css'
 import { Redirect } from 'react-router-dom';
 import CommitteeNavbar from '../components/CommitteeNavbar';
 import Message from '../components/Message';
-import { InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav } from 'react-bootstrap';
+import { Row,Breadcrumb,InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee,faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -75,10 +75,13 @@ function MessagesPage(props) {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <Message image={"jerry.jpg"} name={"Pool"} details={"bla bla bla"}/>
-            {/* <Tenant image={"newman.jpg"} name={"Newman"} email={"newman@newman.com"} apt={"6"}/>
-            <Tenant image={"kramer.jpg"} name={"Jerry"} email={"jerry@jerry.com"} apt={"8"}/> */}
-
+            <Row className="flex-container">
+                <Breadcrumb.Item className="new-message-btn" href="#">
+                    New Message
+                </Breadcrumb.Item>
+            </Row>
+           
+            <Message image={"jerry.jpg"} title={"Pool"} details={"bla bla bla"} priority={"important"}/>
                
 
         </div>

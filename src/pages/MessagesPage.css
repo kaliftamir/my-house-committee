@@ -1,7 +1,5 @@
 
 
-
-
 .p-messages .input-group {
     padding-right: 5px;
     font-family: 'FontAwesome';  
@@ -27,3 +25,14 @@
     padding-right: 3px;
 }
 
+.flex-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.p-messages .new-message-btn {
+    
+    padding-right: 20px;;
+    color: blue; 
+    text-decoration: underline;      
+}
