@@ -6,7 +6,7 @@ import Message from '../components/Message';
 import { Row,Breadcrumb,InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee,faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee,faSearch,faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -38,6 +38,8 @@ function MessagesPage(props) {
                             />
                             <FontAwesomeIcon icon={faCoffee} />
                             <FontAwesomeIcon icon={faSearch} />
+                            <FontAwesomeIcon icon={faExclamationCircle} />
+                            <FontAwesomeIcon icon={faInfoCircle} />
                            
                         </InputGroup>
 
@@ -81,7 +83,8 @@ function MessagesPage(props) {
                 </Breadcrumb.Item>
             </Row>
            
-            <Message image={"jerry.jpg"} title={"Pool"} details={"bla bla bla"} priority={"important"}/>
+            <Message image={"jerry.jpg"} title={"Pool"} details={"bla bla bla la bla blala bla blala bla blala bla blala bla blala bla blala bla blala bla bla"} priority={"Important"}/>
+            <Message image={"george.jpg"} title={"Garbage"} details={"bla bla bla"} priority={"Regular"}/>
                
 
         </div>

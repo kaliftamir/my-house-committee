@@ -1,6 +1,9 @@
 import React, { } from 'react';
 import { Card,Button,Accordion,Row,Col } from 'react-bootstrap';
 import './Message.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee,faSearch,faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+
 
 
 function Message(props) {
@@ -14,9 +17,14 @@ function Message(props) {
 
             <Accordion>
                 <Card>
-                    <Card.Header>
+                    <Card.Header className="title">
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                        {title}
+                           
+                            <span>{title}</span>   
+                                                    
+                            <FontAwesomeIcon className="icon" icon={faInfoCircle} />                      
+                           
+
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
@@ -28,13 +36,13 @@ function Message(props) {
                                 </Col>
                                 <Col xs={9}>
                                     <Card.Body className="card-body">
-                                        <Card.Title>Name: </Card.Title>
+                                        <Card.Title></Card.Title>
                                         <Card.Text className="details">
                                             <Row>
                                                 <Col xs={2}>
                                                     Details:
                                                 </Col>
-                                                <Col xs={10}>
+                                                <Col xs={7}>
                                                     {details} 
                                                 </Col>                                                           
 

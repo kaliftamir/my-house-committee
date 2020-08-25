@@ -19,19 +19,11 @@
     position: relative;
     height: 100%;
     margin: 0;
-    padding-left: 40px;
-    border: solid;
+  
+    /* border: solid; */
     
 }
 
-/* .c-message .tenant-options {
-
-   padding-right: 15px;       
-    justify-content: flex-end;
-    align-items: flex-end;
-    height: 240px;   
-       
-} */
 
 .c-message button {
     margin-right: 5px;
@@ -39,5 +31,19 @@
 
 .c-message .details {
     height: 60%;
-    border:solid;
+    /* border:solid; */
 }
+
+.c-message .title {
+    display: flex; 
+    position: relative;
+       
+}
+
+ .icon {
+    position: absolute;
+    right:10px;
+}
+
+
+
