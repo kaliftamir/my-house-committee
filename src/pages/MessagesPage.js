@@ -17,6 +17,7 @@ function MessagesPage(props) {
 
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
+    const [messages, setMessages] = React.useState([])
 
     
     //controlled components
@@ -31,22 +32,35 @@ function MessagesPage(props) {
 
     }
     
+    function handleNewMessage(message) {
+
+         // Add userId to the message object in order to link it to user object 1:1
+        message.userId = activeUser.id;
+
+        // for id I am taking the id of the last recipe in the array and adding 1
+        message.id = messages[messages.length - 1].id + 1;
+
+        setMessages(messages.concat(message)) // add new message to the array
+        
+    }
 
     function handleCreateMessage () {
-
         
-        const newRecipe = { 
+        const newMessage = {
+          
             title: titleInput, 
             details: detailsInput,
             priority:priorityInput, 
             img: imgInput 
         } 
+
+        console.log(newMessage)
         
-        //handleNewMessage(newRecipe)
+        handleNewMessage(newMessage)
         handleModalClose()
     }
   
-    // functions for controlled componentes  
+    // functions for each input in the modal (controlled componentes)  
     function handleTitleChange(event) {
 
         setTitleInput(event.target.value)
@@ -62,12 +76,12 @@ function MessagesPage(props) {
     function handlePriorityChange(event) {
 
         setPriorityInput(event.target.value)
+
+        // set the relevant icon
         if(priorityInput==="Important") {
             setIconShow(faExclamationCircle)
         } else {
-
             setIconShow(faInfoCircle)
-
         }
         
     }
@@ -146,9 +160,12 @@ function MessagesPage(props) {
                     New Message
                 </Breadcrumb.Item>
             </Row>
+
            
             <Message image={"jerry.jpg"} title={"Pool"} details={"bla bla bla la bla blala bla blala bla blala bla blala bla blala bla bla"} priority={"Important"} icon={iconShow}/>
             <Message image={"george.jpg"} title={"Garbage"} details={"bla bla bla"} priority={"Regular"} icon={iconShow}/>
+
+
 
              <Modal show={showNewMessageModal} size="lg" onHide={handleModalClose}>
                     <Modal.Header closeButton>

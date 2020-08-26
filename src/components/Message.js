@@ -38,7 +38,7 @@ function Message(props) {
                                 <Col xs={9}>
                                     <Card.Body className="card-body">
                                         <Card.Title></Card.Title>
-                                            <Card.Text className="details">
+                                            <div className="details">
                                                 <Row>
                                                     <Col xs={2}>
                                                         Details:
@@ -49,8 +49,8 @@ function Message(props) {
 
                                                 </Row>
                                                 
-                                            </Card.Text>
-                                        <Card.Text> 
+                                            </div>
+                                        <div> 
                                             <Row>
                                                 <Col xs={2}>
                                                     Priority:
@@ -61,13 +61,13 @@ function Message(props) {
                                                 <Col xs={3}>
                                                     <Button variant="primary" size="sm">Update</Button>
                                                     <Button variant="danger" size="sm">Delete</Button>  
-                                                </Col>                                                                                                    
+                                                </Col>                                                                                                   
                                                                
 
                                             </Row>
                                                                                                           
 
-                                        </Card.Text>
+                                        </div>
                                         
                                                        
                                     </Card.Body>
