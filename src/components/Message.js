@@ -8,9 +8,10 @@ import { faCoffee,faSearch,faExclamationCircle,faInfoCircle } from '@fortawesome
 
 function Message(props) {
 
-    const { image,title,details,priority} = props
+    const { image,title,details,priority,icon} = props
 
-
+   
+  
     return(
 
         <div className="c-message">
@@ -20,9 +21,9 @@ function Message(props) {
                     <Card.Header className="title">
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">
                            
-                            <span>{title}</span>   
+                            {title}  
                                                     
-                            <FontAwesomeIcon className="icon" icon={faInfoCircle} />                      
+                            <FontAwesomeIcon className="icon" icon={icon} />                      
                            
 
                         </Accordion.Toggle>
@@ -31,24 +32,24 @@ function Message(props) {
                         <Card.Body>
                         
                             <Row>
-                                <Col>
+                                <Col xs={3}>
                                     <Card.Img variant="top" src={image}/>
                                 </Col>
                                 <Col xs={9}>
                                     <Card.Body className="card-body">
                                         <Card.Title></Card.Title>
-                                        <Card.Text className="details">
-                                            <Row>
-                                                <Col xs={2}>
-                                                    Details:
-                                                </Col>
-                                                <Col xs={7}>
-                                                    {details} 
-                                                </Col>                                                           
+                                            <Card.Text className="details">
+                                                <Row>
+                                                    <Col xs={2}>
+                                                        Details:
+                                                    </Col>
+                                                    <Col xs={7}>
+                                                        {details} 
+                                                    </Col>                                                           
 
-                                            </Row>
-                                            
-                                        </Card.Text>
+                                                </Row>
+                                                
+                                            </Card.Text>
                                         <Card.Text> 
                                             <Row>
                                                 <Col xs={2}>
@@ -79,6 +80,7 @@ function Message(props) {
                     </Card>
             
             </Accordion>
+         
 
         </div>
 

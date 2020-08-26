@@ -1,4 +1,4 @@
-import React, {  } from 'react';
+import React, { } from 'react';
 import { Redirect } from 'react-router-dom';
 import CommitteeNavbar from '../components/CommitteeNavbar';
 import { Col, Row,Container } from 'react-bootstrap';
