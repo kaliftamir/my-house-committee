@@ -30,6 +30,7 @@ function MessagesPage(props) {
         setShowNewMessageModal(false)
 
     }
+    
 
     function handleCreateMessage () {
 
@@ -39,15 +40,44 @@ function MessagesPage(props) {
             details: detailsInput,
             priority:priorityInput, 
             img: imgInput 
-        }    
+        } 
+        
+        //handleNewMessage(newRecipe)
+        handleModalClose()
     }
   
-    function handleInputChange(event) {
+    // functions for controlled componentes  
+    function handleTitleChange(event) {
+
         setTitleInput(event.target.value)
+        
+    }  
+
+    function handleDetailsChange(event) {
+
         setDetailsInput(event.target.value)
-        setPriorityInput(event.target.value)
-        setImgInput(event.target.value)
+        
     }
+
+    function handlePriorityChange(event) {
+
+        setPriorityInput(event.target.value)
+        if(priorityInput==="Important") {
+            setIconShow(faExclamationCircle)
+        } else {
+
+            setIconShow(faInfoCircle)
+
+        }
+        
+    }
+
+    function handleImgChange(event) {
+
+        setImgInput(event.target.value)
+        
+    }
+    //---------------------------------------
 
     if (!activeUser) {
         return <Redirect to="/" />
@@ -132,7 +162,7 @@ function MessagesPage(props) {
                                 </Form.Label>
                                 <Col sm={10}>
                                     {/* the value and name needs to be the same if you want to use a single function for onchange for all inputs */}
-                                    <Form.Control type="text" value={titleInput} name="titleInput" onChange={handleInputChange}  />
+                                    <Form.Control type="text" value={titleInput} name="titleInput" onChange={handleTitleChange}  />
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="details">
@@ -140,7 +170,7 @@ function MessagesPage(props) {
                                     Details:
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control as="textarea" rows="5" value={detailsInput} name="detailsInput" onChange={handleInputChange}  />
+                                    <Form.Control as="textarea" rows="5" value={detailsInput} name="detailsInput" onChange={handleDetailsChange}  />
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="priority">
@@ -148,7 +178,7 @@ function MessagesPage(props) {
                                     Priority:
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control as="select" value={priorityInput} name="priortyInput" onChange={handleInputChange}>
+                                    <Form.Control as="select" value={priorityInput} name="priortyInput" onChange={handlePriorityChange}>
                                         <option>Info</option>
                                         <option>Important</option>
                                     </Form.Control>   
@@ -159,7 +189,7 @@ function MessagesPage(props) {
                                     Image URL
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control type="text" value={imgInput} name="imgInput" onChange={handleInputChange}  />
+                                    <Form.Control type="text" value={imgInput} name="imgInput" onChange={handleImgChange}  />
                                 </Col>
                             </Form.Group>
                         </Form>
