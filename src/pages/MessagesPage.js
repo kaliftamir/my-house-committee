@@ -25,6 +25,12 @@ function MessagesPage(props) {
     const [priorityInput, setPriorityInput] = React.useState("")
     const [imgInput, setImgInput] = React.useState("")
 
+    function handleModalClose() {
+
+        setShowNewMessageModal(false)
+
+    }
+
     function handleCreateMessage () {
 
         
@@ -114,7 +120,7 @@ function MessagesPage(props) {
             <Message image={"jerry.jpg"} title={"Pool"} details={"bla bla bla la bla blala bla blala bla blala bla blala bla blala bla bla"} priority={"Important"} icon={iconShow}/>
             <Message image={"george.jpg"} title={"Garbage"} details={"bla bla bla"} priority={"Regular"} icon={iconShow}/>
 
-             <Modal show={showNewMessageModal}  size="lg">
+             <Modal show={showNewMessageModal} size="lg" onHide={handleModalClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>New Message</Modal.Title>
                     </Modal.Header>
@@ -160,7 +166,7 @@ function MessagesPage(props) {
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" >
+                        <Button variant="secondary" onClick={handleModalClose}>
                             Cancel
                         </Button>
                         <Button variant="primary" onClick={handleCreateMessage} >
