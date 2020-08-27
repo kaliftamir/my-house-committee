@@ -1,26 +1,48 @@
 import React, { } from 'react';
 import { Modal,Button,Row,Col,Form } from 'react-bootstrap';
+import { faExclamation,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 function MyMessageModal(props) {
 
-    const {handleModalClose,handleCreateMessage,showNewMessageModal} = props
+    const {handleModalOpen,handleModalClose,addNewMessage } = props
 
 
-    // functions for each input in the modal (controlled componentes)  
+    
+    //controlled components
+    const [titleInput, setTitleInput] = React.useState("")
+    const [detailsInput, setDetailsInput] = React.useState("")
+    const [priorityInput, setPriorityInput] = React.useState("")
+    const [imgInput, setImgInput] = React.useState("")
+    const [iconShow, setIconShow] = React.useState(faInfoCircle)
+
+    function handleCreateMessage () {
+        
+        const newMessage = {
+          
+            title: titleInput, 
+            details: detailsInput,
+            priority: priorityInput, 
+            img: imgInput,
+            icon:iconShow 
+        }
+
+        addNewMessage(newMessage) // callback function - sending with the new message
+        handleModalClose()       
+
+    }
+
+    // functions to get values form each one of the inputs in the modal (controlled componentes)  
     function handleTitleChange(event) {
-
         setTitleInput(event.target.value)
         
     }  
 
     function handleDetailsChange(event) {
-
         setDetailsInput(event.target.value)
         
     }
 
     function handlePriorityChange(event) {
-
         setPriorityInput(event.target.value)
 
         // set the relevant icon
@@ -33,14 +55,16 @@ function MyMessageModal(props) {
     }
 
     function handleImgChange(event) {
-
         setImgInput(event.target.value)
         
     }
-    //---------------------------------------    
+    //--------------------------------------- 
+    
+    
+    
     return(
         <div className="c-my-message-modal">
-                <Modal show={showNewMessageModal} size="lg" onHide={handleModalClose}>
+                <Modal show={handleModalOpen} size="lg" onHide={handleModalClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>New Message</Modal.Title>
                     </Modal.Header>

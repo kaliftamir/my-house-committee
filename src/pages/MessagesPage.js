@@ -17,21 +17,25 @@ function MessagesPage(props) {
     
     const { activeUser } = props;
 
-    const [iconShow, setIconShow] = React.useState(faInfoCircle)
+ 
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
     const [myMessages, setMyMessages] = React.useState([])
 
-    
-    //controlled components
-    const [titleInput, setTitleInput] = React.useState("")
-    const [detailsInput, setDetailsInput] = React.useState("")
-    const [priorityInput, setPriorityInput] = React.useState("")
-    const [imgInput, setImgInput] = React.useState("")
+ 
+    function addNewMessage(message) {
+        setMyMessages(myMessages.concat(message)) // add new message to the array
+        console.log(myMessages)
+    }
 
     function handleModalClose() {
 
         setShowNewMessageModal(false)
 
+    } 
+
+    function handleModalOpen() {
+        setShowNewMessageModal(true)
+       
     }
     
     function handleNewMessage(message) {
@@ -47,26 +51,7 @@ function MessagesPage(props) {
     }
     
 
-    function handleCreateMessage () {
-        
-        const newMessage = {
-          
-            title: titleInput, 
-            details: detailsInput,
-            priority:priorityInput, 
-            img: imgInput,
-            icon:iconShow 
-        } 
-
-        console.log(myMessages) 
-        console.log(iconShow) 
-        
-        // handleNewMessage(newMessage)
-        setMyMessages(myMessages.concat(newMessage)) // add new message to the array
-        handleModalClose()
-    }
   
-    
 
     // Map my recipes to UI
     const myMessageToShow = myMessages.map((message,index) =>
@@ -136,7 +121,7 @@ function MessagesPage(props) {
                 </Navbar.Collapse>
             </Navbar>
             <Row className="flex-container">
-                <Breadcrumb.Item className="new-message-btn" onClick={() => setShowNewMessageModal(true)}>
+                <Breadcrumb.Item className="new-message-btn" onClick={handleModalOpen}>
                     New Message
                 </Breadcrumb.Item>
             </Row>
@@ -145,8 +130,13 @@ function MessagesPage(props) {
             {myMessageToShow}
 
 
-                 <MyMessageModal show={showNewMessageModal} size="lg" onHide={handleModalClose}/>
+                 <MyMessageModal addNewMessage={addNewMessage} handleModalOpen={showNewMessageModal}
+                  handleModalClose={handleModalClose}/>
+                 
 
+
+        </div>
+    );
     
 }
 
