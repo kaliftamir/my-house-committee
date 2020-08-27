@@ -6,7 +6,7 @@ import Message from '../components/Message';
 import { Row,Breadcrumb,InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav,Modal,Form,Col,Button } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee,faSearch,faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee,faSearch,faExclamationCircle,faExclamation,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -17,7 +17,7 @@ function MessagesPage(props) {
 
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
-    const [messages, setMessages] = React.useState([])
+    const [myMessages, setMyMessages] = React.useState([])
 
     
     //controlled components
@@ -35,14 +35,15 @@ function MessagesPage(props) {
     function handleNewMessage(message) {
 
          // Add userId to the message object in order to link it to user object 1:1
-        message.userId = activeUser.id;
+         myMessages.userId = activeUser.id;
 
         // for id I am taking the id of the last recipe in the array and adding 1
-        message.id = messages[messages.length - 1].id + 1;
+        myMessages.id = myMessages[myMessages.length - 1].id + 1;
 
-        setMessages(messages.concat(message)) // add new message to the array
-        
+        setMyMessages(myMessages.concat(message)) // add new message to the array
+        console.log(myMessages)
     }
+    
 
     function handleCreateMessage () {
         
@@ -51,12 +52,15 @@ function MessagesPage(props) {
             title: titleInput, 
             details: detailsInput,
             priority:priorityInput, 
-            img: imgInput 
+            img: imgInput,
+            icon:iconShow 
         } 
 
-        console.log(newMessage)
+        console.log(myMessages) 
+        console.log(iconShow) 
         
-        handleNewMessage(newMessage)
+        // handleNewMessage(newMessage)
+        setMyMessages(myMessages.concat(newMessage)) // add new message to the array
         handleModalClose()
     }
   
@@ -78,8 +82,8 @@ function MessagesPage(props) {
         setPriorityInput(event.target.value)
 
         // set the relevant icon
-        if(priorityInput==="Important") {
-            setIconShow(faExclamationCircle)
+        if(event.target.value==="Important") {
+            setIconShow(faExclamation)
         } else {
             setIconShow(faInfoCircle)
         }
@@ -92,6 +96,11 @@ function MessagesPage(props) {
         
     }
     //---------------------------------------
+
+    // Map my recipes to UI
+    const myMessageToShow = myMessages.map(message =>
+         <Message image={message.img} title={message.title} details={message.details}
+          priority={message.priority} icon={message.icon} />)
 
     if (!activeUser) {
         return <Redirect to="/" />
@@ -160,10 +169,9 @@ function MessagesPage(props) {
                     New Message
                 </Breadcrumb.Item>
             </Row>
-
            
-            <Message image={"jerry.jpg"} title={"Pool"} details={"bla bla bla la bla blala bla blala bla blala bla blala bla blala bla bla"} priority={"Important"} icon={iconShow}/>
-            <Message image={"george.jpg"} title={"Garbage"} details={"bla bla bla"} priority={"Regular"} icon={iconShow}/>
+
+            {myMessageToShow}
 
 
 
