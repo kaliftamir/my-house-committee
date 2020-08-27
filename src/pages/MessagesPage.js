@@ -98,8 +98,8 @@ function MessagesPage(props) {
     //---------------------------------------
 
     // Map my recipes to UI
-    const myMessageToShow = myMessages.map(message =>
-         <Message image={message.img} title={message.title} details={message.details}
+    const myMessageToShow = myMessages.map((message,index) =>
+         <Message key={index} image={message.img} title={message.title} details={message.details}
           priority={message.priority} icon={message.icon} />)
 
     if (!activeUser) {
