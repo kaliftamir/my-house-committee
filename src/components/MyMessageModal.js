@@ -1,6 +1,8 @@
 import React, { } from 'react';
 import { Modal,Button,Row,Col,Form,Image } from 'react-bootstrap';
 import { faExclamation,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import Parse from 'parse';
+import MessageModel from "../model/MessageModel"
 
 function MyMessageModal(props) {
 
@@ -23,7 +25,7 @@ function MyMessageModal(props) {
             details: detailsInput,
             priority: priorityInput, 
             img: URL.createObjectURL(imgInput),
-            icon:iconShow 
+            icon:iconShow
         }
 
         handleNewMessage(newMessage) // callback function - sending with the new message

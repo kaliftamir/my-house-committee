@@ -13,7 +13,12 @@ import IssuesPage from './pages/IssuesPage';
 import VotingsPage from './pages/VotingsPage';
 import jsonUsers from './data/users.json'
 import jsonAccounts from './data/accounts.json'
-// import jsonMessage from './data/messages.json'
+import Parse from 'parse';
+
+Parse.initialize(
+  'DeD9qobJ5ifKQgxZ7Bg3jafsGWbJvtwh6cziAfHy', // This is your Application ID
+  'L4Y3LKY3qQrMxqnEBuxk6NOfM9wGkLRsyFf6eJT3' // This is your Javascript key
+);
 
 
 // States:
