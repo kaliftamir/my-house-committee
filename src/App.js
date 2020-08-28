@@ -11,10 +11,12 @@ import TenantsPage from './pages/TenantsPage';
 import MessagesPage from './pages/MessagesPage';
 import IssuesPage from './pages/IssuesPage';
 import VotingsPage from './pages/VotingsPage';
-import jsonUsers from './data/users.json'
+//import jsonUsers from './data/users.json'
 import jsonAccounts from './data/accounts.json'
 import Parse from 'parse';
 
+
+Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
 Parse.initialize(
   'DeD9qobJ5ifKQgxZ7Bg3jafsGWbJvtwh6cziAfHy', // This is your Application ID
   'L4Y3LKY3qQrMxqnEBuxk6NOfM9wGkLRsyFf6eJT3' // This is your Javascript key
@@ -61,7 +63,7 @@ class App extends React.Component {
       //       "city": "tel-Aviv" 
       // },
         
-      users: jsonUsers,
+     //users: jsonUsers,
       accounts: jsonAccounts
       // messages: jsonMessages
     }
@@ -116,7 +118,7 @@ class App extends React.Component {
 
   render() {
 
-    const { activeUser,activeAccount,users,accounts } = this.state;
+    const { activeUser,activeAccount,accounts } = this.state;
 
     return (
       <HashRouter>
@@ -125,11 +127,11 @@ class App extends React.Component {
             <HomePage activeUser={activeUser} activeAccount={activeAccount}/>
           </Route>
           <Route exact path="/login">
-            <LoginPage activeUser={activeUser} activeAccount={activeAccount} users={users} handleLogin={this.handleLogin}/>
+            <LoginPage activeUser={activeUser} activeAccount={activeAccount}  handleLogin={this.handleLogin}/>
           </Route>
 
           <Route exact path="/signup">
-            <SignupPage activeUser={activeUser} activeAccount={activeAccount} users={users} accounts={accounts} handleSignup={this.handleSignup} handleNewAccount={this.handleNewAccount}/>
+            <SignupPage activeUser={activeUser} activeAccount={activeAccount}  accounts={accounts} handleSignup={this.handleSignup} handleNewAccount={this.handleNewAccount}/>
           </Route>
 
           <Route exact path="/dashboard">

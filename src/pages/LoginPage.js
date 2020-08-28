@@ -1,13 +1,15 @@
 import React, {  } from 'react';
 import { Form, Col, Row, Button, Alert } from 'react-bootstrap';
 import './LoginPage.css'
+import UserModel from '../model/UserModel';
 import { Redirect } from 'react-router-dom';
 import Parse from 'parse';
 
 
 function LoginPage (props) {
 
-    const { users,handleLogin } = props;
+    // users props not need anymore  (JSON)
+    const { handleLogin } = props;
     
     // controlled components
     const [emailInput, setEmailInput] = React.useState("john@john.com")
@@ -21,10 +23,10 @@ function LoginPage (props) {
     function login () {
 
         // Pass the username and password to logIn function
-        Parse.User.logIn("emailInput","#setEmailInput").then((user) => {
+        Parse.User.logIn("emailInput","pwdInput").then((user) => {
             // Do stuff after successful login
             // If the login is valid: notify App and redirect to "/dashboard"
-            handleLogin(userFound);
+            handleLogin(new UserModel(user));
             setRedirectToDashboard(true) 
         }).catch(error => {
             // Do stuff after unsuccessful login
