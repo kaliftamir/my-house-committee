@@ -2,7 +2,7 @@ import React, { } from 'react';
 import { Card,Button,Accordion,Row,Col } from 'react-bootstrap';
 import './Message.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee,faSearch,faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 

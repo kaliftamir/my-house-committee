@@ -22,15 +22,14 @@ function MessagesPage(props) {
     const [myMessages, setMyMessages] = React.useState([])
 
  
-    function addNewMessage(message) {
+    function handleNewMessage(message) {
         setMyMessages(myMessages.concat(message)) // add new message to the array
         console.log(myMessages)
     }
 
     function handleModalClose() {
-
         setShowNewMessageModal(false)
-
+                
     } 
 
     function handleModalOpen() {
@@ -38,17 +37,17 @@ function MessagesPage(props) {
        
     }
     
-    function handleNewMessage(message) {
+    // function handleNewMessage(message) {
 
-         // Add userId to the message object in order to link it to user object 1:1
-         myMessages.userId = activeUser.id;
+    //      // Add userId to the message object in order to link it to user object 1:1
+    //      myMessages.userId = activeUser.id;
 
-        // for id I am taking the id of the last recipe in the array and adding 1
-        myMessages.id = myMessages[myMessages.length - 1].id + 1;
+    //     // for id I am taking the id of the last recipe in the array and adding 1
+    //     myMessages.id = myMessages[myMessages.length - 1].id + 1;
 
-        setMyMessages(myMessages.concat(message)) // add new message to the array
-        console.log(myMessages)
-    }
+    //     setMyMessages(myMessages.concat(message)) // add new message to the array
+    //     console.log(myMessages)
+    // }
     
 
   
@@ -130,7 +129,7 @@ function MessagesPage(props) {
             {myMessageToShow}
 
 
-                 <MyMessageModal addNewMessage={addNewMessage} handleModalOpen={showNewMessageModal}
+                 <MyMessageModal handleNewMessage={handleNewMessage} handleModalOpen={showNewMessageModal}
                   handleModalClose={handleModalClose}/>
                  
 

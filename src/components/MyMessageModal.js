@@ -4,7 +4,7 @@ import { faExclamation,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 function MyMessageModal(props) {
 
-    const {handleModalOpen,handleModalClose,addNewMessage } = props
+    const {handleModalOpen,handleModalClose,handleNewMessage } = props
 
 
     
@@ -26,9 +26,10 @@ function MyMessageModal(props) {
             icon:iconShow 
         }
 
-        addNewMessage(newMessage) // callback function - sending with the new message
+        handleNewMessage(newMessage) // callback function - sending with the new message
+        
         handleModalClose()       
-
+        
     }
 
     // functions to get values form each one of the inputs in the modal (controlled componentes)  
