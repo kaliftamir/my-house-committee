@@ -1,5 +1,5 @@
 import React, { } from 'react';
-import { Modal,Button,Row,Col,Form } from 'react-bootstrap';
+import { Modal,Button,Row,Col,Form,Image } from 'react-bootstrap';
 import { faExclamation,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 function MyMessageModal(props) {
@@ -12,7 +12,7 @@ function MyMessageModal(props) {
     const [titleInput, setTitleInput] = React.useState("")
     const [detailsInput, setDetailsInput] = React.useState("")
     const [priorityInput, setPriorityInput] = React.useState("")
-    const [imgInput, setImgInput] = React.useState("")
+    const [imgInput, setImgInput] = React.useState(null) // an object
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
 
     function handleCreateMessage () {
@@ -22,7 +22,7 @@ function MyMessageModal(props) {
             title: titleInput, 
             details: detailsInput,
             priority: priorityInput, 
-            img: imgInput,
+            img: URL.createObjectURL(imgInput),
             icon:iconShow 
         }
 
@@ -55,13 +55,25 @@ function MyMessageModal(props) {
         
     }
 
-    function handleImgChange(event) {
-        setImgInput(event.target.value)
+    // function handleImgChange(event) {
+    //     setImgInput(event.target.value)
+        
+    // }
+
+    function handleImgFileChange(event) {
+        // if the user select file
+        if(event.target.files[0]) {
+            setImgInput(event.target.files[0]) // syntax to get to the file - if molti need to add multi att to input
+
+
+        } else {
+            setImgInput(null)
+        }
         
     }
     //--------------------------------------- 
     
-    
+    const imgURL = imgInput ? URL.createObjectURL(imgInput) : ""; // temporary url
     
     return(
         <div className="c-my-message-modal">
@@ -104,9 +116,10 @@ function MyMessageModal(props) {
                                     Image URL
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control type="text" value={imgInput} name="imgInput" onChange={handleImgChange}  />
+                                    <Form.Control type="file" accept="image/*"  name="imgInput" onChange={handleImgFileChange}  />
                                 </Col>
                             </Form.Group>
+                            <Image src={imgURL} className="preview" /> 
                         </Form>
 
                     </Modal.Body>
