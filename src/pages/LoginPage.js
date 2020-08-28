@@ -2,6 +2,7 @@ import React, {  } from 'react';
 import { Form, Col, Row, Button, Alert } from 'react-bootstrap';
 import './LoginPage.css'
 import { Redirect } from 'react-router-dom';
+import Parse from 'parse';
 
 
 function LoginPage (props) {
@@ -19,19 +20,33 @@ function LoginPage (props) {
     
     function login () {
 
-        // Check if the login is valid (if a user with the same 
-        // email and pwd was found in the users array)
-        const userFound = users.find(user => emailInput === user.email && pwdInput === user.pwd);
-
-        if (userFound) {
+        // Pass the username and password to logIn function
+        Parse.User.logIn("emailInput","#setEmailInput").then((user) => {
+            // Do stuff after successful login
             // If the login is valid: notify App and redirect to "/dashboard"
             handleLogin(userFound);
             setRedirectToDashboard(true) 
-
-        } else {
+        }).catch(error => {
+            // Do stuff after unsuccessful login
             // If the login is not valid: show an error alert
             setShowInvalidCredentials(true)
-        }
+
+        })
+        
+        // old code of JSON ---------------------------------------------------------------------
+        // // Check if the login is valid (if a user with the same 
+        // // email and pwd was found in the users array)
+        // const userFound = users.find(user => emailInput === user.email && pwdInput === user.pwd);
+
+        // if (userFound) {
+        //     // If the login is valid: notify App and redirect to "/dashboard"
+        //     handleLogin(userFound);
+        //     setRedirectToDashboard(true) 
+
+        // } else {
+        //     // If the login is not valid: show an error alert
+        //     setShowInvalidCredentials(true)
+        // }
     }
     
     console.log(redirectToDashboard)  
