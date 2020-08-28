@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import Parse from 'parse';
 
 
+
 function LoginPage (props) {
 
     // users props not need anymore  (JSON)
@@ -20,10 +21,10 @@ function LoginPage (props) {
     const [showInvalidCredentials, setShowInvalidCredentials] = React.useState(false)
 
     
-    function login () {
+    function login() {
 
         // Pass the username and password to logIn function
-        Parse.User.logIn("emailInput","pwdInput").then((user) => {
+        Parse.User.logIn(emailInput,pwdInput).then((user) => {
             // Do stuff after successful login
             // If the login is valid: notify App and redirect to "/dashboard"
             handleLogin(new UserModel(user));

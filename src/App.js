@@ -32,10 +32,6 @@ Parse.initialize(
 //  If there is no active account this state will hold the value of null.
 
 
-
-// users - array - an array that contains all the users in the system (this is a HACK
-//   since we don't have a server side)
-
 // recipes - array - an array that contains all the recipes in the system (this is a HACK
 //   since we don't have a server side)
 class App extends React.Component {
@@ -65,7 +61,7 @@ class App extends React.Component {
         
      //users: jsonUsers,
       accounts: jsonAccounts
-      // messages: jsonMessages
+      
     }
   
   //   this.handleLogout = this.handleLogout.bind(this);

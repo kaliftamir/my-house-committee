@@ -8,7 +8,7 @@ import MyMessageModal from '../components/MyMessageModal';
 import { Row,Breadcrumb,InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav,Modal,Form,Col,Button } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee,faSearch,faExclamationCircle,faExclamation,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee,faSearch,faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 
