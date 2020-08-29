@@ -21,7 +21,29 @@ function MessagesPage(props) {
  
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
     const [myMessages, setMyMessages] = React.useState([])
+    
 
+    function handleDeleteMessage(deletedId,message) {
+            
+        const Message = Parse.Object.extend('Message');
+        const query = new Parse.Query(Message);
+        // here you put the objectId that you want to delete
+        query.get(deletedId).then((object) => {
+        object.destroy().then((response) => {
+           // update the array of messages + alert to the user
+           alert("the message was delete")
+           const index = myMessages.indexOf(message) // the index of deleted message object
+           
+           setMyMessages(myMessages.concat(myMessages.splice(index, 1)));          
+                    
+           
+
+        }, (error) => {
+            if (typeof document !== 'undefined') document.write(`Error while deleting Message: ${JSON.stringify(error)}`);
+            console.error('Error while deleting Message', error);
+        });
+        });
+    } 
      
     function handleNewMessage(newMessage) {
         newMessage.save().then(
@@ -62,6 +84,7 @@ function MessagesPage(props) {
     
 
     useEffect(() => {
+       
         if (activeUser) {
             const Message = Parse.Object.extend('Message');
             const query = new Parse.Query(Message);
@@ -84,8 +107,9 @@ function MessagesPage(props) {
     
     // Map my messages to UI
     const myMessageToShow = myMessages.map((message,index) =>
-         <Message key={index} img={message.img} title={message.title} details={message.details}
-          priority={message.priority} icon={message.icon} />)
+         <Message key={index} id={message.id} img={message.img} title={message.title} details={message.details}
+          priority={message.priority} icon={message.icon} message={message}
+          deleteMessage={()=>handleDeleteMessage(message.id,message)} />) //  callback props
 
     
     return (
@@ -130,7 +154,7 @@ function MessagesPage(props) {
                             <InputGroup.Prepend>
 
                                 <InputGroup.Text>Sort by:</InputGroup.Text>
-                                <InputGroup.Radio name="sort" aria-label="Radio button for following text input" />
+                                <InputGroup.Radio name="sort" aria-label="Radio button for following text input" checked="checked"/>
                                 <InputGroup.Text className="label">Date</InputGroup.Text>
                                 <InputGroup.Radio name="sort" aria-label="Radio button for following text input" />
                                 <InputGroup.Text className="label">Priority</InputGroup.Text>
@@ -157,7 +181,7 @@ function MessagesPage(props) {
 
 
                  <MyMessageModal handleNewMessage={handleNewMessage} handleModalOpen={showNewMessageModal}
-                  handleModalClose={handleModalClose}/>
+                  handleModalClose={handleModalClose} />
                  
 
 

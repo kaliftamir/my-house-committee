@@ -2,15 +2,24 @@ import React, { } from 'react';
 import { Card,Button,Accordion,Row,Col } from 'react-bootstrap';
 import './Message.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Parse from 'parse';
 
 
 
 function Message(props) {
 
-    const { image,title,details,priority,icon} = props
+    const { id,img,title,details,priority,icon,deleteMessage} = props
+    
+    // function deleteMessage(event) {
+
+      
+    //     const Message = Parse.Object.extend('Message');            
+        
+    //     handleDeleteMessage()
+    // }
 
    
-  
+      
     return(
 
         <div className="c-message">
@@ -34,7 +43,7 @@ function Message(props) {
                         
                             <Row>
                                 <Col xs={3}>
-                                    <Card.Img variant="top" src={image}/>
+                                    <Card.Img variant="top" src={img}/>
                                 </Col>
                                 <Col xs={9}>
                                     <Card.Body className="card-body">
@@ -61,7 +70,7 @@ function Message(props) {
                                                 </Col> 
                                                 <Col xs={3}>
                                                     <Button variant="primary" size="sm">Update</Button>
-                                                    <Button variant="danger" size="sm">Delete</Button>  
+                                                    <Button value={id} variant="danger" size="sm" onClick={deleteMessage}>Delete</Button>  
                                                 </Col>                                                                                                   
                                                                
 

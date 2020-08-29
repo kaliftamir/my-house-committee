@@ -1,6 +1,7 @@
 class MessageModel {
 
     constructor(parseRecipe) {
+        
         this.id = parseRecipe.id;
         this.title = parseRecipe.get("title");
         this.details = parseRecipe.get("details");
