@@ -19,18 +19,41 @@ function MyMessageModal(props) {
 
     function handleCreateMessage () {
         
-        const newMessage = {
+        // const newMessage = {
           
-            title: titleInput, 
-            details: detailsInput,
-            priority: priorityInput, 
-            img: URL.createObjectURL(imgInput),
-            icon:iconShow
-        }
+        //     title: titleInput, 
+        //     details: detailsInput,
+        //     priority: priorityInput, 
+        //     img: URL.createObjectURL(imgInput),
+        //     icon:iconShow
+        // }
 
-        handleNewMessage(newMessage) // callback function - sending with the new message
+        // handleNewMessage(newMessage) // callback function - sending with the new message
         
-        handleModalClose()       
+        // handleModalClose()
+        
+        //---------------------------------------------------------------------------------
+        
+                //  Create Message in Parse
+                const Message = Parse.Object.extend('Message');
+                const newMessage = new Message();
+        
+                newMessage.set('title', titleInput);
+                newMessage.set('details', detailsInput);
+                newMessage.set('priority', priorityInput);
+                newMessage.set('icon', iconShow);
+                newMessage.set('img', new Parse.File(imgInput.name, imgInput));
+                newMessage.set('userId', Parse.User.current());
+        
+
+                // callback function - sending with the new message
+                handleNewMessage(newMessage) 
+        
+                //  Close the modal
+               
+                handleModalClose()
+            
+            //--------------------------------------------------------------------------------
         
     }
 

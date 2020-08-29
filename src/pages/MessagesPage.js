@@ -26,9 +26,19 @@ function MessagesPage(props) {
     //const [messages, setMessages] = React.useState([])
 
  
-    function handleNewMessage(message) {
-        setMyMessages(myMessages.concat(message)) // add new message to the array
-        console.log(myMessages)
+    function handleNewMessage(newMessage) {
+        newMessage.save().then(
+            (result) => {
+                //  Update state (messages array) with the new message
+                const message = new MessageModel(result);
+                setMyMessages(myMessages.concat(message))
+            },
+            (error) => {
+                console.error('Error while creating Message: ', error);
+            }
+        );
+        // setMyMessages(myMessages.concat(message)) // add new message to the array
+        // console.log(myMessages)
     }
 
     function handleModalClose() {
