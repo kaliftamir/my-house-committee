@@ -73,8 +73,7 @@ function SignupPage(props) {
         
     }
 
-    //console.log(redirectToDashboard)  
-
+    //console.log(redirectToDashboard)
 
         if (redirectToDashboard) {
             return <Redirect to="/dashboard" />

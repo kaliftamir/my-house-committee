@@ -1,14 +1,15 @@
-import React, { } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import './MessagesPage.css'
 import { Redirect } from 'react-router-dom';
 import CommitteeNavbar from '../components/CommitteeNavbar';
 import Message from '../components/Message';
 import MyMessageModal from '../components/MyMessageModal';
-
 import { Row,Breadcrumb,InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav,Modal,Form,Col,Button } from 'react-bootstrap';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee,faSearch,faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import Parse from 'parse'; 
+import MessageModel from '../model/MessageModel';
+
 
 
 
@@ -20,6 +21,9 @@ function MessagesPage(props) {
  
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
     const [myMessages, setMyMessages] = React.useState([])
+
+    // add this state for parse
+    //const [messages, setMessages] = React.useState([])
 
  
     function handleNewMessage(message) {
@@ -48,18 +52,36 @@ function MessagesPage(props) {
     //     setMyMessages(myMessages.concat(message)) // add new message to the array
     //     console.log(myMessages)
     // }
+
     
 
-  
-
-    // Map my recipes to UI
-    const myMessageToShow = myMessages.map((message,index) =>
-         <Message key={index} image={message.img} title={message.title} details={message.details}
-          priority={message.priority} icon={message.icon} />)
+    useEffect(() => {
+        if (activeUser) {
+            const Message = Parse.Object.extend('Message');
+            const query = new Parse.Query(Message);
+            query.equalTo("userId", Parse.User.current());
+            query.find().then(results => {
+                // Success - results is the array of messages
+                const myMessages = results.map(result => new MessageModel(result));
+                setMyMessages(myMessages);
+            }, (error) => {
+                console.error('Error while fetching Message', error);
+            });
+        }
+    }, [activeUser])  
+    
+    console.log(myMessages)
 
     if (!activeUser) {
         return <Redirect to="/" />
-    }      
+    } 
+    
+    // Map my messages to UI
+    const myMessageToShow = myMessages.map((message,index) =>
+         <Message key={index} img={message.img} title={message.title} details={message.details}
+          priority={message.priority} icon={message.icon} />)
+
+    
 
     return (
         <div className="p-messages">
