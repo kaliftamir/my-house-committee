@@ -2,7 +2,7 @@
 
 .c-message {
     
-    border: 1px solid;
+    border: 2px solid;
     
 }
 
@@ -39,9 +39,11 @@
 .c-message .title {
     display: flex; 
     position: relative;
-    background-color: lightblue;
-    
+    /* background-color: transparent; */
+    background-color: lightblue;    
 }
+
+
 
 .c-message .title .title-text {
     color:black;

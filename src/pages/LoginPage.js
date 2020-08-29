@@ -24,13 +24,11 @@ function LoginPage (props) {
     function login() {
 
         // Pass the username and password to logIn function
-        Parse.User.logIn(emailInput,pwdInput).then((user) => {
-            // Do stuff after successful login
+        Parse.User.logIn(emailInput,pwdInput).then((user) => {          
             // If the login is valid: notify App and redirect to "/dashboard"
             handleLogin(new UserModel(user));
             setRedirectToDashboard(true) 
-        }).catch(error => {
-            // Do stuff after unsuccessful login
+        }).catch(error => {          
             // If the login is not valid: show an error alert
             setShowInvalidCredentials(true)
 

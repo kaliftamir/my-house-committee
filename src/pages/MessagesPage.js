@@ -88,7 +88,6 @@ function MessagesPage(props) {
           priority={message.priority} icon={message.icon} />)
 
     
-
     return (
         <div className="p-messages">
             

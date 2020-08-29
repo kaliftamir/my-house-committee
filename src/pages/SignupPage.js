@@ -2,6 +2,7 @@ import React, {  } from 'react';
 import { Redirect } from 'react-router-dom';
 import './SignupPage.css'
 import { Form, Col, Row, Button,Alert } from 'react-bootstrap';
+import Parse from 'parse';
 
 
 function SignupPage(props) {
@@ -37,6 +38,25 @@ function SignupPage(props) {
     }
     
     function signUp() {
+    
+    //-------------------------------------------------------------------------------------------
+    //     const user = new Parse.User()
+       
+    //     user.set('name', nameSignup);
+    //     user.set('email', emailSignup);
+    //     user.set('password', pwdSignup);              
+    //     user.set('building', buildingSignup);
+    //     user.set('city', citySignup);
+    //     user.set('address', addressSignup);
+
+    //     //Parse.User.logIn(emailInput,pwdInput).then((user) => {
+    //     user.signUp().then((user) => {
+    //    //
+    //     }).catch(error => {
+    //     //
+    //     });
+
+        //-------------------------------------------------------------------------------------------
         
         // Check if the user exists (if there is a user with the same 
         // email in the users array)
