@@ -1,6 +1,6 @@
 import React, { } from 'react';
 import { Modal,Button,Row,Col,Form,Image } from 'react-bootstrap';
-import { faExclamation,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import Parse from 'parse';
 import './MyMessageModal.css'
 
@@ -73,7 +73,7 @@ function MyMessageModal(props) {
 
         // set the relevant icon
         if(event.target.value==="Important") {
-            setIconShow(faExclamation)
+            setIconShow(faExclamationCircle)
         } else {
             setIconShow(faInfoCircle)
         }
