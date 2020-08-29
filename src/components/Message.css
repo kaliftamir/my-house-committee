@@ -39,8 +39,12 @@
 .c-message .title {
     display: flex; 
     position: relative;
-    background-color: transparent;
-           
+    background-color: lightblue;
+    
+}
+
+.c-message .title .title-text {
+    color:black;
 }
 
  .icon {

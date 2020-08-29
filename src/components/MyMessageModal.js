@@ -2,7 +2,8 @@ import React, { } from 'react';
 import { Modal,Button,Row,Col,Form,Image } from 'react-bootstrap';
 import { faExclamation,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import Parse from 'parse';
-import MessageModel from "../model/MessageModel"
+import './MyMessageModal.css'
+
 
 function MyMessageModal(props) {
 
@@ -13,7 +14,7 @@ function MyMessageModal(props) {
     //controlled components
     const [titleInput, setTitleInput] = React.useState("")
     const [detailsInput, setDetailsInput] = React.useState("")
-    const [priorityInput, setPriorityInput] = React.useState("")
+    const [priorityInput, setPriorityInput] = React.useState("info")
     const [imgInput, setImgInput] = React.useState(null) // an object
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
 
@@ -34,26 +35,25 @@ function MyMessageModal(props) {
         
         //---------------------------------------------------------------------------------
         
-                //  Create Message in Parse
-                const Message = Parse.Object.extend('Message');
-                const newMessage = new Message();
+        //  Create Message in Parse
+        const Message = Parse.Object.extend('Message');
+        const newMessage = new Message();
         
-                newMessage.set('title', titleInput);
-                newMessage.set('details', detailsInput);
-                newMessage.set('priority', priorityInput);
-                newMessage.set('icon', iconShow);
-                newMessage.set('img', new Parse.File(imgInput.name, imgInput));
-                newMessage.set('userId', Parse.User.current());
+        newMessage.set('title', titleInput);
+        newMessage.set('details', detailsInput);
+        newMessage.set('priority', priorityInput);
+        newMessage.set('icon', iconShow);
+        newMessage.set('img', new Parse.File(imgInput.name, imgInput));
+        newMessage.set('userId', Parse.User.current());
         
 
-                // callback function - sending with the new message
-                handleNewMessage(newMessage) 
+        // callback function - sending with the new message
+        handleNewMessage(newMessage) 
         
-                //  Close the modal
+        //  Close the modal
                
-                handleModalClose()
+        handleModalClose()
             
-            //--------------------------------------------------------------------------------
         
     }
 

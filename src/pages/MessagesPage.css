@@ -35,3 +35,7 @@
     color: blue; 
     text-decoration: underline;      
 }
+
+.p-messages .title {
+    background-color: red;
+}

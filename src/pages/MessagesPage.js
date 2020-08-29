@@ -22,10 +22,7 @@ function MessagesPage(props) {
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
     const [myMessages, setMyMessages] = React.useState([])
 
-    // add this state for parse
-    //const [messages, setMessages] = React.useState([])
-
- 
+     
     function handleNewMessage(newMessage) {
         newMessage.save().then(
             (result) => {
@@ -37,8 +34,7 @@ function MessagesPage(props) {
                 console.error('Error while creating Message: ', error);
             }
         );
-        // setMyMessages(myMessages.concat(message)) // add new message to the array
-        // console.log(myMessages)
+     
     }
 
     function handleModalClose() {

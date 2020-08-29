@@ -20,8 +20,10 @@ function Message(props) {
                 <Card>
                     <Card.Header className="title">
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                           
-                            {title}  
+                           <span className="title-text">
+                            {title}
+                           </span>
+                             
                                                     
                             <FontAwesomeIcon className="icon" icon={icon} />                      
                            
