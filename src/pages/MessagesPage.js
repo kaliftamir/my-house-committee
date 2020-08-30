@@ -30,12 +30,12 @@ function MessagesPage(props) {
         // here you put the objectId that you want to delete
         query.get(deletedId).then((object) => {
         object.destroy().then((response) => {
-           // update the array of messages + alert to the user
+           // alert to the user
            alert("the message was delete")
-           const index = myMessages.indexOf(message) // the index of deleted message object
-           
-           setMyMessages(myMessages.concat(myMessages.splice(index, 1)));          
-                    
+
+           // update the array of messages 
+           const index = myMessages.indexOf(message) // get the index of the 'deleted message' object  
+           setMyMessages(myMessages.concat(myMessages.splice(index, 1)));                    
            
 
         }, (error) => {
@@ -143,9 +143,9 @@ function MessagesPage(props) {
                             title="Filter by Priority"
                             id="input-group-dropdown-1"
                             >
-                            <Dropdown.Item href="#">Regular</Dropdown.Item>
+                            <Dropdown.Item href="#">Info</Dropdown.Item>
                             <Dropdown.Item href="#">Important</Dropdown.Item>
-                            <Dropdown.Item href="#">Urgent</Dropdown.Item>                            
+                                                      
                             </DropdownButton>             
                         </InputGroup>
 
