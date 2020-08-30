@@ -37,8 +37,17 @@ function MyMessageModal(props) {
         handleNewMessage(newMessage) 
         
         //  Close the modal               
-        handleModalClose()            
+        handleModalClose()
+        cleanMyModal()            
         
+    }
+
+    function cleanMyModal() {
+        setTitleInput("")        
+        setDetailsInput("")
+        setPriorityInput("info")
+        setImgInput(null)
+        setIconShow(faInfoCircle)
     }
 
     // functions to get values form each one of the inputs in the modal (controlled componentes)  

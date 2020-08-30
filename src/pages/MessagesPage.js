@@ -143,8 +143,8 @@ function MessagesPage(props) {
                             title="Filter by Priority"
                             id="input-group-dropdown-1"
                             >
-                            <Dropdown.Item href="#">Info</Dropdown.Item>
-                            <Dropdown.Item href="#">Important</Dropdown.Item>
+                            <Dropdown.Item href="#" value="info">Info</Dropdown.Item>
+                            <Dropdown.Item href="#" value="important">Important</Dropdown.Item>
                                                       
                             </DropdownButton>             
                         </InputGroup>
