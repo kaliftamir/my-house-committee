@@ -198,15 +198,15 @@ function MessagesPage(props) {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
+
             <Container>
                 <Row className="flex-container">
                     <Breadcrumb.Item className="new-message-btn" onClick={handleModalOpen}>
                         New Message
                     </Breadcrumb.Item>
-                </Row>
-                
+                </Row>            
                 {myMessageToShow}
-            </Container>            
+            </Container>  
 
 
             <MyMessageModal handleNewMessage={handleNewMessage} handleModalOpen={showNewMessageModal}

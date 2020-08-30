@@ -42,7 +42,7 @@
 
 .p-messages .search-icon {
     position: absolute;
-   left: 10px;
+   left: 40px;
    top: 10px;
    color:grey;
    z-index: 10;    
@@ -50,6 +50,7 @@
 
 .p-messages .flter-bar{
     padding-left: 30px;
+    margin-left: 31px;
     
 }
 
