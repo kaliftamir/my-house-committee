@@ -122,9 +122,9 @@ function MessagesPage(props) {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <InputGroup className="flter-bar mb-12">
+                        <InputGroup className="mb-12">
 
-                            <FormControl className="mb-12" placeholder="     filter by text title and details"
+                            <FormControl className="flter-bar mb-12" placeholder="filter by text title and details"
                             aria-label="Default"
                             aria-describedby="inputGroup-sizing-default"/>                           
                             
