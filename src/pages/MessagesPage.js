@@ -6,7 +6,7 @@ import Message from '../components/Message';
 import MyMessageModal from '../components/MyMessageModal';
 import { Row,Breadcrumb,InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav,Modal,Form,Col,Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee,faSearch,faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Parse from 'parse'; 
 import MessageModel from '../model/MessageModel';
 
@@ -35,7 +35,7 @@ function MessagesPage(props) {
 
            // update the array of messages 
            const index = myMessages.indexOf(message) // get the index of the 'deleted message' object  
-           setMyMessages(myMessages.concat(myMessages.splice(index, 1)));                    
+           setMyMessages(myMessages.concat(myMessages.splice(index-1, 1)));                    
            
 
         }, (error) => {
@@ -124,15 +124,13 @@ function MessagesPage(props) {
                     <Nav className="mr-auto">
                         <InputGroup className="flter-bar mb-12">
 
-                            <FormControl style={{fontFamily: "FontAwesome"}} className="mb-12" placeholder="&#xF002; filter by text title and details"
+                            <FormControl className="mb-12" placeholder="     filter by text title and details"
                             aria-label="Default"
-                            aria-describedby="inputGroup-sizing-default"
+                            aria-describedby="inputGroup-sizing-default"/>                           
                             
-                            />
-                            <FontAwesomeIcon icon={faCoffee} />
-                            <FontAwesomeIcon icon={faSearch} />
-                            <FontAwesomeIcon icon={faExclamationCircle} />
-                            <FontAwesomeIcon icon={faInfoCircle} />
+                     
+                            <FontAwesomeIcon className={"search-icon"} icon={faSearch} />
+                           
                            
                         </InputGroup>
 

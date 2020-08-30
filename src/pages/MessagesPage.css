@@ -39,3 +39,12 @@
 .p-messages .title {
     background-color: red;
 }
+
+.p-messages .search-icon {
+    position: absolute;
+   left: 10px;
+   top: 10px;
+   color:grey;
+   
+  
+}
