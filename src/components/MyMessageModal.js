@@ -18,6 +18,7 @@ function MyMessageModal(props) {
     const [imgInput, setImgInput] = React.useState(null) // an object
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
 
+  
     function handleCreateMessage () {
 
         
@@ -36,7 +37,7 @@ function MyMessageModal(props) {
         // callback function - sending with the new message
         handleNewMessage(newMessage) 
         
-        //  Close the modal               
+        //  Close and clean the modal              
         handleModalClose()
         cleanMyModal()            
         
@@ -95,7 +96,7 @@ function MyMessageModal(props) {
     
     return(
         <div className="c-my-message-modal">
-                <Modal show={handleModalOpen} size="lg" onHide={handleModalClose}>
+                <Modal show={handleModalOpen} onHide={handleModalClose}  size="lg">
                     <Modal.Header closeButton>
                         <Modal.Title>New Message</Modal.Title>
                     </Modal.Header>
@@ -142,6 +143,9 @@ function MyMessageModal(props) {
 
                     </Modal.Body>
                     <Modal.Footer>
+                        <Button id="update" variant="secondary">
+                            Update
+                        </Button>
                         <Button variant="secondary" onClick={handleModalClose}>
                             Cancel
                         </Button>

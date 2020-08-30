@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import CommitteeNavbar from '../components/CommitteeNavbar';
 import Message from '../components/Message';
 import MyMessageModal from '../components/MyMessageModal';
-import { Row,Breadcrumb,InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav,Modal,Form,Col,Button } from 'react-bootstrap';
+import { Row,Breadcrumb,InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav,Modal,Form,Col,Button, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Parse from 'parse'; 
@@ -22,6 +22,34 @@ function MessagesPage(props) {
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
     const [myMessages, setMyMessages] = React.useState([])
     
+    function handleUpdateMessage (updatedId,message) {
+       
+        
+       
+        const Message = Parse.Object.extend('Message');
+        const query = new Parse.Query(Message);
+        // here you put the objectId that you want to update
+        query.get(updatedId).then((object) => {
+        object.set('title', message.title);
+        object.set('details', message.details);
+        object.set('img', new Parse.File("resume.txt", { base64: btoa(message.img) }));
+        object.set('userId', Parse.User.current());
+        object.set('priority', message.priority);
+       
+        //handleModalOpen(message)
+        object.save().then((response) => {
+            // You can use the "get" method to get the value of an attribute
+            // Ex: response.get("<ATTRIBUTE_NAME>")
+            handleModalOpen()
+            console.log(message)
+         
+        }, (error) => {
+            if (typeof document !== 'undefined') document.write(`Error while updating Message: ${JSON.stringify(error)}`);
+            console.error('Error while updating Message', error);
+        });
+        });
+
+    }
 
     function handleDeleteMessage(deletedId,message) {
             
@@ -58,6 +86,7 @@ function MessagesPage(props) {
         );
      
     }
+
 
     function handleModalClose() {
         setShowNewMessageModal(false)
@@ -109,7 +138,8 @@ function MessagesPage(props) {
     const myMessageToShow = myMessages.map((message,index) =>
          <Message key={index} id={message.id} img={message.img} title={message.title} details={message.details}
           priority={message.priority} icon={message.icon} message={message}
-          deleteMessage={()=>handleDeleteMessage(message.id,message)} />) //  callback props
+          deleteMessage={()=>handleDeleteMessage(message.id,message)}    // callback props
+          updateMessage={()=>handleUpdateMessage(message.id,message)}/>) //  callback props
 
     
     return (
@@ -168,18 +198,19 @@ function MessagesPage(props) {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            <Row className="flex-container">
-                <Breadcrumb.Item className="new-message-btn" onClick={handleModalOpen}>
-                    New Message
-                </Breadcrumb.Item>
-            </Row>
-           
+            <Container>
+                <Row className="flex-container">
+                    <Breadcrumb.Item className="new-message-btn" onClick={handleModalOpen}>
+                        New Message
+                    </Breadcrumb.Item>
+                </Row>
+                
+                {myMessageToShow}
+            </Container>            
 
-            {myMessageToShow}
 
-
-                 <MyMessageModal handleNewMessage={handleNewMessage} handleModalOpen={showNewMessageModal}
-                  handleModalClose={handleModalClose} />
+            <MyMessageModal handleNewMessage={handleNewMessage} handleModalOpen={showNewMessageModal}
+            handleModalClose={handleModalClose} />
                  
 
 

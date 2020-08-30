@@ -8,17 +8,8 @@ import Parse from 'parse';
 
 function Message(props) {
 
-    const { id,img,title,details,priority,icon,deleteMessage} = props
+    const { id,img,title,details,priority,icon,deleteMessage,updateMessage } = props
     
-    // function deleteMessage(event) {
-
-      
-    //     const Message = Parse.Object.extend('Message');            
-        
-    //     handleDeleteMessage()
-    // }
-
-   
       
     return(
 
@@ -69,7 +60,7 @@ function Message(props) {
                                                     {priority} 
                                                 </Col> 
                                                 <Col xs={3}>
-                                                    <Button variant="primary" size="sm">Update</Button>
+                                                    <Button value={id} variant="primary" size="sm" onClick={updateMessage}>Update</Button>
                                                     <Button value={id} variant="danger" size="sm" onClick={deleteMessage}>Delete</Button>  
                                                 </Col>                                                                                                   
                                                                
