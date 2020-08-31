@@ -21,11 +21,13 @@ function MessagesPage(props) {
  
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
     const [myMessages, setMyMessages] = React.useState([])
-    
+
+    const [updateMessages, setUpdateMessages] = React.useState(false)
+   
+           
     function handleUpdateMessage (updatedId,message) {
        
         
-       
         const Message = Parse.Object.extend('Message');
         const query = new Parse.Query(Message);
         // here you put the objectId that you want to update
@@ -42,7 +44,8 @@ function MessagesPage(props) {
             // Ex: response.get("<ATTRIBUTE_NAME>")
 
             // open modal 
-            handleModalOpen()
+            //handleModalOpen()
+            setUpdateMessages(true)
             console.log(message)
          
         }, (error) => {
@@ -61,7 +64,7 @@ function MessagesPage(props) {
         query.get(deletedId).then((object) => {
         object.destroy().then((response) => {
            // alert to the user
-           alert("This message was deleted")
+           alert("The message was deleted")
 
            // update the array of messages 
            const index = myMessages.indexOf(message) // get the index of the 'deleted message' object  
@@ -77,7 +80,8 @@ function MessagesPage(props) {
         });
     } 
      
-    function handleNewMessage(newMessage) {
+    function handleNewMessage(newMessage) {       
+
         newMessage.save().then(
             (result) => {
                 //  Update state (messages array) with the new message
@@ -214,7 +218,8 @@ function MessagesPage(props) {
 
 
             <MyMessageModal handleNewMessage={handleNewMessage} handleModalOpen={showNewMessageModal}
-            handleModalClose={handleModalClose} />
+            handleModalClose={handleModalClose} disabled={true} />
+            <MyMessageModal handleModalOpen={updateMessages} handleModalClose={handleModalClose} disabled={false}/>
                  
 
 

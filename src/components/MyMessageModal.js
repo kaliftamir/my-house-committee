@@ -7,10 +7,9 @@ import './MyMessageModal.css'
 
 function MyMessageModal(props) {
 
-    const {handleModalOpen,handleModalClose,handleNewMessage } = props
+    const {handleModalOpen,handleModalClose,handleNewMessage,disabled } = props
 
-
-    
+       
     //controlled components
     const [titleInput, setTitleInput] = React.useState("")
     const [detailsInput, setDetailsInput] = React.useState("")
@@ -27,7 +26,7 @@ function MyMessageModal(props) {
         const Message = Parse.Object.extend('Message');
         const newMessage = new Message();
 
-        //newMessage.set('objectId', Parse.User.current());
+        newMessage.set('objectId', Parse.User.current());
         newMessage.set('title', titleInput);
         newMessage.set('details', detailsInput);
         newMessage.set('priority', priorityInput);
@@ -143,14 +142,14 @@ function MyMessageModal(props) {
                         </Form>
 
                     </Modal.Body>
-                    <Modal.Footer>
-                        <Button id="update" variant="secondary">
-                            Update
-                        </Button>
+                    <Modal.Footer>                       
                         <Button variant="secondary" onClick={handleModalClose}>
                             Cancel
                         </Button>
-                        <Button variant="primary" onClick={handleCreateMessage} >
+                        <Button id="update" variant="primary" disabled={disabled}>
+                            Update
+                        </Button>
+                        <Button variant="primary" onClick={handleCreateMessage} disabled={!disabled}>
                             Create Message
                         </Button>
                     </Modal.Footer>
