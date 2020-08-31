@@ -40,6 +40,8 @@ function MessagesPage(props) {
         object.save().then((response) => {
             // You can use the "get" method to get the value of an attribute
             // Ex: response.get("<ATTRIBUTE_NAME>")
+
+            // open modal 
             handleModalOpen()
             console.log(message)
          
@@ -59,11 +61,13 @@ function MessagesPage(props) {
         query.get(deletedId).then((object) => {
         object.destroy().then((response) => {
            // alert to the user
-           alert("the message was delete")
+           alert("This message was deleted")
 
            // update the array of messages 
            const index = myMessages.indexOf(message) // get the index of the 'deleted message' object  
-           setMyMessages(myMessages.concat(myMessages.splice(index-1, 1)));                    
+           setMyMessages(myMessages.splice(myMessages.splice(index, 1))); 
+           //setMyMessages(myMessages.splice(deletedId,1, ...myMessages)); 
+           console.log(myMessages)                   
            
 
         }, (error) => {

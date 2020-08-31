@@ -18,6 +18,7 @@ function MyMessageModal(props) {
     const [imgInput, setImgInput] = React.useState(null) // an object
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
 
+    
   
     function handleCreateMessage () {
 
