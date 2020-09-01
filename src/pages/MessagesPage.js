@@ -4,13 +4,12 @@ import { Redirect } from 'react-router-dom';
 import CommitteeNavbar from '../components/CommitteeNavbar';
 import Message from '../components/Message';
 import MyMessageModal from '../components/MyMessageModal';
+import MyOldMessageModal from '../components/MyOldMessageModal';
 import { Row,Breadcrumb,InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav,Modal,Form,Col,Button, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Parse from 'parse'; 
 import MessageModel from '../model/MessageModel';
-
-
 
 
 function MessagesPage(props) {
@@ -22,40 +21,15 @@ function MessagesPage(props) {
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
     const [myMessages, setMyMessages] = React.useState([])
 
-    const [updateMessages, setUpdateMessages] = React.useState(false)
+    // states for updating message
+    const [showOldMessageModal, setShowOldMessageModal] = React.useState(false)
+    const [oldTitle, setOldTitle] = React.useState("")
+    const [oldDetails, setOldDetails] = React.useState("")
+    const [oldPriority, setOldPriority] = React.useState("")
+    const [oldImg, setOldImg] = React.useState("")
    
            
-    function handleUpdateMessage (updatedId,message) {
-       
-        
-        const Message = Parse.Object.extend('Message');
-        const query = new Parse.Query(Message);
-        // here you put the objectId that you want to update
-        query.get(updatedId).then((object) => {
-        object.set('title', message.title);
-        object.set('details', message.details);
-        object.set('img', new Parse.File("resume.txt", { base64: btoa(message.img) }));
-        object.set('userId', Parse.User.current());
-        object.set('priority', message.priority);
-       
-        //handleModalOpen(message)
-        object.save().then((response) => {
-            // You can use the "get" method to get the value of an attribute
-            // Ex: response.get("<ATTRIBUTE_NAME>")
-
-            // open modal 
-            //handleModalOpen()
-            setUpdateMessages(true)
-            console.log(message)
-         
-        }, (error) => {
-            if (typeof document !== 'undefined') document.write(`Error while updating Message: ${JSON.stringify(error)}`);
-            console.error('Error while updating Message', error);
-        });
-        });
-
-    }
-
+    
     function handleDeleteMessage(deletedId,message) {
             
         const Message = Parse.Object.extend('Message');
@@ -79,6 +53,42 @@ function MessagesPage(props) {
         });
         });
     } 
+
+
+    function handleUpdateMessage (updatedId,message) {
+
+        // open modal 
+        setShowOldMessageModal(true)
+       
+        const Message = Parse.Object.extend('Message');
+        const query = new Parse.Query(Message);
+        // here you put the objectId that you want to update
+        query.get(updatedId).then((object) => {
+        object.get('title', message.title);
+        object.get('details', message.details);
+        object.get('img', new Parse.File("resume.txt", { base64: btoa(message.img) }));
+        object.get('userId', Parse.User.current());
+        object.get('priority', message.priority);
+       
+        //handleModalOpen(message)
+        object.save().then((response) => {
+            // You can use the "get" method to get the value of an attribute
+            // Ex: response.get("<ATTRIBUTE_NAME>")          
+     
+            
+            setOldTitle(message.title)
+            setOldDetails(message.details)
+            setOldPriority(message.priority)
+            setOldImg(message.img)
+         
+        }, (error) => {
+            if (typeof document !== 'undefined') document.write(`Error while updating Message: ${JSON.stringify(error)}`);
+            console.error('Error while updating Message', error);
+        });
+        });
+        
+
+    }
      
     function handleNewMessage(newMessage) {       
 
@@ -98,11 +108,17 @@ function MessagesPage(props) {
 
     function handleModalClose() {
         setShowNewMessageModal(false)
+        setShowOldMessageModal(false)
                 
     } 
 
     function handleModalOpen() {
         setShowNewMessageModal(true)
+         
+       
+    }
+    function handleOldModalOpen() {       
+        setShowOldMessageModal(true)      
        
     }
     
@@ -218,8 +234,13 @@ function MessagesPage(props) {
 
 
             <MyMessageModal handleNewMessage={handleNewMessage} handleModalOpen={showNewMessageModal}
-            handleModalClose={handleModalClose} disabled={true} />
-            <MyMessageModal handleModalOpen={updateMessages} handleModalClose={handleModalClose} disabled={false}/>
+            handleModalClose={handleModalClose} />
+
+            
+            <MyOldMessageModal title={oldTitle} details={oldDetails} priority={oldPriority} img={oldImg}
+            handleUpdateMessage={handleUpdateMessage} handleOldModalOpen={showOldMessageModal}
+            handleModalClose={handleModalClose} />
+            
                  
 
 

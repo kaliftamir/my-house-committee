@@ -5,10 +5,11 @@ import Parse from 'parse';
 import './MyMessageModal.css'
 
 
-function MyMessageModal(props) {
+function MyOldMessageModal (props) {
 
-    const {handleModalOpen,handleModalClose,handleNewMessage } = props
+    const {title,details,priority,img,handleOldModalOpen,handleModalClose,handleUpdateMessage } = props
 
+       
        
     //controlled components
     const [titleInput, setTitleInput] = React.useState("")
@@ -17,37 +18,25 @@ function MyMessageModal(props) {
     const [imgInput, setImgInput] = React.useState(null) // an object
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
 
-      
-    function handleCreateMessage () {
+    function handleOpenOldMessage () {
         
-        //  Create Message in Parse
-        const Message = Parse.Object.extend('Message');
-        const newMessage = new Message();
 
-        newMessage.set('objectId', Parse.User.current());
-        newMessage.set('title', titleInput);
-        newMessage.set('details', detailsInput);
-        newMessage.set('priority', priorityInput);
-        newMessage.set('icon', iconShow);
-        newMessage.set('img', new Parse.File(imgInput.name, imgInput));
-        newMessage.set('userId', Parse.User.current());
-       
-        // callback function - sending with the new message
-        handleNewMessage(newMessage) 
-        
-        //  Close and clean the modal              
-        handleModalClose()
-        cleanMyModal()            
-        
-    }
+        //  //  Create Message in Parse
+        //  const Message = Parse.Object.extend('Message');
+        //  const oldMessage = new Message();
+ 
+        //  oldMessage.set('objectId', Parse.User.current());
+        //  oldMessage.set('title', titleInput);
+        //  oldMessage.set('details', detailsInput);
+        //  oldMessage.set('priority', priorityInput);
+        //  oldMessage.set('icon', iconShow);
+        //  oldMessage.set('img', new Parse.File(imgInput.name, imgInput));
+        //  oldMessage.set('userId', Parse.User.current());
 
-    function cleanMyModal() {
-        setTitleInput("")        
-        setDetailsInput("")
-        setPriorityInput("info")
-        setImgInput(null)
-        setIconShow(faInfoCircle)
-    }
+        // handleUpdateMessage(id,oldMessage)
+    }  
+   
+
 
     // functions to get values form each one of the inputs in the modal (controlled componentes)  
     function handleTitleChange(event) {
@@ -94,7 +83,7 @@ function MyMessageModal(props) {
     
     return(
         <div className="c-my-message-modal">
-                <Modal show={handleModalOpen} onHide={handleModalClose}  size="lg">
+                <Modal show={handleOldModalOpen} onHide={handleModalClose}  size="lg">
                     <Modal.Header closeButton>
                         <Modal.Title>New Message</Modal.Title>
                     </Modal.Header>
@@ -106,7 +95,7 @@ function MyMessageModal(props) {
                                 </Form.Label>
                                 <Col sm={10}>
                                     {/* the value and name needs to be the same if you want to use a single function for onchange for all inputs */}
-                                    <Form.Control type="text" value={titleInput} name="titleInput" onChange={handleTitleChange}  />
+                                    <Form.Control type="text" defaultValue={title} name="titleInput" onChange={handleTitleChange}  />
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="details">
@@ -114,7 +103,7 @@ function MyMessageModal(props) {
                                     Details:
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control as="textarea" rows="5" value={detailsInput} name="detailsInput" onChange={handleDetailsChange}  />
+                                    <Form.Control as="textarea" rows="5" defaultValue={details} name="detailsInput" onChange={handleDetailsChange}  />
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="priority">
@@ -122,7 +111,7 @@ function MyMessageModal(props) {
                                     Priority:
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control as="select" value={priorityInput} name="priortyInput" onChange={handlePriorityChange}>
+                                    <Form.Control as="select" defaultValue={priority} name="priortyInput" onChange={handlePriorityChange}>
                                         <option>Info</option>
                                         <option>Important</option>
                                     </Form.Control>   
@@ -144,8 +133,9 @@ function MyMessageModal(props) {
                         <Button variant="secondary" onClick={handleModalClose}>
                             Cancel
                         </Button>
-                        <Button variant="primary" onClick={handleCreateMessage}>
-                            Create Message
+
+                        <Button variant="primary" onClick={handleUpdateMessage}>
+                            Update Message
                         </Button>
                     </Modal.Footer>
                 </Modal>  
@@ -156,4 +146,4 @@ function MyMessageModal(props) {
 }
 
                 
-export default MyMessageModal;
+export default MyOldMessageModal;
