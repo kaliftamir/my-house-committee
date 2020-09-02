@@ -20,7 +20,8 @@ function MessagesPage(props) {
  
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
     const [myMessages, setMyMessages] = React.useState([])
-
+    const [sortedMessages, setSortedMyMessages] = React.useState("date")
+ 
     // states for updating message
     const [showOldMessageModal, setShowOldMessageModal] = React.useState(false)
     const [oldTitle, setOldTitle] = React.useState("")
@@ -39,8 +40,9 @@ function MessagesPage(props) {
         // here you put the objectId that you want to delete
         query.get(deletedId).then((object) => {
         object.destroy().then((response) => {
+            
            // alert to the user
-           alert("The message was deleted")
+           //alert("The message was deleted")
 
            // update the array of messages 
            const index = myMessages.indexOf(message) // get the index of the 'deleted message' object  
@@ -84,7 +86,8 @@ function MessagesPage(props) {
             setOldTitle(message.title)
             setOldDetails(message.details)
             setOldPriority(message.priority)
-            setOldImg(message.img)         
+            setOldImg(message.img)
+            console.log(message)         
         
          
         }, (error) => {
@@ -101,6 +104,8 @@ function MessagesPage(props) {
     function handleUpdateMessage (oldMessage) {
        
         oldMessage.save().then((response) => {
+
+           
             // You can use the "get" method to get the value of an attribute
             // Ex: response.get("<ATTRIBUTE_NAME>")
             
@@ -109,8 +114,10 @@ function MessagesPage(props) {
             // update the array of messages 
            const index = myMessages.indexOf(oldMessage) // get the index of the 'deleted message' object
            
-           setMyMessages(myMessages.splice(oldMessage,1)); 
-          
+           setMyMessages(myMessages.splice(oldMessage,1));
+           //setMyMessages(myMessages.splice(myMessages.splice(oldMessage, 1)));  
+           //setMyMessages(myMessages.concat(oldMessage));
+
            
           }, (error) => {
             if (typeof document !== 'undefined') document.write(`Error while updating Message: ${JSON.stringify(error)}`);
@@ -132,7 +139,7 @@ function MessagesPage(props) {
             (result) => {
                 //  Update state (messages array) with the new message
                 const message = new MessageModel(result);
-                setMyMessages(myMessages.concat(message))
+                setMyMessages(myMessages.concat(message))                
                 
             },
             (error) => {
@@ -195,8 +202,28 @@ function MessagesPage(props) {
         return <Redirect to="/" />
     } 
     
+    function sortBy(string) {
+        setSortedMyMessages(string) 
+        
+        
+    }
+
+
+    // sort the messages 
+    let showSortedMessages=[]
+
+    if(sortedMessages==="date") {
+
+        showSortedMessages=myMessages.sort((a,b)=> a.id > b.id ? 1:-1)
+
+    } else if(sortedMessages==="priority") {
+
+        showSortedMessages=myMessages.sort((a,b)=> a.priority > b.priority ? 1:-1)
+
+    } 
+    
     // Map my messages to UI
-    const myMessageToShow = myMessages.map((message,index) =>
+    const myMessageToShow = showSortedMessages.map((message,index) =>
          <Message key={index} id={message.id} img={message.img} title={message.title} details={message.details}
           priority={message.priority} icon={message.icon} message={message}
           deleteMessage={()=>handleDeleteMessage(message.id,message)}    // callback props
@@ -245,9 +272,11 @@ function MessagesPage(props) {
                             <InputGroup.Prepend>
 
                                 <InputGroup.Text>Sort by:</InputGroup.Text>
-                                <InputGroup.Radio name="sort" aria-label="Radio button for following text input" checked={"checked"} />
+                                <InputGroup.Radio name="sort" aria-label="Radio button for following text input"
+                                 onChange={()=>sortBy("date")} defaultChecked />
                                 <InputGroup.Text className="label">Date</InputGroup.Text>
-                                <InputGroup.Radio name="sort" aria-label="Radio button for following text input" />
+                                <InputGroup.Radio name="sort" aria-label="Radio button for following text input"
+                                 onChange={()=>sortBy("priority")} />
                                 <InputGroup.Text className="label">Priority</InputGroup.Text>
 
                             </InputGroup.Prepend>                  
