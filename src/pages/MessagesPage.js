@@ -103,8 +103,14 @@ function MessagesPage(props) {
         oldMessage.save().then((response) => {
             // You can use the "get" method to get the value of an attribute
             // Ex: response.get("<ATTRIBUTE_NAME>")
-            setMyMessages(myMessages)
-            // check array with oldMessage.id and upadte the state
+            
+            handleDeleteMessage(oldId,oldMessage)
+
+            // update the array of messages 
+           const index = myMessages.indexOf(oldMessage) // get the index of the 'deleted message' object
+           
+           setMyMessages(myMessages.splice(oldMessage,1)); 
+          
            
           }, (error) => {
             if (typeof document !== 'undefined') document.write(`Error while updating Message: ${JSON.stringify(error)}`);
