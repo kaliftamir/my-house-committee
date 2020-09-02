@@ -18,26 +18,29 @@ function MyOldMessageModal (props) {
     const [imgInput, setImgInput] = React.useState(null) // an object
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
 
-    function handleOpenOldMessage () {
+    function handleCreateUpdatedMessage () {
         
+        //  Create Message in Parse
+        const Message = Parse.Object.extend('Message');
+        const oldMessage = new Message();
 
-        //  //  Create Message in Parse
-        //  const Message = Parse.Object.extend('Message');
-        //  const oldMessage = new Message();
- 
-        //  oldMessage.set('objectId', Parse.User.current());
-        //  oldMessage.set('title', titleInput);
-        //  oldMessage.set('details', detailsInput);
-        //  oldMessage.set('priority', priorityInput);
-        //  oldMessage.set('icon', iconShow);
-        //  oldMessage.set('img', new Parse.File(imgInput.name, imgInput));
-        //  oldMessage.set('userId', Parse.User.current());
+        oldMessage.get('objectId', Parse.User.current());
+        oldMessage.set('title', titleInput);
+        oldMessage.set('details', detailsInput);
+        oldMessage.set('priority', priorityInput);
+        oldMessage.set('icon', iconShow);
+        oldMessage.set('img', new Parse.File(imgInput.name, imgInput));
+        oldMessage.set('userId', Parse.User.current());
+             
+        // callback function - sending with the new message
+        handleUpdateMessage(oldMessage) 
+        
+        //  Close the modal              
+        handleModalClose()          
+        
+    }
 
-        // handleUpdateMessage(id,oldMessage)
-    }  
-   
-
-
+    
     // functions to get values form each one of the inputs in the modal (controlled componentes)  
     function handleTitleChange(event) {
         setTitleInput(event.target.value)
@@ -46,7 +49,7 @@ function MyOldMessageModal (props) {
 
     function handleDetailsChange(event) {
         setDetailsInput(event.target.value)
-        
+                
     }
 
     function handlePriorityChange(event) {
@@ -134,7 +137,7 @@ function MyOldMessageModal (props) {
                             Cancel
                         </Button>
 
-                        <Button variant="primary" onClick={handleUpdateMessage}>
+                        <Button variant="primary" onClick={handleCreateUpdatedMessage}>
                             Update Message
                         </Button>
                     </Modal.Footer>

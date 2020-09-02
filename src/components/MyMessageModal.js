@@ -31,7 +31,7 @@ function MyMessageModal(props) {
         newMessage.set('icon', iconShow);
         newMessage.set('img', new Parse.File(imgInput.name, imgInput));
         newMessage.set('userId', Parse.User.current());
-       
+        console.log(newMessage) 
         // callback function - sending with the new message
         handleNewMessage(newMessage) 
         

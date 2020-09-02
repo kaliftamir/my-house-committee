@@ -27,6 +27,8 @@ function MessagesPage(props) {
     const [oldDetails, setOldDetails] = React.useState("")
     const [oldPriority, setOldPriority] = React.useState("")
     const [oldImg, setOldImg] = React.useState("")
+    const [oldId, setOldId] = React.useState("")
+
    
            
     
@@ -54,32 +56,36 @@ function MessagesPage(props) {
         });
     } 
 
-
-    function handleUpdateMessage (updatedId,message) {
+   
+    //function handleOpenOldMessage (updatedId,updatedTitle,updatedDetails,updatedPriority,updatedImg) {
+    function handleOpenOldMessage (updatedId,message) {
 
         // open modal 
         setShowOldMessageModal(true)
        
         const Message = Parse.Object.extend('Message');
         const query = new Parse.Query(Message);
-        // here you put the objectId that you want to update
+        // get all values of the message from parse.
         query.get(updatedId).then((object) => {
-        object.get('title', message.title);
-        object.get('details', message.details);
-        object.get('img', new Parse.File("resume.txt", { base64: btoa(message.img) }));
-        object.get('userId', Parse.User.current());
-        object.get('priority', message.priority);
-       
-        //handleModalOpen(message)
-        object.save().then((response) => {
-            // You can use the "get" method to get the value of an attribute
-            // Ex: response.get("<ATTRIBUTE_NAME>")          
-     
             
+            //alert(updatedTitle)
+           
+        // set all original values of an old message - in the Modal 
+        //    setOldId(updatedId)            
+        //    setOldTitle(updatedTitle)
+        //    setOldDetails(updatedDetails)
+        //    setOldPriority(updatedPriority)
+        //    setOldImg(updatedImg)          
+
+       
+        object.save().then((response) => {
+            // set all original values of an old message - in the Modal             
+            setOldId(updatedId)            
             setOldTitle(message.title)
             setOldDetails(message.details)
             setOldPriority(message.priority)
-            setOldImg(message.img)
+            setOldImg(message.img)         
+        
          
         }, (error) => {
             if (typeof document !== 'undefined') document.write(`Error while updating Message: ${JSON.stringify(error)}`);
@@ -89,14 +95,39 @@ function MessagesPage(props) {
         
 
     }
-     
-    function handleNewMessage(newMessage) {       
+
+    //----------------------------------------------------------------------------------------------
+
+    function handleUpdateMessage (oldMessage) {
+       
+        oldMessage.save().then((response) => {
+            // You can use the "get" method to get the value of an attribute
+            // Ex: response.get("<ATTRIBUTE_NAME>")
+            setMyMessages(myMessages)
+            // check array with oldMessage.id and upadte the state
+           
+          }, (error) => {
+            if (typeof document !== 'undefined') document.write(`Error while updating Message: ${JSON.stringify(error)}`);
+            console.error('Error while updating Message', error);
+          });
+
+        // const index = myMessages.findIndex((message) => message.id === oldId);
+        // myMessages[index].title=oldTitle
+        // setMyMessages(myMessages)       
+
+
+    }
+    
+    //---------------------------------------------------------------------------------------------
+    function handleNewMessage(newMessage) { 
+              
 
         newMessage.save().then(
             (result) => {
                 //  Update state (messages array) with the new message
                 const message = new MessageModel(result);
                 setMyMessages(myMessages.concat(message))
+                
             },
             (error) => {
                 console.error('Error while creating Message: ', error);
@@ -104,7 +135,7 @@ function MessagesPage(props) {
         );
      
     }
-
+    //-----------------------------------------------------------------------------------------------
 
     function handleModalClose() {
         setShowNewMessageModal(false)
@@ -163,7 +194,9 @@ function MessagesPage(props) {
          <Message key={index} id={message.id} img={message.img} title={message.title} details={message.details}
           priority={message.priority} icon={message.icon} message={message}
           deleteMessage={()=>handleDeleteMessage(message.id,message)}    // callback props
-          updateMessage={()=>handleUpdateMessage(message.id,message)}/>) //  callback props
+        //   updateMessage={()=>handleOpenOldMessage(message.id,message.title,message.details,
+        //   message.priority,message.img)}/>) //  callback props
+        updateMessage={()=>handleOpenOldMessage(message.id,message)}/>) //  callback props
 
     
     return (
@@ -206,7 +239,7 @@ function MessagesPage(props) {
                             <InputGroup.Prepend>
 
                                 <InputGroup.Text>Sort by:</InputGroup.Text>
-                                <InputGroup.Radio name="sort" aria-label="Radio button for following text input" checked="checked"/>
+                                <InputGroup.Radio name="sort" aria-label="Radio button for following text input" checked={"checked"} />
                                 <InputGroup.Text className="label">Date</InputGroup.Text>
                                 <InputGroup.Radio name="sort" aria-label="Radio button for following text input" />
                                 <InputGroup.Text className="label">Priority</InputGroup.Text>
