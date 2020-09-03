@@ -41,104 +41,24 @@ function MessagesPage(props) {
         query.get(deletedId).then((object) => {
             object.destroy().then((response) => {
                 
-                // alert to the user
-                //alert("The message was deleted")
-
+               
                 // update the array of messages 
                 const index = myMessages.indexOf(message) // get the index of the 'deleted message' object  
-                setMyMessages(myMessages.splice(myMessages.splice(index, 1))); 
-                //setMyMessages(myMessages.splice(deletedId,1, ...myMessages)); 
-                console.log(myMessages)                   
+                setMyMessages(myMessages.splice(myMessages.splice(index, 1)));  // update the array
+                          
             
-
             }, (error) => {
                 if (typeof document !== 'undefined') document.write(`Error while deleting Message: ${JSON.stringify(error)}`);
                 console.error('Error while deleting Message', error);
             });
         });
     } 
+  
+ 
 
-   
-    // //function handleOpenOldMessage (updatedId,updatedTitle,updatedDetails,updatedPriority,updatedImg) {
-    // function handleOpenOldMessage (updatedId,message) {
+    //----------------------------------------------------------------------------------------------
 
-    //     // open modal 
-    //     setShowOldMessageModal(true)
-       
-    //     const Message = Parse.Object.extend('Message');
-    //     const query = new Parse.Query(Message);
-    //     // get all values of the message from parse.
-    //     query.get(updatedId).then((object) => {
-            
-    //         //alert(updatedTitle)
-           
-    //     // set all original values of an old message - in the Modal 
-    //     //    setOldId(updatedId)            
-    //     //    setOldTitle(updatedTitle)
-    //     //    setOldDetails(updatedDetails)
-    //     //    setOldPriority(updatedPriority)
-    //     //    setOldImg(updatedImg)          
-
-       
-    //     object.save().then((response) => {
-    //         // set all original values of an old message - in the Modal             
-    //         setOldId(updatedId)            
-    //         setOldTitle(response.get("title"))
-    //         setOldDetails(response.get("details"))
-    //         setOldPriority(response.get("priority"))
-    //         setOldImg(response.get('img', new Parse.File("img", { base64: btoa("img") })))
-    //         // console.log(message) 
-    //         // <MyOldMessageModal title={response.get("title")} details={response.get("details")} priority={response.get("priority")} img={response.get("img")}
-    //         // handleUpdateMessage={handleUpdateMessage} handleOldModalOpen={showOldMessageModal}
-    //         // handleModalClose={handleModalClose} />        
-        
-         
-    //     }, (error) => {
-    //         if (typeof document !== 'undefined') document.write(`Error while updating Message: ${JSON.stringify(error)}`);
-    //         console.error('Error while updating Message', error);
-    //     });
-    //     });
-        
-
-    // }
-
-    // //----------------------------------------------------------------------------------------------
-
-    // function handleUpdateMessage (oldMessage) {
-
-
-       
-    //     oldMessage.save().then((response) => {
-
-           
-    //         // You can use the "get" method to get the value of an attribute
-    //         // Ex: response.get("<ATTRIBUTE_NAME>")
-            
-    //         handleDeleteMessage(oldId,oldMessage)
-
-    //         // update the array of messages           
-    //        const index = myMessages.findIndex(message => message.id === oldId); // get the index of the 'updated message' object
-    //        console.log(index)
-    //        setMyMessages(myMessages.splice(index,1));
-         
-    //        //setMyMessages(myMessages.splice(myMessages.splice(oldMessage, 1)));  
-           
-
-           
-    //       }, (error) => {
-    //         if (typeof document !== 'undefined') document.write(`Error while updating Message: ${JSON.stringify(error)}`);
-    //         console.error('Error while updating Message', error);
-    //     });
-       
-          
-
-    //     // const index = myMessages.findIndex((message) => message.id === oldId);
-    //     // myMessages[index].title=oldTitle
-    //     // setMyMessages(myMessages)       
-
-
-    // }
-
+    // get all values of message we want to update in the modal
     function handleOpenOldMessage(messageId,message) {
 
         // open modal 
@@ -184,6 +104,10 @@ function MessagesPage(props) {
             object.save().then((response) => {
                 // You can use the "get" method to get the value of an attribute
                 // Ex: response.get("<ATTRIBUTE_NAME>")
+
+         
+            // update the array
+            setMyMessages(myMessages)         
               
                
             }, (error) => {

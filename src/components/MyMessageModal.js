@@ -101,7 +101,8 @@ function MyMessageModal(props) {
                         <Modal.Title>New Message</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form>
+                        <Form>                       
+
                             <Form.Group as={Row} controlId="title">
                                 <Form.Label column sm={2}>
                                     Title:

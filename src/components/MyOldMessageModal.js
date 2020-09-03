@@ -1,16 +1,16 @@
 import React, { } from 'react';
-import { Modal,Button,Row,Col,Form,Image } from 'react-bootstrap';
+import { Modal,Button,Row,Col,Form,Image,Alert } from 'react-bootstrap';
 import { faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import Parse from 'parse';
 import './MyMessageModal.css'
-import Message from '../components/Message';
+
 
 
 function MyOldMessageModal (props) {
 
     const {title,details,priority,img,handleOldModalOpen,handleModalClose,handleUpdateMessage } = props
 
-       
+    const [alertNotification, setAlertNotification] = React.useState(false)
+  
        
     //controlled components
     const [titleInput, setTitleInput] = React.useState("")
@@ -19,33 +19,11 @@ function MyOldMessageModal (props) {
     const [imgInput, setImgInput] = React.useState(null) // an object
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
 
-    // function handleCreateUpdatedMessage () { *********************************************
-        
-    //     //  Create Message in Parse
-    //     const Message = Parse.Object.extend('Message');
-    //     const oldMessage = new Message();
-
-    //     oldMessage.get('objectId', Parse.User.current());
-    //     oldMessage.get('updatedAt', Parse.User.current());
-
-    //     oldMessage.set('title', titleInput);
-    //     oldMessage.set('details', detailsInput);
-    //     oldMessage.set('priority', priorityInput);
-    //     oldMessage.set('icon', iconShow);
-    //     oldMessage.set('img', new Parse.File(imgInput.name, imgInput));
-    //     oldMessage.set('userId', Parse.User.current());
-             
-    //     // callback function - sending with the new message
-    //     handleUpdateMessage(oldMessage) 
-        
-    //     //  Close the modal              
-    //     handleModalClose()          
-        
-    // }
+  
 
     function handleCreateUpdatedMessage () {
 
-
+        // an object that will reload the details of old message
         const oldMessage = {};
     
         oldMessage.title = titleInput
@@ -53,13 +31,20 @@ function MyOldMessageModal (props) {
         oldMessage.priority = priorityInput
         oldMessage.icon = iconShow
         oldMessage.img =  imgInput
-        
 
-        // update parse callback function
-        handleUpdateMessage(oldMessage)
+        // notification to the user
+        setAlertNotification(true) 
+       
+        // update callback function
+        handleUpdateMessage(oldMessage)       
+                
 
         //  Close the modal              
-        handleModalClose()
+        //handleModalClose()
+
+        setTimeout(function() {
+            handleModalClose()
+          }, 1000);
       
         
     }
@@ -111,6 +96,11 @@ function MyOldMessageModal (props) {
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
+
+                        {alertNotification ? <Alert variant="success">
+                        Message was updated!
+                        </Alert> : <Alert/>}
+
                             <Form.Group as={Row} controlId="title">
                                 <Form.Label column sm={2}>
                                     Title:
