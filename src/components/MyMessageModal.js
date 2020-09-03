@@ -25,6 +25,8 @@ function MyMessageModal(props) {
         const newMessage = new Message();
 
         newMessage.set('objectId', Parse.User.current());
+        newMessage.get('updatedAt', Parse.User.current());
+
         newMessage.set('title', titleInput);
         newMessage.set('details', detailsInput);
         newMessage.set('priority', priorityInput);

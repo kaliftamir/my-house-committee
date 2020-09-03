@@ -83,11 +83,14 @@ function MessagesPage(props) {
         object.save().then((response) => {
             // set all original values of an old message - in the Modal             
             setOldId(updatedId)            
-            setOldTitle(message.title)
-            setOldDetails(message.details)
-            setOldPriority(message.priority)
-            setOldImg(message.img)
-            console.log(message)         
+            setOldTitle(response.get("title"))
+            setOldDetails(response.get("details"))
+            setOldPriority(response.get("priority"))
+            setOldImg(response.get('img', new Parse.File("img", { base64: btoa("img") })))
+            // console.log(message) 
+            // <MyOldMessageModal title={response.get("title")} details={response.get("details")} priority={response.get("priority")} img={response.get("img")}
+            // handleUpdateMessage={handleUpdateMessage} handleOldModalOpen={showOldMessageModal}
+            // handleModalClose={handleModalClose} />        
         
          
         }, (error) => {
@@ -111,12 +114,13 @@ function MessagesPage(props) {
             
             handleDeleteMessage(oldId,oldMessage)
 
-            // update the array of messages 
-           const index = myMessages.indexOf(oldMessage) // get the index of the 'deleted message' object
-           
-           setMyMessages(myMessages.splice(oldMessage,1));
+            // update the array of messages           
+           const index = myMessages.findIndex(message => message.id === oldId); // get the index of the 'updated message' object
+           console.log(index)
+           setMyMessages(myMessages.concat(myMessages.splice(index,1)));
+         
            //setMyMessages(myMessages.splice(myMessages.splice(oldMessage, 1)));  
-           //setMyMessages(myMessages.concat(oldMessage));
+           
 
            
           }, (error) => {
@@ -138,8 +142,9 @@ function MessagesPage(props) {
         newMessage.save().then(
             (result) => {
                 //  Update state (messages array) with the new message
-                const message = new MessageModel(result);
-                setMyMessages(myMessages.concat(message))                
+                const message = new MessageModel(result);                
+                setMyMessages(myMessages.concat(message)) 
+                               
                 
             },
             (error) => {
@@ -212,9 +217,9 @@ function MessagesPage(props) {
     // sort the messages 
     let showSortedMessages=[]
 
-    if(sortedMessages==="date") {
+    if(sortedMessages==="date") { 
 
-        showSortedMessages=myMessages.sort((a,b)=> a.id > b.id ? 1:-1)
+        showSortedMessages=myMessages.sort((a,b)=> a.createdAt > b.createdAt ? 1:-1)
 
     } else if(sortedMessages==="priority") {
 

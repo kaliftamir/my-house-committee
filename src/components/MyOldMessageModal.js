@@ -25,6 +25,8 @@ function MyOldMessageModal (props) {
         const oldMessage = new Message();
 
         oldMessage.get('objectId', Parse.User.current());
+        oldMessage.get('updatedAt', Parse.User.current());
+
         oldMessage.set('title', titleInput);
         oldMessage.set('details', detailsInput);
         oldMessage.set('priority', priorityInput);
@@ -128,7 +130,7 @@ function MyOldMessageModal (props) {
                                     <Form.Control type="file" accept="image/*"  name="imgInput" onChange={handleImgFileChange}  />
                                 </Col>
                             </Form.Group>
-                            <Image src={imgURL} className="preview" /> 
+                            <Image src={img} className="preview" /> 
                         </Form>
 
                     </Modal.Body>
