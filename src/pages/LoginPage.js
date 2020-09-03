@@ -33,6 +33,8 @@ function LoginPage (props) {
             setShowInvalidCredentials(true)
 
         })
+
+        
         
         // old code of JSON ---------------------------------------------------------------------
         // // Check if the login is valid (if a user with the same 

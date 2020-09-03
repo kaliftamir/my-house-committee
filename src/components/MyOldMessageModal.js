@@ -3,6 +3,7 @@ import { Modal,Button,Row,Col,Form,Image } from 'react-bootstrap';
 import { faExclamationCircle,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import Parse from 'parse';
 import './MyMessageModal.css'
+import Message from '../components/Message';
 
 
 function MyOldMessageModal (props) {
@@ -18,27 +19,48 @@ function MyOldMessageModal (props) {
     const [imgInput, setImgInput] = React.useState(null) // an object
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
 
-    function handleCreateUpdatedMessage () {
+    // function handleCreateUpdatedMessage () { *********************************************
         
-        //  Create Message in Parse
-        const Message = Parse.Object.extend('Message');
-        const oldMessage = new Message();
+    //     //  Create Message in Parse
+    //     const Message = Parse.Object.extend('Message');
+    //     const oldMessage = new Message();
 
-        oldMessage.get('objectId', Parse.User.current());
-        oldMessage.get('updatedAt', Parse.User.current());
+    //     oldMessage.get('objectId', Parse.User.current());
+    //     oldMessage.get('updatedAt', Parse.User.current());
 
-        oldMessage.set('title', titleInput);
-        oldMessage.set('details', detailsInput);
-        oldMessage.set('priority', priorityInput);
-        oldMessage.set('icon', iconShow);
-        oldMessage.set('img', new Parse.File(imgInput.name, imgInput));
-        oldMessage.set('userId', Parse.User.current());
+    //     oldMessage.set('title', titleInput);
+    //     oldMessage.set('details', detailsInput);
+    //     oldMessage.set('priority', priorityInput);
+    //     oldMessage.set('icon', iconShow);
+    //     oldMessage.set('img', new Parse.File(imgInput.name, imgInput));
+    //     oldMessage.set('userId', Parse.User.current());
              
-        // callback function - sending with the new message
-        handleUpdateMessage(oldMessage) 
+    //     // callback function - sending with the new message
+    //     handleUpdateMessage(oldMessage) 
         
+    //     //  Close the modal              
+    //     handleModalClose()          
+        
+    // }
+
+    function handleCreateUpdatedMessage () {
+
+
+        const oldMessage = {};
+    
+        oldMessage.title = titleInput
+        oldMessage.details = detailsInput
+        oldMessage.priority = priorityInput
+        oldMessage.icon = iconShow
+        oldMessage.img =  imgInput
+        
+
+        // update parse callback function
+        handleUpdateMessage(oldMessage)
+
         //  Close the modal              
-        handleModalClose()          
+        handleModalClose()
+      
         
     }
 
@@ -66,11 +88,6 @@ function MyOldMessageModal (props) {
         
     }
 
-    // function handleImgChange(event) {
-    //     setImgInput(event.target.value)
-        
-    // }
-
     function handleImgFileChange(event) {
         // if the user select file
         if(event.target.files[0]) {
@@ -82,7 +99,7 @@ function MyOldMessageModal (props) {
         }
         
     }
-    //--------------------------------------- 
+    //--------------------------------------------------------------------------------------------------- 
     
     const imgURL = imgInput ? URL.createObjectURL(imgInput) : ""; // temporary url
     
