@@ -21,6 +21,7 @@ function MessagesPage(props) {
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
     const [myMessages, setMyMessages] = React.useState([])
     const [sortedMessages, setSortedMyMessages] = React.useState("date")
+    const [filteredMessages, setFilteredMessages] = React.useState("all")
  
     // states for updating message
     const [showOldMessageModal, setShowOldMessageModal] = React.useState(false)
@@ -188,13 +189,18 @@ function MessagesPage(props) {
     if (!activeUser) {
         return <Redirect to="/" />
     } 
+
+    //-----------------------------------------------------------------------------
     
     function sortBy(string) {
-        setSortedMyMessages(string) 
-        
+        setSortedMyMessages(string)        
         
     }
-
+    
+    function filtertBy(string) {
+        setFilteredMessages(string)
+              
+    }
 
     // sort the messages 
     let showSortedMessages=[]
@@ -208,15 +214,33 @@ function MessagesPage(props) {
         showSortedMessages=myMessages.sort((a,b)=> a.priority > b.priority ? 1:-1)
 
     } 
+
+    // filter the messages 
+    let showFilteredMessages=[]
+
+    if(filteredMessages==="info") { 
+
+        showFilteredMessages=showSortedMessages.filter(message=> (message.priority==="info"))
+
+    } else if(filteredMessages==="important") {
+
+        showFilteredMessages=showSortedMessages.filter(message=> (message.priority==="Important"))
+
+    } else {
+        showFilteredMessages=showSortedMessages
+
+    }
+           
+    
     
     // Map my messages to UI
-    const myMessageToShow = showSortedMessages.map((message,index) =>
+    const myMessageToShow = showFilteredMessages.map((message,index) =>
          <Message key={index} id={message.id} img={message.img} title={message.title} details={message.details}
           priority={message.priority} icon={message.icon} message={message}
           deleteMessage={()=>handleDeleteMessage(message.id,message)}    // callback props
-        //   updateMessage={()=>handleOpenOldMessage(message.id,message.title,message.details,
-        //   message.priority,message.img)}/>) //  callback props
-        updateMessage={()=>handleOpenOldMessage(message.id,message)}/>) //  callback props 
+          updateMessage={()=>handleOpenOldMessage(message.id,message)}/>) //  callback props 
+     
+    
 
     
     return (
@@ -248,8 +272,9 @@ function MessagesPage(props) {
                             title="Filter by Priority"
                             id="input-group-dropdown-1"
                             >
-                            <Dropdown.Item href="#" value="info">Info</Dropdown.Item>
-                            <Dropdown.Item href="#" value="important">Important</Dropdown.Item>
+                            <Dropdown.Item eventKey="1" value="all" onClick={()=>filtertBy("all")}>All</Dropdown.Item>
+                            <Dropdown.Item eventKey="2" value="info" onClick={()=>filtertBy("info")}>Info</Dropdown.Item>
+                            <Dropdown.Item eventKey="3" value="important" onClick={()=>filtertBy("important")}>Important</Dropdown.Item>
                                                       
                             </DropdownButton>             
                         </InputGroup>

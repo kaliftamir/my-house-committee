@@ -15,7 +15,7 @@ function MyOldMessageModal (props) {
     //controlled components
     const [titleInput, setTitleInput] = React.useState("")
     const [detailsInput, setDetailsInput] = React.useState("")
-    const [priorityInput, setPriorityInput] = React.useState("info")
+    const [priorityInput, setPriorityInput] = React.useState("")
     const [imgInput, setImgInput] = React.useState(null) // an object
     const [iconShow, setIconShow] = React.useState(faInfoCircle)
 
@@ -28,9 +28,9 @@ function MyOldMessageModal (props) {
     
         oldMessage.title = titleInput
         oldMessage.details = detailsInput
-        oldMessage.priority = priorityInput
+        oldMessage.priority = priorityInput 
         oldMessage.icon = iconShow
-        oldMessage.img =  imgInput
+        oldMessage.img =  imgInput // need to fix
 
         // notification to the user
         setAlertNotification(true) 
@@ -39,9 +39,8 @@ function MyOldMessageModal (props) {
         handleUpdateMessage(oldMessage)       
                 
 
-        //  Close the modal              
-        //handleModalClose()
-
+        //  Close the modal after 1 sec            
+        
         setTimeout(function() {
             handleModalClose()
           }, 1000);
