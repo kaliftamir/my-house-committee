@@ -38,6 +38,23 @@ function SignupPage(props) {
     }
     
     function signUp() {
+
+        const user = new Parse.User()
+        user.set('username', nameSignup);
+        user.set('email', emailSignup);
+        user.set('name', nameSignup);
+        user.set('apartment', 'A string');
+        user.set('isTenant', true);
+        user.set('isCommitteeMember', true);
+        user.set('password', pwdSignup);
+
+        user.signUp().then((user) => {
+            if (typeof document !== 'undefined') document.write(`User signed up: ${JSON.stringify(user)}`);
+            console.log('User signed up', user);
+        }).catch(error => {
+            if (typeof document !== 'undefined') document.write(`Error while signing up user: ${JSON.stringify(error)}`);
+            console.error('Error while signing up user', error);
+        });
     
     //-------------------------------------------------------------------------------------------
     //     const user = new Parse.User()

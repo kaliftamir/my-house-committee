@@ -17,7 +17,9 @@ function MessagesPage(props) {
     
     const { activeUser } = props;
 
- 
+    //controlled component
+    const [filterInput, setFilterInput] = React.useState("")
+
     const [showNewMessageModal, setShowNewMessageModal] = React.useState(false)
     const [myMessages, setMyMessages] = React.useState([])
     const [sortedMessages, setSortedMyMessages] = React.useState("date")
@@ -150,9 +152,10 @@ function MessagesPage(props) {
        
     }
     function handleOldModalOpen() {       
-        setShowOldMessageModal(true)      
+        setShowOldMessageModal(true)     
        
     }
+
     
     // function handleNewMessage(message) {
 
@@ -202,12 +205,19 @@ function MessagesPage(props) {
               
     }
 
+    function handleFilterBar(event) {
+        setFilterInput(event.target.value)
+        
+    }  
+
     // sort the messages 
     let showSortedMessages=[]
+    
 
     if(sortedMessages==="date") { 
 
         showSortedMessages=myMessages.sort((a,b)=> a.createdAt > b.createdAt ? 1:-1)
+        
 
     } else if(sortedMessages==="priority") {
 
@@ -218,16 +228,21 @@ function MessagesPage(props) {
     // filter the messages 
     let showFilteredMessages=[]
 
+    //if(showSortedMessages.includes(filterInput))
+
     if(filteredMessages==="info") { 
 
-        showFilteredMessages=showSortedMessages.filter(message=> (message.priority==="info"))
+        showFilteredMessages=showSortedMessages.filter(message=> (message.priority==="info") &&
+         (message.title.includes(filterInput) || message.details.includes(filterInput)))
 
     } else if(filteredMessages==="important") {
 
-        showFilteredMessages=showSortedMessages.filter(message=> (message.priority==="Important"))
+        showFilteredMessages=showSortedMessages.filter(message=> (message.priority==="Important") &&
+        (message.title.includes(filterInput) || message.details.includes(filterInput)))
 
-    } else {
-        showFilteredMessages=showSortedMessages
+    } else  {
+        showFilteredMessages=showSortedMessages.filter(message=> 
+        message.title.includes(filterInput) || message.details.includes(filterInput))
 
     }
            
@@ -257,7 +272,7 @@ function MessagesPage(props) {
 
                             <FormControl className="flter-bar mb-12" placeholder="filter by text title and details"
                             aria-label="Default"
-                            aria-describedby="inputGroup-sizing-default"/>                           
+                            aria-describedby="inputGroup-sizing-default" onChange={handleFilterBar}/>                           
                             
                      
                             <FontAwesomeIcon className={"search-icon"} icon={faSearch} />
