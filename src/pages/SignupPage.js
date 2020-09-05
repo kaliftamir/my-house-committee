@@ -12,9 +12,11 @@ function SignupPage(props) {
     
 
     // controlled components
-    const [nameSignup, setNameSignup] = React.useState("John")
+    const [userNameSignup, setUserNameSignup] = React.useState("John")
     const [emailSignup, setEmailSignup] = React.useState("john@john.com")
     const [pwdSignup, setPwdSignup] = React.useState("123") 
+    const [tenantSignup, setTenantSignup] = React.useState(true) 
+    const [comitteeMemberSignup, setComitteeMemberSignup] = React.useState(false) 
     const [buildingSignup, setBuildingSignup] = React.useState("5") 
     const [addressSignup, setAddressSignup] = React.useState("Rashi") 
     const [citySignup, setCitySignup] = React.useState("Tel-Aviv") 
@@ -40,13 +42,15 @@ function SignupPage(props) {
     function signUp() {
 
         const user = new Parse.User()
-        user.set('username', nameSignup);
+        user.set('username', userNameSignup);
         user.set('email', emailSignup);
-        user.set('name', nameSignup);
+        user.set('password', pwdSignup);
+        user.set('isTenant', tenantSignup);
+        user.set('isComitteeMember', comitteeMemberSignup);
         user.set('apartment', 'A string');
         user.set('isTenant', true);
         user.set('isCommitteeMember', true);
-        user.set('password', pwdSignup);
+        
 
         user.signUp().then((user) => {
             if (typeof document !== 'undefined') document.write(`User signed up: ${JSON.stringify(user)}`);
@@ -55,6 +59,14 @@ function SignupPage(props) {
             if (typeof document !== 'undefined') document.write(`Error while signing up user: ${JSON.stringify(error)}`);
             console.error('Error while signing up user', error);
         });
+
+
+        // useEffect(() => {
+       
+        //     if (activeUser) {
+                
+        //     }
+        // }, [activeUser])  
     
     //-------------------------------------------------------------------------------------------
     //     const user = new Parse.User()
@@ -115,7 +127,8 @@ function SignupPage(props) {
         if (redirectToDashboard) {
             return <Redirect to="/dashboard" />
         }
-
+    console.log(tenantSignup)
+    console.log(comitteeMemberSignup) 
 
     return (
             <div className="p-signup">
@@ -135,8 +148,8 @@ function SignupPage(props) {
                     <Form.Group as={Row} controlId="formHorizontalEmail">
                         <Col sm={12}>
                         <Form.Label id="name">Name:</Form.Label>                    
-                        <Form.Control type="text" value={nameSignup}
-                                onChange={(e) => (setNameSignup(e.target.value))}/>
+                        <Form.Control type="text" value={userNameSignup}
+                                onChange={(e) => (setUserNameSignup(e.target.value))}/>
                         </Col> 
                     </Form.Group>
 
@@ -156,9 +169,20 @@ function SignupPage(props) {
                         </Col>         
                     </Form.Group>
 
+                    <Form.Group as={Row} controlId="formBasicCheckbox">
+                        <Col sm={2}>
+                        <Form.Check type="checkbox" label="Tenant?" checked={tenantSignup}
+                         onChange={(e) => (setTenantSignup(e.target.checked))}/> 
+                        </Col> 
+                        <Col sm={6}>                  
+                        <Form.Check type="checkbox" label="Comittee Member?" checked={comitteeMemberSignup}
+                         onChange={(e) => (setComitteeMemberSignup(e.target.checked))}/>
+                        </Col> 
+                    </Form.Group>
+
                     <Form.Group as={Row} controlId="formHorizontalEmail">
                         <Col sm={12}>
-                            <Form.Label id="building">Building/Condominium Community Name:</Form.Label>                   
+                            <Form.Label id="building">Building:</Form.Label>                   
                             <Form.Control type="text" value={buildingSignup}
                                 onChange={(e) => (setBuildingSignup(e.target.value),setShowInvalidAccount(false))}/>
                         </Col>                    
