@@ -8,14 +8,14 @@ import Parse from 'parse';
 
 function Message(props) {
 
-    const { id,img,title,details,priority,icon,deleteMessage,updateMessage } = props
+    const { activeUser,id,img,title,details,priority,icon,deleteMessage,updateMessage } = props
     
       
     return(
 
         <div className="c-message">
 
-            <Accordion>
+            <Accordion activeUser={activeUser}>
                 <Card>
                     <Card.Header className="title">
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">

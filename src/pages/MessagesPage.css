@@ -54,4 +54,12 @@
     
 }
 
+.p-messages .show-button > a {
+    visibility: visible;
+}
 
+
+.p-messages .hide-button > a {
+    visibility: hidden;
+    
+}

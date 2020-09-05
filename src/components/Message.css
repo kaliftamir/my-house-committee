@@ -65,4 +65,11 @@
     background-color: #333 !important;
 }
 
+.c-message .show-button {
+    visibility: visible;
+}
 
+
+.c-message .hide-button {
+    visibility: hide;
+}

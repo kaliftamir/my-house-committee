@@ -320,7 +320,8 @@ function MessagesPage(props) {
 
             <Container>
                 <Row className="flex-container">
-                    <Breadcrumb.Item className="new-message-btn" onClick={handleModalOpen}>
+                    <Breadcrumb.Item className = {activeUser.isCommitteeMember ? "new-message-btn show-button" : "new-message-btn hide-button"}
+                      onClick={handleModalOpen}>
                         New Message
                     </Breadcrumb.Item>
                 </Row>            
