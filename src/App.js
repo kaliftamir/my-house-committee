@@ -32,6 +32,7 @@ Parse.initialize(
 //  If there is no active account this state will hold the value of null.
 
 
+
 class App extends React.Component {
 
   constructor(props) {
@@ -79,11 +80,11 @@ class App extends React.Component {
 
   handleSignup(activeAccount) {
     this.setState({
-      activeAccount: activeAccount,
+      activeAccount: activeAccount
     })
-    this.setState({
-      activeUser: activeAccount
-    })
+    // this.setState({
+    //   activeUser: activeAccount
+    // })
   }
 
   handleNewAccount(account) {

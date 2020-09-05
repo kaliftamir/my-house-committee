@@ -1,4 +1,4 @@
-import React, {  } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import './SignupPage.css'
 import { Form, Col, Row, Button,Alert } from 'react-bootstrap';
@@ -8,7 +8,7 @@ import UserModel from '../model/UserModel';
 
 function SignupPage(props) {
     
-    const { users,accounts,handleSignup,handleNewAccount } = props;
+    const { activeAccount,users,accounts,handleSignup,handleNewAccount } = props;
 
     
 
@@ -23,8 +23,10 @@ function SignupPage(props) {
     const [addressSignup, setAddressSignup] = React.useState("Rashi") 
     const [citySignup, setCitySignup] = React.useState("Tel-Aviv") 
     
-    const [redirectToDashboard, setRedirectToDashboard] = React.useState(false)      
-    const [showInvalidCredentials, setShowInvalidCredentials] = React.useState(false)
+    const [redirectToHome, setRedirectToHome] = React.useState(false)      
+    const [showInvalidUser, setShowInvalidUser] = React.useState(false)
+    const [showAlertSignup, setShowAlertSignup] = React.useState(false)
+
     const [showInvalidAccount, setShowInvalidAccount] = React.useState(false)
 
 
@@ -41,8 +43,7 @@ function SignupPage(props) {
     //     handleNewAccount(newAccount);
     // }
     
-    function signup() {
-
+     function signup() {
 
         const user = new Parse.User()
         user.set('username', userNameSignup);
@@ -55,78 +56,69 @@ function SignupPage(props) {
         
 
         user.signUp().then((user) => {
-            alert("y")
+            // If the login is valid: notify App and redirect to "/"
+            setTimeout(function() {
+                setShowAlertSignup(true)
+                
+              }, 5000);
+              
+            setRedirectToHome(true)
+                
+                
+                
           }).catch(error => {
                // If user already exist: show an error alert
-               setShowInvalidCredentials(true)
-          });
-
-
-        // useEffect(() => {
-       
-        //     if (activeUser) {
-                
-        //     }
-        // }, [activeUser])  
-    
-    //-------------------------------------------------------------------------------------------
-    //     const user = new Parse.User()
-       
-    //     user.set('name', nameSignup);
-    //     user.set('email', emailSignup);
-    //     user.set('password', pwdSignup);              
-    //     user.set('building', buildingSignup);
-    //     user.set('city', citySignup);
-    //     user.set('address', addressSignup);
-
-    //     //Parse.User.logIn(emailInput,pwdInput).then((user) => {
-    //     user.signUp().then((user) => {
-    //    //
-    //     }).catch(error => {
-    //     //
-    //     });
-
-        //-------------------------------------------------------------------------------------------
-        
-        // Check if the user exists (if there is a user with the same 
-        // email in the users array)
-        // const userFound = users.find(user => emailSignup === user.email  && pwdSignup === user.pwd);
-
-        // if (userFound) {              
-
-        //     // Checks if the account exists
-        //     const accountFound = accounts.find(
-        //         account => buildingSignup === account.building && addressSignup === account.address && citySignup===account.city);
-
-        //     if (accountFound) {
-        //         // If the signup account exists: show an error alert
-        //         setShowInvalidAccount(true)               
-
-
-        //     } else {
-        //         // If the signup new account is valid: notify App  
-        //         handleSignup(!accountFound);  // accountFound===false (not found)
-
-        //         // redirect to "/dashboard"
-        //         setRedirectToDashboard(true) 
-
-        //         // add new account to the accounts array
-        //         handleCreateAccount()      
               
-        //     }         
-            
-
-        // } else {
-        //     // If the user already exists: show an error alert
-        //     setShowInvalidCredentials(true) 
-        // } 
+               setShowInvalidUser(true)
+               console.log(pwdSignup)
+          });
         
     }
+    
 
-    //console.log(redirectToDashboard)
+    // useEffect(() => {
+       
+    //     if (activeAccount) {
 
-        if (redirectToDashboard) {
-            return <Redirect to="/dashboard" />
+    //         function signup() {
+
+
+    //             const user = new Parse.User()
+    //             user.set('username', userNameSignup);
+    //             user.set('email', emailSignup);
+    //             user.set('apartment', apartmentSignup);
+    //             user.set('isTenant', true);
+    //             user.set('isCommitteeMember', true);
+    //             //user.set('accountId', new Parse.Object("2PKEblicxa"));
+    //             user.set('password', pwdSignup);
+                
+        
+    //             user.signUp().then((user) => {
+    //                 // If the login is valid: notify App and redirect to "/"
+    //                 setTimeout(function() {
+    //                     setShowAlertSignup(true)
+                        
+    //                   }, 2000);
+                      
+    //                 setRedirectToHome(true)
+                        
+                        
+                        
+    //               }).catch(error => {
+    //                    // If user already exist: show an error alert
+                      
+    //                    setShowInvalidUser(true)
+                      
+    //               });
+                
+    //         }
+            
+    //     }
+    // }, [activeAccount])   
+    
+
+        if (redirectToHome) {
+            return <Redirect to="/" />
         }
    
     return (
@@ -134,12 +126,19 @@ function SignupPage(props) {
                 
                 <h1>Create a Committe Member Account</h1>
                 <Form>
+                    <Row>
+                   
+                        {showAlertSignup ? <Alert className="signup-alert" variant="success">
+                                New user was signed up
+                            </Alert> : <Alert></Alert>}
+
+                    </Row>
 
                     <Row>
 
                         <Col lg={6} sm={12} >
                             
-                            {showInvalidCredentials ? <Alert className="signup-alert" variant="danger">
+                            {showInvalidUser ? <Alert className="signup-alert" variant="danger">
                                 This User already exist!
                             </Alert> : <Alert></Alert>}
 
@@ -157,7 +156,7 @@ function SignupPage(props) {
                                 <Col sm={12}>
                                     <Form.Label id="email">Email:</Form.Label>
                                     <Form.Control type="email" value={emailSignup}
-                                        onChange={(e) => (setEmailSignup(e.target.value),setShowInvalidCredentials(false))}/>
+                                        onChange={(e) => (setEmailSignup(e.target.value),setShowInvalidUser(false))}/>
                                 </Col>                    
                             </Form.Group>
 
@@ -165,7 +164,7 @@ function SignupPage(props) {
                                 <Col sm={12}>
                                 <Form.Label id="passward">Password:</Form.Label>                    
                                 <Form.Control type="passward" value={pwdSignup}
-                                        onChange={(e) => (setPwdSignup(e.target.value),setShowInvalidCredentials(false))} />
+                                        onChange={(e) => (setPwdSignup(e.target.value))} />
                                 </Col>         
                             </Form.Group>
 
@@ -173,7 +172,7 @@ function SignupPage(props) {
                                 <Col sm={12}>
                                     <Form.Label id="apartment">Apartment:</Form.Label>                   
                                     <Form.Control type="text" value={apartmentSignup}
-                                        onChange={(e) => (setApartmentSignup(e.target.value),setShowInvalidAccount(false))}/>
+                                        onChange={(e) => (setApartmentSignup(e.target.value))}/>
                                 </Col>                    
                             </Form.Group>
 
