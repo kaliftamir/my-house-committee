@@ -9,6 +9,7 @@ class UserModel {
         this.apartment = parseUser.get("apartment");
         this.isTenant = parseUser.get("isTenant");
         this.isCommitteeMember = parseUser.get("isCommitteeMember");
+      
     }
 
 }
