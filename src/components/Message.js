@@ -10,6 +10,7 @@ function Message(props) {
 
     const { activeUser,id,img,title,details,priority,icon,deleteMessage,updateMessage } = props
     
+    
       
     return(
 
@@ -60,8 +61,8 @@ function Message(props) {
                                                     {priority} 
                                                 </Col> 
                                                 <Col xs={3}>
-                                                    <Button value={id} variant="primary" size="sm" onClick={updateMessage}>Update</Button>
-                                                    <Button value={id} variant="danger" size="sm" onClick={deleteMessage}>Delete</Button>  
+                                                    <Button value={id}  variant="primary" size="sm" onClick={updateMessage}>Update</Button>
+                                                    <Button value={id}  variant="danger" size="sm" onClick={deleteMessage}>Delete</Button>  
                                                 </Col>                                                                                                   
                                                                
 

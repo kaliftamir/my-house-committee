@@ -176,7 +176,7 @@ function MessagesPage(props) {
         if (activeUser) {
             const Message = Parse.Object.extend('Message');
             const query = new Parse.Query(Message);
-            query.equalTo("userId", Parse.User.current());
+            //query.equalTo("userId", Parse.User.current());
             query.find().then(results => {
                 // Success - results is the array of messages
                 const myMessages = results.map(result => new MessageModel(result));
