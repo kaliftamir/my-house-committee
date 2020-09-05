@@ -32,8 +32,6 @@ Parse.initialize(
 //  If there is no active account this state will hold the value of null.
 
 
-// recipes - array - an array that contains all the recipes in the system (this is a HACK
-//   since we don't have a server side)
 class App extends React.Component {
 
   constructor(props) {

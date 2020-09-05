@@ -252,6 +252,7 @@ function MessagesPage(props) {
     const myMessageToShow = showFilteredMessages.map((message,index) =>
          <Message key={index} id={message.id} img={message.img} title={message.title} details={message.details}
           priority={message.priority} icon={message.icon} message={message}
+          className={(activeUser.isCommitteeMember ? "show-button" : "hide-button")}
           deleteMessage={()=>handleDeleteMessage(message.id,message)}    // callback props
           updateMessage={()=>handleOpenOldMessage(message.id,message)}/>) //  callback props 
      

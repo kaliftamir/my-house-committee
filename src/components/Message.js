@@ -8,7 +8,7 @@ import Parse from 'parse';
 
 function Message(props) {
 
-    const { activeUser,id,img,title,details,priority,icon,deleteMessage,updateMessage } = props
+    const { id,img,title,details,priority,icon,className,deleteMessage,updateMessage } = props
     
     
       
@@ -16,7 +16,7 @@ function Message(props) {
 
         <div className="c-message">
 
-            <Accordion activeUser={activeUser}>
+            <Accordion>
                 <Card>
                     <Card.Header className="title">
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -61,8 +61,8 @@ function Message(props) {
                                                     {priority} 
                                                 </Col> 
                                                 <Col xs={3}>
-                                                    <Button value={id}  variant="primary" size="sm" onClick={updateMessage}>Update</Button>
-                                                    <Button value={id}  variant="danger" size="sm" onClick={deleteMessage}>Delete</Button>  
+                                                    <Button value={id} className = {className} variant="primary" size="sm" onClick={updateMessage}>Update</Button>
+                                                    <Button value={id} className = {className} variant="danger" size="sm" onClick={deleteMessage}>Delete</Button>  
                                                 </Col>                                                                                                   
                                                                
 
