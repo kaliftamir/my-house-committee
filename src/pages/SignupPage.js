@@ -8,7 +8,9 @@ import UserModel from '../model/UserModel';
 
 function SignupPage(props) {
     
-    const { activeAccount,users,accounts,handleSignup,handleNewAccount } = props;
+    const { users,accounts,handleSignup,handleNewAccount } = props;
+
+    const [activeAccount, setActiveAccount] = React.useState(false)
 
     
 
@@ -43,78 +45,73 @@ function SignupPage(props) {
     //     handleNewAccount(newAccount);
     // }
     
-     function signup() {
+    //  function signup() {
 
-        const user = new Parse.User()
-        user.set('username', userNameSignup);
-        user.set('email', emailSignup);
-        user.set('apartment', apartmentSignup);
-        user.set('isTenant', true);
-        user.set('isCommitteeMember', true);
-        //user.set('accountId', new Parse.Object("2PKEblicxa"));
-        user.set('password', pwdSignup);
+    //     const user = new Parse.User()
+    //     user.set('username', userNameSignup);
+    //     user.set('email', emailSignup);
+    //     user.set('apartment', apartmentSignup);
+    //     user.set('isTenant', true);
+    //     user.set('isCommitteeMember', true);
+    //     //user.set('accountId', new Parse.Object("2PKEblicxa"));
+    //     user.set('password', pwdSignup);
         
 
-        user.signUp().then((user) => {
-            // If the login is valid: notify App and redirect to "/"
-            setTimeout(function() {
-                setShowAlertSignup(true)
+    //     user.signUp().then((user) => {
+    //         // If the login is valid: notify App and redirect to "/"
+    //         setTimeout(function() {
+    //             setShowAlertSignup(true)
                 
-              }, 5000);
+    //           }, 5000);
               
-            setRedirectToHome(true)
+    //         setRedirectToHome(true)
                 
                 
                 
-          }).catch(error => {
-               // If user already exist: show an error alert
+    //       }).catch(error => {
+    //            // If user already exist: show an error alert
               
-               setShowInvalidUser(true)
-               console.log(pwdSignup)
-          });
+    //            setShowInvalidUser(true)
+    //            console.log(pwdSignup)
+    //       });
         
+    // }
+
+    function signup() {
+        setActiveAccount(true)
     }
     
 
-    // useEffect(() => {
+    useEffect(() => {
        
-    //     if (activeAccount) {
+        if (activeAccount) { 
 
-    //         function signup() {
-
-
-    //             const user = new Parse.User()
-    //             user.set('username', userNameSignup);
-    //             user.set('email', emailSignup);
-    //             user.set('apartment', apartmentSignup);
-    //             user.set('isTenant', true);
-    //             user.set('isCommitteeMember', true);
-    //             //user.set('accountId', new Parse.Object("2PKEblicxa"));
-    //             user.set('password', pwdSignup);
-                
+                const user = new Parse.User()
+                user.set('username', userNameSignup);
+                user.set('email', emailSignup);
+                user.set('apartment', apartmentSignup);
+                user.set('isTenant', true);
+                user.set('isCommitteeMember', true);
+                //user.set('accountId', new Parse.Object("2PKEblicxa"));
+                user.set('password', pwdSignup);                
         
-    //             user.signUp().then((user) => {
-    //                 // If the login is valid: notify App and redirect to "/"
-    //                 setTimeout(function() {
-    //                     setShowAlertSignup(true)
+                user.signUp().then((user) => {
+                    // If the s ignup is valid: notify user and redirect to homePage
+                    setShowAlertSignup(true)
+
+                    setTimeout(function() {
+                        setRedirectToHome(true)                          
+                    }, 4000);
+                                         
                         
-    //                   }, 2000);
+                }).catch(error => {
+                    // If user already exist: show an error alert                      
+                    setShowInvalidUser(true)
                       
-    //                 setRedirectToHome(true)
-                        
-                        
-                        
-    //               }).catch(error => {
-    //                    // If user already exist: show an error alert
-                      
-    //                    setShowInvalidUser(true)
-                      
-    //               });
-                
-    //         }
-            
-    //     }
-    // }, [activeAccount])   
+                });             
+        }
+
+    }, [activeAccount])   
     
 
         if (redirectToHome) {

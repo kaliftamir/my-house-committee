@@ -50,7 +50,7 @@ class App extends React.Component {
       //   isTenant: true,
       //   isCommitteeMember: true
       // }, 
-      activeAccount:null,
+      //activeAccount:null,
       // activeAccount:{
       //   "id": 1,
       //       "building":"44",
@@ -65,8 +65,8 @@ class App extends React.Component {
   
   //   this.handleLogout = this.handleLogout.bind(this);
      this.handleLogin = this.handleLogin.bind(this);
-     this.handleSignup = this.handleSignup.bind(this);
-     this.handleNewAccount = this.handleNewAccount.bind(this);
+  //   this.handleSignup = this.handleSignup.bind(this);
+  //   this.handleNewAccount = this.handleNewAccount.bind(this);
   //   this.handleNewRecipe = this.handleNewRecipe.bind(this);
 
   }
@@ -78,30 +78,30 @@ class App extends React.Component {
     })
   }
 
-  handleSignup(activeAccount) {
-    this.setState({
-      activeAccount: activeAccount
-    })
-    // this.setState({
-    //   activeUser: activeAccount
-    // })
-  }
+  // handleSignup(activeAccount) {
+  //   this.setState({
+  //     activeAccount: activeAccount
+  //   })
+  //   // this.setState({
+  //   //   activeUser: activeAccount
+  //   // })
+  // }
 
-  handleNewAccount(account) {
+  // handleNewAccount(account) {
 
-    const { activeAccount, accounts } = this.state
+  //   const { activeAccount, accounts } = this.state
 
-    // Adding to the users object usedId and id
-    //account.id = activeAccount.id;
+  //   // Adding to the users object usedId and id
+  //   //account.id = activeAccount.id;
 
-    // for id - taking the id of the last user in the array and adding 1
-    account.id = accounts[accounts.length - 1].id + 1;
+  //   // for id - taking the id of the last user in the array and adding 1
+  //   account.id = accounts[accounts.length - 1].id + 1;
 
-    this.setState({
-      accounts: accounts.concat(account)
-    })
-    console.log(accounts)
-  }
+  //   this.setState({
+  //     accounts: accounts.concat(account)
+  //   })
+  //   console.log(accounts)
+  // }
 
   // handleLogout() {
   //   this.setState({
@@ -113,27 +113,27 @@ class App extends React.Component {
 
   render() {
 
-    const { activeUser,activeAccount,accounts } = this.state;
+    const { activeUser,accounts } = this.state;
 
     return (
       <HashRouter>
         <Switch>
           <Route exact path="/">
-            <HomePage activeUser={activeUser} activeAccount={activeAccount}/>
+            <HomePage activeUser={activeUser} />
           </Route>
           <Route exact path="/login">
-            <LoginPage activeUser={activeUser} activeAccount={activeAccount}  handleLogin={this.handleLogin}/>
+            <LoginPage activeUser={activeUser} handleLogin={this.handleLogin}/>
           </Route>
 
           <Route exact path="/signup">
-            <SignupPage activeUser={activeUser} activeAccount={activeAccount}  accounts={accounts} handleSignup={this.handleSignup} handleNewAccount={this.handleNewAccount}/>
+            <SignupPage activeUser={activeUser}  accounts={accounts}  handleNewAccount={this.handleNewAccount}/>
           </Route>
 
           <Route exact path="/dashboard">
-            <DashboardPage activeUser={activeUser} activeAccount={activeAccount}/>
+            <DashboardPage activeUser={activeUser} />
           </Route>
           <Route exact path="/tenants">
-            <TenantsPage activeUser={activeUser} activeAccount={activeAccount}/>
+            <TenantsPage activeUser={activeUser}/>
           </Route>
           <Route exact path="/messages">
             <MessagesPage activeUser={activeUser}/>
