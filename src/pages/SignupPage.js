@@ -100,7 +100,32 @@ function SignupPage(props) {
                 user.signUp().then((user) => {
                     // If the user is valid: create new account 
                                  
-                    setNewUser(true)                                         
+                    //setNewUser(true) 
+                    const account = Parse.Object.extend('account');
+                    const myNewObject = new account();
+                    
+                    myNewObject.set('building', buildingSignup);
+                    myNewObject.set('address', addressSignup);
+                    myNewObject.set('city', citySignup);
+                    
+                    myNewObject.save().then(
+                      (result) => {
+    
+                        // If the signup is valid: notify user and redirect to homePage
+                        setShowAlertSignup(true)
+    
+                        setTimeout(function() {
+                            setRedirectToHome(true)                          
+                        }, 2000);
+                       
+                      },
+                      (error) => {
+                        setShowInvalidAccount(true)
+    
+                      }
+                    );
+                    
+                                                            
                         
                 }).catch(error => {
                     // If user already exist: show an error alert                      
@@ -109,37 +134,37 @@ function SignupPage(props) {
                 }); 
                               
 
-            if(newUser) {
+            // if(newUser) {
                 
-                const account = Parse.Object.extend('account');
-                const myNewObject = new account();
+                // const account = Parse.Object.extend('account');
+                // const myNewObject = new account();
                 
-                myNewObject.set('building', buildingSignup);
-                myNewObject.set('address', addressSignup);
-                myNewObject.set('city', citySignup);
+                // myNewObject.set('building', buildingSignup);
+                // myNewObject.set('address', addressSignup);
+                // myNewObject.set('city', citySignup);
                 
-                myNewObject.save().then(
-                  (result) => {
+                // myNewObject.save().then(
+                //   (result) => {
 
-                    // If the signup is valid: notify user and redirect to homePage
-                    setShowAlertSignup(true)
+                //     // If the signup is valid: notify user and redirect to homePage
+                //     setShowAlertSignup(true)
 
-                    setTimeout(function() {
-                        setRedirectToHome(true)                          
-                    }, 2000);
+                //     setTimeout(function() {
+                //         setRedirectToHome(true)                          
+                //     }, 2000);
                    
-                  },
-                  (error) => {
-                    setShowInvalidAccount(true)
+                //   },
+                //   (error) => {
+                //     setShowInvalidAccount(true)
 
-                  }
-                );
+                //   }
+                // );
                 
                 
-            }
+            // }
         }
         
-    }, [activeAccount,newUser])   
+    }, [activeAccount])   
     
 
         if (redirectToHome) {
