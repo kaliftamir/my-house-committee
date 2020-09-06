@@ -10,6 +10,7 @@ function SignupPage(props) {
     
     const { users,accounts,handleSignup,handleNewAccount } = props;
 
+    const [newUser, setNewUser] = React.useState(false)
     const [activeAccount, setActiveAccount] = React.useState(false)
 
     
@@ -22,15 +23,16 @@ function SignupPage(props) {
     const [committeeMemberSignup, setCommitteeMemberSignup] = React.useState(false) 
     const [apartmentSignup, setApartmentSignup] = React.useState("4") 
     const [buildingSignup, setBuildingSignup] = React.useState("44") 
-    const [addressSignup, setAddressSignup] = React.useState("Rashi") 
-    const [citySignup, setCitySignup] = React.useState("Tel-Aviv") 
+    const [addressSignup, setAddressSignup] = React.useState("rashi") 
+    const [citySignup, setCitySignup] = React.useState("tel-aviv") 
     
-    const [redirectToHome, setRedirectToHome] = React.useState(false)      
+    const [redirectToHome, setRedirectToHome] = React.useState(false) 
+    // alerts     
     const [showInvalidUser, setShowInvalidUser] = React.useState(false)
+    const [showInvalidAccount, setShowInvalidAccount] = React.useState(false)
     const [showAlertSignup, setShowAlertSignup] = React.useState(false)
 
-    const [showInvalidAccount, setShowInvalidAccount] = React.useState(false)
-
+    
 
     // // adds new account on signup when submit
     //  function handleCreateAccount() {
@@ -77,13 +79,13 @@ function SignupPage(props) {
         
     // }
 
-    function signup() {
+    function signup() {        
         setActiveAccount(true)
     }
     
-
+    
     useEffect(() => {
-       
+        
         if (activeAccount) { 
 
                 const user = new Parse.User()
@@ -96,22 +98,48 @@ function SignupPage(props) {
                 user.set('password', pwdSignup);                
         
                 user.signUp().then((user) => {
-                    // If the s ignup is valid: notify user and redirect to homePage
-                    setShowAlertSignup(true)
-
-                    setTimeout(function() {
-                        setRedirectToHome(true)                          
-                    }, 4000);
-                                         
+                    // If the user is valid: create new account 
+                                 
+                    setNewUser(true)                                         
                         
                 }).catch(error => {
                     // If user already exist: show an error alert                      
                     setShowInvalidUser(true)
                       
-                });             
-        }
+                }); 
+                              
 
-    }, [activeAccount])   
+            if(newUser) {
+                
+                const account = Parse.Object.extend('account');
+                const myNewObject = new account();
+                
+                myNewObject.set('building', buildingSignup);
+                myNewObject.set('address', addressSignup);
+                myNewObject.set('city', citySignup);
+                
+                myNewObject.save().then(
+                  (result) => {
+
+                    // If the signup is valid: notify user and redirect to homePage
+                    setShowAlertSignup(true)
+
+                    setTimeout(function() {
+                        setRedirectToHome(true)                          
+                    }, 2000);
+                   
+                  },
+                  (error) => {
+                    setShowInvalidAccount(true)
+
+                  }
+                );
+                
+                
+            }
+        }
+        
+    }, [activeAccount,newUser])   
     
 
         if (redirectToHome) {
@@ -124,11 +152,12 @@ function SignupPage(props) {
                 <h1>Create a Committe Member Account</h1>
                 <Form>
                     <Row>
+                         <Col lg={12} >
                    
-                        {showAlertSignup ? <Alert className="signup-alert" variant="success">
-                                New user was signed up
-                            </Alert> : <Alert></Alert>}
-
+                            {showAlertSignup ? <Alert className="signup-alert" variant="success">
+                                    New user was signed up
+                                </Alert> : <Alert></Alert>}
+                        </Col>
                     </Row>
 
                     <Row>
@@ -136,10 +165,8 @@ function SignupPage(props) {
                         <Col lg={6} sm={12} >
                             
                             {showInvalidUser ? <Alert className="signup-alert" variant="danger">
-                                This User already exist!
-                            </Alert> : <Alert></Alert>}
-
-                                            
+                            The user already exists!
+                            </Alert> : <Alert></Alert>}                                            
 
                             <Form.Group as={Row} controlId="formHorizontalEmail">
                                 <Col sm={12}>
@@ -153,7 +180,7 @@ function SignupPage(props) {
                                 <Col sm={12}>
                                     <Form.Label id="email">Email:</Form.Label>
                                     <Form.Control type="email" value={emailSignup}
-                                        onChange={(e) => (setEmailSignup(e.target.value),setShowInvalidUser(false))}/>
+                                        onChange={(e) => (setEmailSignup(e.target.value))}/>
                                 </Col>                    
                             </Form.Group>
 
@@ -191,13 +218,15 @@ function SignupPage(props) {
                         </Col> 
                         <Col lg={6} sm={12}>
 
-                            <Alert></Alert>
+                            {showInvalidAccount ? <Alert className="signup-alert" variant="danger">
+                            The account already exists!
+                            </Alert> : <Alert></Alert>} 
 
                             <Form.Group as={Row} controlId="formHorizontalEmail">
                                 <Col sm={12}>
                                     <Form.Label id="building">Building:</Form.Label>                   
                                     <Form.Control type="text" value={buildingSignup}
-                                        onChange={(e) => (setBuildingSignup(e.target.value),setShowInvalidAccount(false))}/>
+                                        onChange={(e) => (setBuildingSignup(e.target.value))}/>
                                 </Col>                    
                             </Form.Group>
 
@@ -205,7 +234,7 @@ function SignupPage(props) {
                                 <Col sm={12}>
                                 <Form.Label id="address">Address:</Form.Label>                    
                                 <Form.Control type="text" value={addressSignup}
-                                        onChange={(e) => (setAddressSignup(e.target.value),setShowInvalidAccount(false))}/>
+                                        onChange={(e) => (setAddressSignup(e.target.value))}/>
                                 </Col>                     
                             </Form.Group>
 
@@ -213,7 +242,7 @@ function SignupPage(props) {
                                 <Col sm={12}>
                                     <Form.Label id="city">City:</Form.Label>                    
                                     <Form.Control type="text" value={citySignup}
-                                        onChange={(e) => (setCitySignup(e.target.value),setShowInvalidAccount(false))}/>
+                                        onChange={(e) => (setCitySignup(e.target.value))}/>
                                 </Col>                     
                             </Form.Group>
                             </Col>
