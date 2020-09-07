@@ -13,7 +13,7 @@ function MyVotingModal(props) {
     //controlled components
     const [titleInput, setTitleInput] = React.useState("")
     const [detailsInput, setDetailsInput] = React.useState("")
-    const [optionsInput, setOptionsInput] = React.useState(false)
+    const [optionsInput, setOptionsInput] = React.useState([])
     const [endDateInput, setEndDateInput] = React.useState("") 
     
     function handleCreateVoting()  {
@@ -59,24 +59,27 @@ function MyVotingModal(props) {
         
     }
 
-    function handleOptionsChange(event) {
+    function handleOptionsChange(inputVals) {
 
-        console.log(event.target.value)
+        //console.log(inputVals[0]['name form-control'])
 
-        if(event.target.value==="on") {  // convert to boolean
-            setOptionsInput(true)   
+        // from an array of objects, extract value of a property (value) as array
+        let result = inputVals.map(a => a['name form-control']);
+        console.log(result)
+        setOptionsInput(result)   
 
-        } else {
-            setOptionsInput(false)   
-        }          
-        console.log(optionsInput)
+
+
+        // if(event.target.value==="on") {  // convert to boolean
+        //     setOptionsInput(true)   
+
+        // } else {
+        //     setOptionsInput(false)   
+        // }          
+        // console.log(optionsInput)
     }
 
 
-    // function handleImgChange(event) {
-    //     setImgInput(event.target.value)
-        
-    // }
 
     function handleEndDateChange(event) {        
         setEndDateInput(Date.parse(event.target.value)) // convert to date
@@ -116,7 +119,7 @@ function MyVotingModal(props) {
                                     Options:
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Options/>
+                                    <Options optionsValues={handleOptionsChange}/>
 
                                     {/* <InputGroup.Prepend value={optionsInput}  name="optionsInput" onChange={handleOptionsChange}>
 

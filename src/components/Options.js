@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
-import { Modal,Button,Row,Col,Form,InputGroup } from 'react-bootstrap';
+import { Row,Col,Form } from 'react-bootstrap';
 
-function Options() {
+function Options(props) {
    
+    const { optionsValues } = props
 
     const blankOption = { name: '' };
     const [optionsState, setOptionsState] = useState([{ ...blankOption },]);
-    console.log(optionsState[0])
+   
 
     function addOption() {
         setOptionsState([...optionsState, { ...blankOption }]);
     };
 
     // controlled component
-    function handleOptiontChange(e) {
+    function handleOptionsChange(e) {
         const updatedOptions = [...optionsState];
         updatedOptions[e.target.dataset.idx][e.target.className] = e.target.value;
         setOptionsState(updatedOptions);
+        //console.log(optionsState[0]['name form-control'])
+        optionsValues(optionsState) //sending values - callback function
     };
 
     return (
@@ -28,9 +31,9 @@ function Options() {
                     
                     return (
                         
-                        <Row key={`option-${idx}`}>
+                        <Row>
                             <Col sm={10}>
-                            <Form.Group>    
+                            <Form.Group  key={`option-${idx}`}>    
                                 <Form.Label htmlFor={optionId}>{`Option #${idx + 1}:`}</Form.Label>
                                 
                                     <Form.Control
@@ -39,13 +42,27 @@ function Options() {
                                         data-idx={idx}
                                         id={optionId}
                                         className="name"
-                                        onChange={handleOptiontChange}
+                                        //value={optionsState[idx].name}                                    
+                                        onChange={handleOptionsChange}
                                     />
                             </Form.Group>
-                            </Col>
-                            
+                            </Col>                     
                                                       
                         </Row>
+
+                        // <div key={`option-${idx}`}>
+                        //         <label htmlFor={optionId}>{`Option #${idx + 1}`}</label>
+                        //         <input
+                        //         type="text"
+                        //         name={optionId}
+                        //         data-idx={idx}
+                        //         id={optionId}
+                        //         className="name" 
+                        //         //value={optionsState[idx].name}
+                        //         onChange={handleOptionsChange}
+                        //         />
+                        // </div>
+                                                
                     );
                 })
             }
