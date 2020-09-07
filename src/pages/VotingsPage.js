@@ -78,6 +78,12 @@ function VotingsPage(props) {
         return <Redirect to="/" />
     }
 
+      // Map my votes to UI
+      const myVotingToShow = votes.map((vote,index) =>
+      <Vote key={index} id={vote.id} title={vote.title} details={vote.details}
+       options={vote.options} vote={vote} votes={votes}
+     />) 
+
   return (
       <div className="p-votings">
         <CommitteeNavbar activeUser={activeUser}/>
@@ -99,7 +105,7 @@ function VotingsPage(props) {
                 New Voting
             </Breadcrumb.Item>        
             
-                      
+             {myVotingToShow}         
             
             <Vote/>
           </Col>

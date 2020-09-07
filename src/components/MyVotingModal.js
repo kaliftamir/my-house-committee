@@ -61,22 +61,12 @@ function MyVotingModal(props) {
 
     function handleOptionsChange(inputVals) {
 
-        //console.log(inputVals[0]['name form-control'])
-
-        // from an array of objects, extract value of a property (value) as array
+        // from an array of objects, extract value of an options as array
         let result = inputVals.map(a => a['name form-control']);
-        console.log(result)
-        setOptionsInput(result)   
+        
+        setOptionsInput(result) 
+        console.log(result)  
 
-
-
-        // if(event.target.value==="on") {  // convert to boolean
-        //     setOptionsInput(true)   
-
-        // } else {
-        //     setOptionsInput(false)   
-        // }          
-        // console.log(optionsInput)
     }
 
 
@@ -85,7 +75,7 @@ function MyVotingModal(props) {
         setEndDateInput(Date.parse(event.target.value)) // convert to date
         
     }
-    //--------------------------------------- 
+    //---------------------------------------------------------------------------------------
     
     
     return(

@@ -21,7 +21,7 @@ function Vote(props) {
                     <Card.Header className="title">
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">
                            <span className="title-text">
-                            title={"Tamir"}
+                            {title}
                            </span>
                                                
                            
@@ -42,7 +42,7 @@ function Vote(props) {
                                                         Details:
                                                     </Col>
                                                     <Col xs={6}>
-                                                        details={"bla bla bla bla"}
+                                                        {details}
                                                     </Col>                                                           
 
                                                 </Row>
@@ -54,14 +54,15 @@ function Vote(props) {
                                                     End Date:
                                                 </Col>
                                                 <Col xs={2}>
-                                                    
+                                                    {dueDate}
                                                 </Col> 
                                                 <Col xs={6}>
                                                     <Button value={id} variant="primary" size="sm">Update End Date</Button>
                                                 </Col>                                                                        
                                                         
 
-                                            </Row>                               
+                                            </Row> 
+                                            <Row>{options}</Row>                              
                                                                                                           
 
                                         </div>
