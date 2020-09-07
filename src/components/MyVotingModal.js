@@ -2,7 +2,7 @@ import React, { } from 'react';
 import { Modal,Button,Row,Col,Form,InputGroup } from 'react-bootstrap';
 import './MyVotingModal.css'
 import Parse from 'parse';
-
+import Options from './Options';
 
 
 function MyVotingModal(props) {
@@ -116,8 +116,9 @@ function MyVotingModal(props) {
                                     Options:
                                 </Form.Label>
                                 <Col sm={10}>
+                                    <Options/>
 
-                                    <InputGroup.Prepend value={optionsInput}  name="optionsInput" onChange={handleOptionsChange}>
+                                    {/* <InputGroup.Prepend value={optionsInput}  name="optionsInput" onChange={handleOptionsChange}>
 
                                         <InputGroup.Text>yes</InputGroup.Text>
                                         <InputGroup.Radio name="sort" aria-label="Radio button for following text input"
@@ -125,7 +126,7 @@ function MyVotingModal(props) {
                                         <InputGroup.Text className="label">no</InputGroup.Text>
                                         <InputGroup.Radio name="sort" aria-label="Radio button for following text input"/>
                                                                                
-                                    </InputGroup.Prepend>                                                     
+                                    </InputGroup.Prepend>                                                      */}
                                       
                                 </Col>
                                
@@ -143,6 +144,7 @@ function MyVotingModal(props) {
                             </Form.Group>
                             
                         </Form>
+                       
 
                     </Modal.Body>
                     <Modal.Footer>                      

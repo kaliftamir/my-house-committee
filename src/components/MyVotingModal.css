@@ -1,6 +1,7 @@
 
 
-.input-group-text {
+.input-group-text, #add-input {
     background-color: transparent;
     border: none;
 }
+
