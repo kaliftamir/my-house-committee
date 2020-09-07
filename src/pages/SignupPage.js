@@ -10,7 +10,7 @@ function SignupPage(props) {
     
     const { users,accounts,handleSignup,handleNewAccount } = props;
 
-    const [newUser, setNewUser] = React.useState(false)
+    //const [newUser, setNewUser] = React.useState(false)
     const [activeAccount, setActiveAccount] = React.useState(false)
 
     
@@ -98,9 +98,8 @@ function SignupPage(props) {
                 user.set('password', pwdSignup);                
         
                 user.signUp().then((user) => {
-                    // If the user is valid: create new account 
-                                 
-                    //setNewUser(true) 
+                    // If the user is valid: create new account                                  
+                    
                     const account = Parse.Object.extend('account');
                     const myNewObject = new account();
                     
@@ -131,37 +130,9 @@ function SignupPage(props) {
                     // If user already exist: show an error alert                      
                     setShowInvalidUser(true)
                       
-                }); 
-                              
+                });                              
 
-            // if(newUser) {
-                
-                // const account = Parse.Object.extend('account');
-                // const myNewObject = new account();
-                
-                // myNewObject.set('building', buildingSignup);
-                // myNewObject.set('address', addressSignup);
-                // myNewObject.set('city', citySignup);
-                
-                // myNewObject.save().then(
-                //   (result) => {
 
-                //     // If the signup is valid: notify user and redirect to homePage
-                //     setShowAlertSignup(true)
-
-                //     setTimeout(function() {
-                //         setRedirectToHome(true)                          
-                //     }, 2000);
-                   
-                //   },
-                //   (error) => {
-                //     setShowInvalidAccount(true)
-
-                //   }
-                // );
-                
-                
-            // }
         }
         
     }, [activeAccount])   

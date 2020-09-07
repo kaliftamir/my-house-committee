@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import './MessagesPage.css'
 import { Redirect } from 'react-router-dom';
 import CommitteeNavbar from '../components/CommitteeNavbar';
@@ -263,7 +263,7 @@ function MessagesPage(props) {
         <div className="p-messages">
             
             <CommitteeNavbar activeUser={activeUser}/>
-
+          
             <Navbar expand="lg">
                 <Navbar.Brand href="#/"></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>

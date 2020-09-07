@@ -1,14 +1,14 @@
 class MessageModel {
 
-    constructor(parseRecipe) {
+    constructor(parseMessage) {
         
-        this.id = parseRecipe.id;
-        this.createdAt = parseRecipe.createdAt;
-        this.title = parseRecipe.get("title");
-        this.details = parseRecipe.get("details");
-        this.priority = parseRecipe.get("priority");
-        this.icon = parseRecipe.get("icon");
-        this.img = parseRecipe.get("img")._url;
+        this.id = parseMessage.id;
+        this.createdAt = parseMessage.createdAt;
+        this.title = parseMessage.get("title");
+        this.details = parseMessage.get("details");
+        this.priority = parseMessage.get("priority");
+        this.icon = parseMessage.get("icon");
+        this.img = parseMessage.get("img")._url;
     }
 
 }
