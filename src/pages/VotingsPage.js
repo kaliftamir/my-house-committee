@@ -27,6 +27,7 @@ function VotingsPage(props) {
             // 2) Update state (votes array) with the new vote
             const vote = new VotingModel(result);
             setVotes(votes.concat(vote))
+            console.log(votes)
         },
         (error) => {
             console.error('Error while creating Vote: ', error);
@@ -99,6 +100,7 @@ function VotingsPage(props) {
             </Breadcrumb.Item>        
             
                       
+            
             <Vote/>
           </Col>
 

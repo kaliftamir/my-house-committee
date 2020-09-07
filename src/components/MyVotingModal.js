@@ -13,7 +13,7 @@ function MyVotingModal(props) {
     //controlled components
     const [titleInput, setTitleInput] = React.useState("")
     const [detailsInput, setDetailsInput] = React.useState("")
-    const [optionsInput, setOptionsInput] = React.useState("")
+    const [optionsInput, setOptionsInput] = React.useState(false)
     const [endDateInput, setEndDateInput] = React.useState("") 
     
     function handleCreateVoting()  {
@@ -22,10 +22,11 @@ function MyVotingModal(props) {
         const Vote = Parse.Object.extend('Vote');
         const newVote = new Vote();
 
-        newVote.set('title', setTitleInput);
-        newVote.set('details', setDetailsInput);
-        newVote.set('options', setOptionsInput);
-        newVote.set('endDate', setEndDateInput);
+        newVote.set('title', titleInput);
+        newVote.set('details', detailsInput);
+        newVote.set('options', optionsInput);
+        newVote.set('endDate', endDateInput);
+        newVote.set('votes', 0);
         newVote.set('ownerId', Parse.User.current());
         //newVote.set('accountId',activeUser.id);
 
@@ -42,7 +43,7 @@ function MyVotingModal(props) {
     function cleanMyModal() {
         setTitleInput("")        
         setDetailsInput("")
-        setOptionsInput("")        
+        setOptionsInput(false)        
         setEndDateInput("")
        
     }
@@ -59,8 +60,16 @@ function MyVotingModal(props) {
     }
 
     function handleOptionsChange(event) {
-        setOptionsInput(event.target.value)     
-        
+
+        console.log(event.target.value)
+
+        if(event.target.value==="on") {  // convert to boolean
+            setOptionsInput(true)   
+
+        } else {
+            setOptionsInput(false)   
+        }          
+        console.log(optionsInput)
     }
 
 
@@ -70,7 +79,7 @@ function MyVotingModal(props) {
     // }
 
     function handleEndDateChange(event) {        
-        setEndDateInput(event.target.value)
+        setEndDateInput(Date.parse(event.target.value)) // convert to date
         
     }
     //--------------------------------------- 
