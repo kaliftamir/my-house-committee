@@ -13,7 +13,7 @@ function LoginPage (props) {
     const { handleLogin } = props;
     
     // controlled components
-    const [emailInput, setEmailInput] = React.useState("john@john.com")
+    const [emailInput, setEmailInput] = React.useState("jerry@jerry.com")
     const [pwdInput, setPwdInput] = React.useState("123")    
     
     
