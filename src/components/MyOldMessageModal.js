@@ -8,7 +8,6 @@ import './MyMessageModal.css'
 function MyOldMessageModal (props) {
 
     const {title,details,priority,img,handleOldModalOpen,handleModalClose,handleUpdateMessage } = props
-
     const [alertNotification, setAlertNotification] = React.useState(false)
   
        
@@ -91,7 +90,7 @@ function MyOldMessageModal (props) {
         <div className="c-my-message-modal">
                 <Modal show={handleOldModalOpen} onHide={handleModalClose}  size="lg">
                     <Modal.Header closeButton>
-                        <Modal.Title>New Message</Modal.Title>
+                        <Modal.Title>Updated Message</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>

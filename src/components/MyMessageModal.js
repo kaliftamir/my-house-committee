@@ -24,7 +24,7 @@ function MyMessageModal(props) {
         const Message = Parse.Object.extend('Message');
         const newMessage = new Message();
 
-        newMessage.set('objectId', Parse.User.current());
+        // newMessage.set('objectId', Parse.User.current());
         newMessage.get('updatedAt', Parse.User.current());
 
         newMessage.set('title', titleInput);

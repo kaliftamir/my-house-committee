@@ -62,7 +62,7 @@ function Vote(props) {
                                                         
 
                                             </Row> 
-                                            <Row>{options}</Row>                              
+                                            <Button>{options}</Button>                              
                                                                                                           
 
                                         </div>
