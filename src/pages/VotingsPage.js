@@ -53,26 +53,20 @@ function VotingsPage(props) {
               
     } 
 
-    if (!activeUser) {
-        return <Redirect to="/" />
-    } 
-    
-    // useEffect(() => {
-    //   if (activeUser) {
-    //       const Vote = Parse.Object.extend('Vote');
-    //       const query = new Parse.Query(Vote);
-    //       query.equalTo("userId", Parse.User.current());
-    //       query.find().then(results => {
-    //           // Success - results is the array of recipes
-    //           const votes = results.map(result => new VotingModel(result));
-    //           setVotes(votes);
-    //       }, (error) => {
-    //           console.error('Error while fetching Voting', error);
-    //       });
-    //   }
-    // }, [activeUser])
-
-
+    useEffect(() => {
+      if (activeUser) {
+          const Vote = Parse.Object.extend('Vote');
+          const query = new Parse.Query(Vote);
+          //query.equalTo("userId", Parse.User.current());
+          query.find().then(results => {
+              // Success - results is the array of recipes
+              const votes = results.map(result => new VotingModel(result));
+              setVotes(votes);
+          }, (error) => {
+              console.error('Error while fetching Voting', error);
+          });
+      }
+    }, [activeUser])
 
     if (!activeUser) {
         return <Redirect to="/" />
