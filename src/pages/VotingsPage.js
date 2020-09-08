@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import CommitteeNavbar from '../components/CommitteeNavbar';
 import Vote from '../components/Vote';
 import MyVotingModal from '../components/MyVotingModal';
-import { Row,Breadcrumb,InputGroup,FormControl,Dropdown,DropdownButton,Navbar,Nav,Modal,Form,Col,Button, Container } from 'react-bootstrap';
+import { Row,Breadcrumb,InputGroup,FormControl,Col } from 'react-bootstrap';
 import Parse from 'parse'; 
 import VotingModel from '../model/VotingModel';
 
@@ -75,9 +75,11 @@ function VotingsPage(props) {
       // Map my votes to UI
       const myVotingToShow = votes.map((vote,index) =>
       <Vote key={index} id={vote.id} title={vote.title} details={vote.details}
-       options={vote.options} vote={vote} votes={votes}
+       opt1={vote.options[0]}  opt2={vote.options[1]} vote={vote} votes={votes}
      />) 
 
+
+  
   return (
       <div className="p-votings">
         <CommitteeNavbar activeUser={activeUser}/>
@@ -93,7 +95,7 @@ function VotingsPage(props) {
                     New Voting
                 </Breadcrumb.Item>        
                 
-                {myVotingToShow}         
+                {myVotingToShow} 
                 
                 <Vote/>
               </div>  

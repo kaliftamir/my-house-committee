@@ -8,10 +8,9 @@ import Parse from 'parse';
 
 function Vote(props) {
 
-    const { id,title,details,options,dueDate,votes } = props
-    
-    
-      
+    const { id,title,details,opt1,opt2,dueDate,votes} = props
+
+   
     return(
 
         <div className="c-message">
@@ -28,26 +27,23 @@ function Vote(props) {
 
                         </Accordion.Toggle>
                     </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                        <Card.Body>
+                    <Accordion.Collapse eventKey="0">                   
                         
-                            <Row>
-                                
+                            <Row>                                
                                 <Col xs={9}>
                                     <Card.Body className="card-body">
-                                        <Card.Title></Card.Title>
-                                            <div className="details">
-                                                <Row>
-                                                    <Col xs={3}>
-                                                        Details:
-                                                    </Col>
-                                                    <Col xs={6}>
-                                                        {details}
-                                                    </Col>                                                           
+                                        
+                                        <div className="details">
+                                            <Row>
+                                                <Col xs={4}>
+                                                    Details:
+                                                </Col>
+                                                <Col xs={6}>
+                                                    {details}
+                                                </Col> 
+                                            </Row>                                                
+                                        </div>
 
-                                                </Row>
-                                                
-                                            </div>
                                         <div> 
                                             <Row>
                                                 <Col xs={4}>
@@ -58,27 +54,24 @@ function Vote(props) {
                                                 </Col> 
                                                 <Col xs={6}>
                                                     <Button value={id} variant="primary" size="sm">Update End Date</Button>
-                                                </Col>                                                                        
-                                                        
+                                                </Col>                                                                                               
+                                            </Row>                                                            
 
-                                            </Row> 
-                                            <Button>{options}</Button>                              
-                                                                                                          
-
-                                        </div>
-                                        
+                                        </div>                        
                                                        
                                     </Card.Body>
                                 </Col> 
                                 <Col xs={3}>
                                     <Card.Img variant="top" src="kramer.jpg"/>
                                 </Col>
-                            </Row> 
-
-                        </Card.Body>
+                            </Row>                                                    
                     
-                        </Accordion.Collapse>
-                    </Card>
+                    </Accordion.Collapse>
+                    <Card.Footer>
+                        <Button>{opt1}</Button>
+                        <Button>{opt2}</Button>
+                    </Card.Footer>
+                </Card>
             
             </Accordion>
          

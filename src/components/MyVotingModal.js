@@ -107,18 +107,7 @@ function MyVotingModal(props) {
                                     Options:
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Options optionsValues={handleOptionsChange}/>
-
-                                    {/* <InputGroup.Prepend value={optionsInput}  name="optionsInput" onChange={handleOptionsChange}>
-
-                                        <InputGroup.Text>yes</InputGroup.Text>
-                                        <InputGroup.Radio name="sort" aria-label="Radio button for following text input"
-                                        defaultChecked />
-                                        <InputGroup.Text className="label">no</InputGroup.Text>
-                                        <InputGroup.Radio name="sort" aria-label="Radio button for following text input"/>
-                                                                               
-                                    </InputGroup.Prepend>                                                      */}
-                                      
+                                    <Options  className="options" optionsValues={handleOptionsChange}/>                                                                                 
                                 </Col>
                                
                                 
