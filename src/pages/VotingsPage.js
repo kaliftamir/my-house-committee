@@ -76,6 +76,7 @@ function VotingsPage(props) {
       const myVotingToShow = votes.map((vote,index) =>
       <Vote key={index} id={vote.id} title={vote.title} details={vote.details}
        opt1={vote.options[0]}  opt2={vote.options[1]} opt3={vote.options[2]} vote={vote} votes={votes}
+       endDate={vote.endDate}
      />) 
 
 
@@ -111,7 +112,9 @@ function VotingsPage(props) {
                                             
                               
                 </InputGroup>
-                <Vote/>
+                <Vote title={"Build new pool"} details={"yada yada yada"} opt1={"yes"} opt2={"no"} opt3={"abstained"} dueDate={"15/1/2019"}/>
+                <Vote title={"Install new roof"} details={"yada yada yada"} opt1={"1"} opt2={"2"} opt3={"3"} dueDate={"15/8/2019"}/>
+                
               </div>
             </Col>  
 

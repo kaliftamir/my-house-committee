@@ -1,0 +1,14 @@
+
+.c-vote .card-footer > button {
+    background-color: transparent;
+    color:blue;
+    border-color: red;
+    margin-right: 5px;
+}
+
+.c-vote .date {
+
+    position: absolute;
+    bottom: 5px;
+    /* align-items: flex-end; */
+}

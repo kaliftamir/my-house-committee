@@ -1,6 +1,6 @@
 import React, { } from 'react';
 import { Card,Button,Accordion,Row,Col } from 'react-bootstrap';
-import './Message.css'
+import './Vote.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Parse from 'parse';
 import { Doughnut } from 'react-chartjs-2';
@@ -40,7 +40,7 @@ function Vote(props) {
    
     return(
 
-        <div className="c-message">
+        <div className="c-vote">
 
             <Accordion>
                 <Card>
@@ -70,16 +70,17 @@ function Vote(props) {
                                                 </Col> 
                                             </Row>                                                
                                         </div>
+                                        
 
                                         <div> 
-                                            <Row>
+                                            <Row className="date">
                                                 <Col xs={4}>
                                                     End Date:
                                                 </Col>
-                                                <Col xs={2}>
+                                                <Col xs={4}>
                                                     {dueDate}
                                                 </Col> 
-                                                <Col xs={6}>
+                                                <Col xs={4}>
                                                     <Button value={id} variant="primary" size="sm">Update End Date</Button>
                                                 </Col>                                                                                               
                                             </Row>                                                            

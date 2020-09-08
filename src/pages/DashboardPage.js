@@ -32,7 +32,7 @@ function DashboardPage(props) {
                 
             </Row>
             
-            DashboardPages-start
+            DashboardPages under construction
 
         </Container>      
           

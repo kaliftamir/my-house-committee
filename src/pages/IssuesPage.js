@@ -16,7 +16,7 @@ function IssuesPage(props) {
     return (
         <div>
             <CommitteeNavbar activeUser={activeUser}/>
-            IssuesPage
+            IssuesPage under construction!
 
         </div>
     );
