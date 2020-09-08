@@ -87,41 +87,40 @@ function VotingsPage(props) {
   return (
       <div className="p-votings">
         <CommitteeNavbar activeUser={activeUser}/>
-       
-        <Row>
-          <Col lg={6} sm={12} >
-            <h1>Active Votings</h1>
-          </Col> 
-          <Col lg={6} sm={12} >
-            <h1>Votings Results</h1>
-          </Col>                  
-        </Row>
+        <div className="p-votes">
+          <Row>
 
-        <Row>
-
-          <Col lg={6} sm={12} >
-        
-            <Breadcrumb.Item  onClick={handleModalOpen}>                     
-                New Voting
-            </Breadcrumb.Item>        
+            <Col lg={6} sm={12} >
             
-             {myVotingToShow}         
+              <h1>Active Votings</h1>
             
-            <Vote/>
-          </Col>
+              <div className="left-pane">
+                <Breadcrumb.Item  onClick={handleModalOpen}>                     
+                    New Voting
+                </Breadcrumb.Item>        
+                
+                {myVotingToShow}         
+                
+                <Vote/>
+              </div>  
+            </Col>
 
-          <Col lg={6} sm={12} >
-            <InputGroup className="mb-12">
-                <FormControl className="flter-bar mb-12" placeholder="filter by text title and details"
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"/>              
-                                         
-                           
-            </InputGroup>
-            <Vote/>
-          </Col>  
+            <Col lg={6} sm={12}>
+              <h1>Votings Results</h1>
+              <div  className="right-pane">
+                <InputGroup className="mb-12">
+                    <FormControl className="flter-bar mb-12" placeholder="filter by text title and details"
+                    aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default"/>              
+                                            
+                              
+                </InputGroup>
+                <Vote/>
+              </div>
+            </Col>  
 
-        </Row>  
+          </Row>
+        </div>    
 
         
         <MyVotingModal handleNewVoting={handleNewVoting} handleModalOpen={showNewVotingModal} handleModalClose={handleModalClose} />      

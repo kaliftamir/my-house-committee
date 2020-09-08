@@ -1,7 +1,21 @@
 
 
+
+.p-votings .p-votes {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 .p-votings .breadcrumb-item {
  
  text-decoration: underline;    
 
+}
+
+.p-votings .left-pane {
+    margin-top:32px;
+}
+
+.p-votings .mb-12 {
+    margin-bottom: 5px;
 }

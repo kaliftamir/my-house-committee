@@ -71,28 +71,6 @@ function MessagesPage(props) {
         setOldPriority(message.priority) 
         setOldImg(message.img)
         setShowOldMessageModal(true)
-
-        // const Message = Parse.Object.extend('Message');
-        // const query = new Parse.Query(Message);
-        // // here you put the objectId that you want to update
-        // query.get(messageId).then((object) => {
-
-        //     object.save().then((response) => {
-        //         // You can use the "get" method to get the value of an attribute
-        //         setOldId(messageId)
-        //         setOldTitle(response.get("title")) 
-        //         setOldDetails(response.get("details"))
-        //         setOldPriority(response.get("priority")) 
-        //         setOldImg(response.get("img"))
-              
-        //          console.log(oldId )          
-               
-        //     }, (error) => {
-        //         if (typeof document !== 'undefined') document.write(`Error while updating Message: ${JSON.stringify(error)}`);
-        //         console.error('Error while updating Message', error);
-        //     });
-        // });
-
     }
 
     //-----------------------------------------------------------------------------------------------

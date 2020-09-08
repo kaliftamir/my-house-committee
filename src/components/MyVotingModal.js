@@ -38,8 +38,6 @@ function MyVotingModal(props) {
 
     }   
     
-
-
     function cleanMyModal() {
         setTitleInput("")        
         setDetailsInput("")
