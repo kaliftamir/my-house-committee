@@ -75,7 +75,7 @@ function VotingsPage(props) {
       // Map my votes to UI
       const myVotingToShow = votes.map((vote,index) =>
       <Vote key={index} id={vote.id} title={vote.title} details={vote.details}
-       opt1={vote.options[0]}  opt2={vote.options[1]} vote={vote} votes={votes}
+       opt1={vote.options[0]}  opt2={vote.options[1]} opt3={vote.options[2]} vote={vote} votes={votes}
      />) 
 
 

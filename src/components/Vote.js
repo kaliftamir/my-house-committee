@@ -3,13 +3,40 @@ import { Card,Button,Accordion,Row,Col } from 'react-bootstrap';
 import './Message.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Parse from 'parse';
+import { Doughnut } from 'react-chartjs-2';
+
 
 
 
 function Vote(props) {
 
-    const { id,title,details,opt1,opt2,dueDate,votes} = props
+    const { id,title,details,opt1,opt2,opt3,dueDate,votes} = props
+    
 
+    const rnd1 = Math.floor(Math.random() * 100); 
+    const rnd2 = Math.floor(Math.random() * 100); 
+    const rnd3 = Math.floor(Math.random() * 100); 
+
+    const chartData = {
+        labels: [
+            opt1,
+            opt2,
+            opt3
+        ],
+        datasets: [{
+            data: [rnd1, rnd2, rnd3],
+            backgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+            ],
+            hoverBackgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+            ]
+        }]
+    }
    
     return(
 
@@ -62,7 +89,8 @@ function Vote(props) {
                                     </Card.Body>
                                 </Col> 
                                 <Col xs={3}>
-                                    <Card.Img variant="top" src="kramer.jpg"/>
+                                    {/* <Card.Img variant="top" src="kramer.jpg"/> */}
+                                    <Doughnut data={chartData} width={100}/>
                                 </Col>
                             </Row>                                                    
                     
@@ -70,6 +98,7 @@ function Vote(props) {
                     <Card.Footer>
                         <Button>{opt1}</Button>
                         <Button>{opt2}</Button>
+                        <Button>{opt3}</Button>
                     </Card.Footer>
                 </Card>
             
