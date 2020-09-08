@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/my-house-committee/static/css/main.f05bf562.chunk.css",
+    "main.js": "/my-house-committee/static/js/main.f0f0fd43.chunk.js",
+    "main.js.map": "/my-house-committee/static/js/main.f0f0fd43.chunk.js.map",
+    "runtime-main.js": "/my-house-committee/static/js/runtime-main.329b954a.js",
+    "runtime-main.js.map": "/my-house-committee/static/js/runtime-main.329b954a.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/my-house-committee/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.0d336648.chunk.js": "/my-house-committee/static/js/2.0d336648.chunk.js",
+    "static/js/2.0d336648.chunk.js.map": "/my-house-committee/static/js/2.0d336648.chunk.js.map",
+    "index.html": "/my-house-committee/index.html",
+    "precache-manifest.356111fb436a9bfd2eafc652f7fad47c.js": "/my-house-committee/precache-manifest.356111fb436a9bfd2eafc652f7fad47c.js",
+    "service-worker.js": "/my-house-committee/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/my-house-committee/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.f05bf562.chunk.css.map": "/my-house-committee/static/css/main.f05bf562.chunk.css.map",
+    "static/js/2.0d336648.chunk.js.LICENSE.txt": "/my-house-committee/static/js/2.0d336648.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.329b954a.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.0d336648.chunk.js",
+    "static/css/main.f05bf562.chunk.css",
+    "static/js/main.f0f0fd43.chunk.js"
+  ]
+}

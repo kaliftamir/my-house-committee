@@ -1,0 +1,31 @@
+[
+    {
+        "id": "1",
+        "brand": "Toyota",
+        "model": "Yaris",
+        "year": 2002,
+        "km": 230000
+    },
+    {
+        "id": "2",
+        "brand": "Toyota",
+        "model": "Corola",
+        "year": 2015,
+        "km": 105000
+    },
+    {
+        "id": "3",
+        "brand": "Hyundai",
+        "model": "i30",
+        "year": 2010,
+        "km": 150000
+    },
+    {
+        "id": "4",
+        "brand": "Subaru",
+        "model": "Justy",
+        "year": 1988,
+        "km": 453000
+    }
+
+]
